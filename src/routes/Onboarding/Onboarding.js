@@ -13,20 +13,22 @@ class Onboarding extends React.Component {
   componentDidMount() {
     const { navigation } = this.props;
 
-    AsyncStorage.getItem('@onboardingDone')
-      .then(value => {
-        if (value) {
-          navigation.navigate('SignUp');
-          SplashScreen.hide();
-        } else {
-          SplashScreen.hide();
-        }
-      })
-      .catch(err => {
-        console.log(err);
+    // AsyncStorage.getItem('@onboardingDone')
+    //   .then(value => {
+    //     if (value) {
+    //       navigation.navigate('SignUp');
+    //       SplashScreen.hide();
+    //     } else {
+    //       SplashScreen.hide();
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
 
-        SplashScreen.hide();
-      });
+    //     SplashScreen.hide();
+    //   });
+
+    SplashScreen.hide();
   }
 
   signIn = () => {
