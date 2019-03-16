@@ -1,0 +1,1 @@
+export InputWithSuffix from './InputWithSuffix';
