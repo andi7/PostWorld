@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { LoginManager } from 'react-native-fbsdk';
 
 import { InputWithSuffix, GradientButton } from '../../components';
 import styles from './styles';
@@ -18,7 +19,20 @@ class SignUp extends React.Component {
     this.props.navigation.navigate('EnterUsername');
   };
 
-  byFacebook = () => {};
+  byFacebook = () => {
+    LoginManager.logInWithReadPermissions(['public_profile']).then(
+      result => {
+        if (result.isCancelled) {
+          console.log('Login cancelled');
+        } else {
+          console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+        }
+      },
+      error => {
+        console.log(`Login fail with error: ${error}`);
+      }
+    );
+  };
 
   render() {
     const { email, password, showPassword } = this.state;
@@ -54,7 +68,7 @@ class SignUp extends React.Component {
           <Text style={styles.signText}>SIGN UP WITH EMAIL</Text>
         </GradientButton>
 
-        <GradientButton colors={[colors.primary, colors.primary]}>
+        <GradientButton colors={[colors.primary, colors.primary]} onPress={this.byFacebook}>
           <Text style={styles.signText}>SIGN UP WITH FACEBOOK</Text>
         </GradientButton>
 
