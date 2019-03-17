@@ -91,9 +91,9 @@ class SignUp extends React.Component {
             </GradientButton>
 
             <Text style={styles.footerText}>
-              Already have an account?{' '}
+              {mode === 'SIGN UP' ? 'Already have an account?' : "Don't have an account?"}{' '}
               <Text style={styles.footerTextHighlight} onPress={this.changeMode}>
-                Sign in
+                {mode === 'SIGN UP' ? 'Sign in' : 'Sign up'}
               </Text>
             </Text>
           </React.Fragment>
