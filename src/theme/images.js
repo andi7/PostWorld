@@ -7,7 +7,8 @@ export default {
   // Icons
   locationArrow: require('../assets/images/icons/location_arrow.png'),
   comments: require('../assets/images/icons/comments.png'),
-  likes: require('../assets/images/icons/likes.png'),
+  like: require('../assets/images/icons/like.png'),
+  likeActive: require('../assets/images/icons/like_active.png'),
   dots: require('../assets/images/icons/dots.png'),
 
   // Other

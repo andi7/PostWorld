@@ -6,7 +6,7 @@ import { images } from '../../../../theme';
 import styles from './styles';
 
 class PostCard extends React.PureComponent {
-  state = { imageHeight: 0 };
+  state = { imageHeight: 0, liked: this.props.item.liked };
 
   componentDidMount() {
     const { item } = this.props;
@@ -23,9 +23,13 @@ class PostCard extends React.PureComponent {
     }
   }
 
+  like = () => {
+    this.setState({ liked: !this.state.liked });
+  };
+
   render() {
     const { item } = this.props;
-    const { imageHeight } = this.state;
+    const { imageHeight, liked } = this.state;
 
     return (
       <View style={styles.card}>
@@ -63,11 +67,14 @@ class PostCard extends React.PureComponent {
             <Text style={styles.commentsText}>{item.comments} comments</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.iconButton, { justifyContent: 'flex-end' }]}>
-            <Image source={images.likes} style={styles.likesIcon} />
+          <TouchableOpacity
+            style={[styles.iconButton, { justifyContent: 'flex-end' }]}
+            onPress={this.like}
+          >
+            <Image source={liked ? images.likeActive : images.like} style={styles.likesIcon} />
 
-            <Text style={[styles.likesText, { color: item.liked ? '#FF5353' : 'black' }]}>
-              {item.likes}
+            <Text style={[styles.likesText, { color: liked ? '#FF5353' : 'black' }]}>
+              {item.likes + (item.liked && !liked ? -1 : !item.liked && liked ? 1 : 0)}
             </Text>
           </TouchableOpacity>
         </View>
