@@ -1,8 +1,18 @@
 import { createSwitchNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 
 import Onboarding from '../routes/Onboarding/Onboarding';
+
 import SignUp from '../routes/SignUp/SignUp';
 import EnterUsername from '../routes/EnterUsername/EnterUsername';
+
+import Feed from '../routes/Feed/Feed';
+
+const MainNavigator = createStackNavigator({
+  Feed: {
+    screen: Feed,
+    navigationOptions: { title: 'postworld' }
+  }
+});
 
 const AuthNavigator = createStackNavigator(
   {
@@ -17,7 +27,8 @@ const AuthNavigator = createStackNavigator(
 const AppNavigation = createSwitchNavigator(
   {
     Onboarding,
-    AuthNavigator
+    AuthNavigator,
+    MainNavigator
   },
   {
     headerMode: 'none'

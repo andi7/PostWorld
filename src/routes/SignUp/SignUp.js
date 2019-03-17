@@ -26,6 +26,7 @@ class SignUp extends React.Component {
           console.log('Login cancelled');
         } else {
           console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+          this.props.navigation.navigate('EnterUsername');
         }
       },
       error => {

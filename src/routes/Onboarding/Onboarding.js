@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import Swiper from 'react-native-swiper';
 import SplashScreen from 'react-native-splash-screen';
 import AsyncStorage from '@react-native-community/async-storage';
+import { SafeAreaView } from 'react-navigation';
 
 import SwiperPage from './modules/SwiperPage';
 import { Dot, ActiveDot } from './modules/SwiperPagination';
@@ -43,7 +44,7 @@ class Onboarding extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <Swiper dot={Dot} activeDot={ActiveDot}>
           <SwiperPage
             image={images.intro1}
@@ -75,7 +76,7 @@ class Onboarding extends React.Component {
             <Text style={styles.footerButtonLabel}>SIGN IN</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

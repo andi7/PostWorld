@@ -35,7 +35,7 @@ class EnterUsername extends React.Component {
   };
 
   finishSignUp = () => {
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Feed');
   };
 
   render() {
