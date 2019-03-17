@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 
 import { InputWithSuffix, GradientButton } from '../../components';
@@ -12,7 +12,20 @@ class SignUp extends React.Component {
   state = {
     email: '',
     password: '',
-    showPassword: false
+    showPassword: false,
+    mode: 'SIGN UP'
+  };
+
+  changeMode = () => {
+    const nextMode = this.state.mode === 'SIGN UP' ? 'SIGN IN' : 'SIGN UP';
+
+    LayoutAnimation.easeInEaseOut();
+    this.setState({ mode: 'none' }, () => {
+      setTimeout(() => {
+        LayoutAnimation.easeInEaseOut();
+        this.setState({ mode: nextMode });
+      }, 400);
+    });
   };
 
   byEmail = () => {
@@ -36,49 +49,55 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { email, password, showPassword } = this.state;
+    const { email, password, showPassword, mode } = this.state;
     const emailValid = validate(email);
 
     return (
       <View style={styles.container}>
-        <Image source={images.logo} style={styles.logo} />
+        <View style={{ alignItems: 'center' }}>
+          <Image source={images.logo} style={styles.logo} />
 
-        <Text style={styles.title}>postworld</Text>
+          <Text style={styles.title}>postworld</Text>
+        </View>
 
-        <InputWithSuffix
-          value={email}
-          onChangeText={val => this.setState({ email: val })}
-          valid={email.trim() !== '' ? emailValid : undefined}
-        />
+        {mode !== 'none' && (
+          <React.Fragment>
+            <InputWithSuffix
+              value={email}
+              onChangeText={val => this.setState({ email: val })}
+              valid={email.trim() !== '' ? emailValid : undefined}
+            />
 
-        <InputWithSuffix
-          value={password}
-          onChangeText={val => this.setState({ password: val })}
-          secureTextEntry={!showPassword}
-          suffix={
-            <TouchableOpacity
-              style={styles.showPasswordButton}
-              onPress={() => this.setState({ showPassword: !showPassword })}
-            >
-              <Text style={styles.showPasswordText}>{showPassword ? 'HIDE' : 'SHOW'}</Text>
-            </TouchableOpacity>
-          }
-        />
+            <InputWithSuffix
+              value={password}
+              onChangeText={val => this.setState({ password: val })}
+              secureTextEntry={!showPassword}
+              suffix={
+                <TouchableOpacity
+                  style={styles.showPasswordButton}
+                  onPress={() => this.setState({ showPassword: !showPassword })}
+                >
+                  <Text style={styles.showPasswordText}>{showPassword ? 'HIDE' : 'SHOW'}</Text>
+                </TouchableOpacity>
+              }
+            />
 
-        <GradientButton colors={colors.blueGradient} onPress={this.byEmail}>
-          <Text style={styles.signText}>SIGN UP WITH EMAIL</Text>
-        </GradientButton>
+            <GradientButton colors={colors.blueGradient} onPress={this.byEmail}>
+              <Text style={styles.signText}>{mode} WITH EMAIL</Text>
+            </GradientButton>
 
-        <GradientButton colors={[colors.primary, colors.primary]} onPress={this.byFacebook}>
-          <Text style={styles.signText}>SIGN UP WITH FACEBOOK</Text>
-        </GradientButton>
+            <GradientButton colors={[colors.primary, colors.primary]} onPress={this.byFacebook}>
+              <Text style={styles.signText}>{mode} WITH FACEBOOK</Text>
+            </GradientButton>
 
-        <Text style={styles.footerText}>
-          Already have an account?{' '}
-          <Text style={styles.footerTextHighlight} onPress={() => console.log('now')}>
-            Sign in
-          </Text>
-        </Text>
+            <Text style={styles.footerText}>
+              Already have an account?{' '}
+              <Text style={styles.footerTextHighlight} onPress={this.changeMode}>
+                Sign in
+              </Text>
+            </Text>
+          </React.Fragment>
+        )}
       </View>
     );
   }

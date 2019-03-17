@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 import { fonts } from '../../theme';
 
@@ -13,7 +13,7 @@ export default StyleSheet.create({
 
   logo: {
     position: 'absolute',
-    top: 10,
+    top: Platform.OS === 'ios' ? 30 : 10,
     right: 10,
     height: 70,
     width: 70,

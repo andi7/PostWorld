@@ -46,6 +46,7 @@ export default StyleSheet.create({
   },
 
   footerText: {
+    marginTop: 15,
     color: '#7F7F7F',
     fontSize: 12,
     fontFamily: fonts.MontserratMedium
