@@ -13,7 +13,7 @@ class SignUp extends React.Component {
     email: '',
     password: '',
     showPassword: false,
-    mode: 'SIGN UP'
+    mode: this.props.navigation.getParam('mode', 'SIGN UP')
   };
 
   changeMode = () => {

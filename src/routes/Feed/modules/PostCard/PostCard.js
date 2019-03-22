@@ -1,27 +1,13 @@
 import React from 'react';
-import { View, Image, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 
+import { DynamicHeightImage } from '../../../../components';
 import { images } from '../../../../theme';
 import styles from './styles';
 
 class PostCard extends React.PureComponent {
-  state = { imageHeight: 0, liked: this.props.item.liked };
-
-  componentDidMount() {
-    const { item } = this.props;
-
-    if (item.content.image) {
-      Image.getSize(item.content.image, (width, height) => {
-        // calculate image width and height
-        const screenWidth = Dimensions.get('window').width;
-        const scaleFactor = width / screenWidth;
-        const imageHeight = height / scaleFactor;
-
-        this.setState({ imageHeight });
-      });
-    }
-  }
+  state = { liked: this.props.item.liked };
 
   like = () => {
     this.setState({ liked: !this.state.liked });
@@ -29,7 +15,7 @@ class PostCard extends React.PureComponent {
 
   render() {
     const { item } = this.props;
-    const { imageHeight, liked } = this.state;
+    const { liked } = this.state;
 
     return (
       <View style={styles.card}>
@@ -46,10 +32,7 @@ class PostCard extends React.PureComponent {
         {!!item.content.text && <Text style={styles.postText}>{item.content.text}</Text>}
 
         {!!item.content.image && (
-          <Image
-            source={{ uri: item.content.image }}
-            style={[styles.postImage, { height: imageHeight }]}
-          />
+          <DynamicHeightImage source={{ uri: item.content.image }} style={styles.postImage} />
         )}
 
         <View style={styles.footerRow}>

@@ -34,7 +34,7 @@ class Onboarding extends React.Component {
 
   signIn = () => {
     AsyncStorage.setItem('@onboardingDone', 'true');
-    this.props.navigation.navigate('SignIn');
+    this.props.navigation.navigate('SignUp', { mode: 'SIGN IN' });
   };
 
   signUp = () => {
