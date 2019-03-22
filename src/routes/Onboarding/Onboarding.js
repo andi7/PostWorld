@@ -5,9 +5,10 @@ import SplashScreen from 'react-native-splash-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import { SafeAreaView } from 'react-navigation';
 
+import { images } from 'theme';
+
 import SwiperPage from './modules/SwiperPage';
 import { Dot, ActiveDot } from './modules/SwiperPagination';
-import { images } from '../../theme';
 import styles from './styles';
 
 class Onboarding extends React.Component {

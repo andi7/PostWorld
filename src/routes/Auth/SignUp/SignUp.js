@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 
-import { InputWithSuffix, GradientButton } from '../../components';
-import styles from './styles';
+import { images, colors } from 'theme';
+import { InputWithSuffix, GradientButton } from 'components';
+import { validate } from 'utils/email';
 
-import { images, colors } from '../../theme';
-import { validate } from '../../utils/email';
+import styles from './styles';
 
 class SignUp extends React.Component {
   state = {

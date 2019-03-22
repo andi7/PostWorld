@@ -1,9 +1,9 @@
 {
-  "extends": "rallycoding",
-  "settings": {
-    "import/resolver": {
-      "babel-module": {
-        "extensions": [".js", ".ios.js", ".android.js", ".json"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
         "alias": {
           "components": "./src/components",
           "theme": "./src/theme",
@@ -11,6 +11,6 @@
           "fixtures": "./src/fixtures"
         }
       }
-    }
-  }
+    ]
+  ]
 }

@@ -1,13 +1,12 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 
-import posts from '../../fixtures/posts';
-import PostCard from './modules/PostCard/PostCard';
+import posts from 'fixtures/posts';
 
-class Feed extends React.Component {
+import PostCard from '../modules/PostCard/PostCard';
+
+class PostList extends React.Component {
   render() {
-    console.log(posts);
-
     return (
       <FlatList
         keyExtractor={item => `${item.id}`}
@@ -18,4 +17,4 @@ class Feed extends React.Component {
   }
 }
 
-export default Feed;
+export default PostList;

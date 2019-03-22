@@ -2,8 +2,9 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 
-import { DynamicHeightImage } from '../../../../components';
-import { images } from '../../../../theme';
+import { DynamicHeightImage } from 'components';
+import { images } from 'theme';
+
 import styles from './styles';
 
 class PostCard extends React.PureComponent {

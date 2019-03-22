@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 
-import { fonts } from '../../theme';
+import { fonts } from 'theme';
 
 export default StyleSheet.create({
   container: {

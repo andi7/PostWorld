@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import { fonts } from '../../../theme';
+import { fonts } from 'theme';
 
 const SwiperPage = ({ image, header, description }) => (
   <View style={styles.container}>

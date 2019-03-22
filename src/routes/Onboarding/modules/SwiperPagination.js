@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { colors } from '../../../theme';
+import { colors } from 'theme';
 
 const styles = StyleSheet.create({
   dot: {
