@@ -6,10 +6,13 @@ import {
 
 import Onboarding from '../routes/Onboarding/Onboarding';
 import AuthNavigator from '../routes/Auth';
-import FeedNavigator from '../routes/Feed';
+import HomeNavigator from '../routes/Home';
 
 const MainNavigator = createBottomTabNavigator({
-  FeedNavigator
+  HomeNavigator: {
+    screen: HomeNavigator,
+    navigationOptions: { tabBarLabel: 'Home' }
+  }
 });
 
 const AppNavigation = createSwitchNavigator(
