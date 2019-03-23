@@ -11,6 +11,11 @@ export default {
   likeActive: require('../assets/images/icons/like_active.png'),
   dots: require('../assets/images/icons/dots.png'),
 
+  // TabBar Icons
+  home: require('../assets/images/icons/home.png'),
+  search: require('../assets/images/icons/search.png'),
+  compose: require('../assets/images/icons/compose.png'),
+
   // Other
   logo: require('../assets/images/logo.png'),
   user: require('../assets/images/user.png'),

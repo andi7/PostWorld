@@ -1,26 +1,14 @@
-import {
-  createAppContainer,
-  createSwitchNavigator,
-  createStackNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
 import Onboarding from '../routes/Onboarding/Onboarding';
 import AuthNavigator from '../routes/Auth';
-import HomeNavigator from '../routes/Home';
 
 import PostComments from '../routes/Home/PostComments/PostComments';
-
-const TabsNavigator = createBottomTabNavigator({
-  HomeNavigator: {
-    screen: HomeNavigator,
-    navigationOptions: { tabBarLabel: 'Home' }
-  }
-});
+import TabNavigator from './TabNavigator';
 
 const MainNavigator = createStackNavigator({
-  TabsNavigator: {
-    screen: TabsNavigator,
+  TabNavigator: {
+    screen: TabNavigator,
     navigationOptions: { title: 'postworld' }
   },
   PostComments: {
