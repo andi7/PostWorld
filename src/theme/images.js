@@ -13,5 +13,6 @@ export default {
 
   // Other
   logo: require('../assets/images/logo.png'),
-  user: require('../assets/images/user.png')
+  user: require('../assets/images/user.png'),
+  angleRight: require('../assets/images/icons/angle_right.png')
 };

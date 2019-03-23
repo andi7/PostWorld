@@ -29,14 +29,8 @@ export default StyleSheet.create({
     marginLeft: 7,
     color: '#5882F2',
     fontSize: 12,
-    fontFamily: fonts.MontserratMedium
-  },
-
-  dots: {
-    height: 27,
-    width: 27,
-    resizeMode: 'contain',
-    marginRight: 5
+    fontFamily: fonts.MontserratMedium,
+    marginTop: -15
   },
 
   postText: {
@@ -45,13 +39,8 @@ export default StyleSheet.create({
     fontFamily: fonts.WorkSansLight,
     marginLeft: 60,
     marginRight: 47,
-    marginBottom: 8
-  },
-
-  postImage: {
-    flex: 1,
-    height: null,
-    width: '100%'
+    marginBottom: 8,
+    marginTop: -20
   },
 
   footerRow: {
@@ -63,32 +52,10 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
 
-  locationIcon: {
-    height: 20,
-    width: 20,
-    resizeMode: 'contain'
-  },
-
-  locationText: {
-    color: 'black',
-    opacity: 0.5,
-    fontSize: 9,
-    fontFamily: fonts.MontserratRegular,
-    marginLeft: 5
-  },
-
-  commentsIcon: {
-    height: 15,
-    width: 15,
-    resizeMode: 'contain'
-  },
-
-  commentsText: {
-    color: 'black',
-    opacity: 0.5,
-    fontSize: 11,
-    fontFamily: fonts.MontserratLight,
-    marginLeft: 6
+  timeText: {
+    color: '#3B3B3B',
+    fontSize: 10,
+    fontFamily: fonts.MontserratLight
   },
 
   likesIcon: {
