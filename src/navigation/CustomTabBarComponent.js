@@ -38,7 +38,27 @@ class CustomTabBarComponent extends React.Component {
           >
             <Text style={styles.title}>Choose Post Type</Text>
 
-            <TouchableOpacity>
+            <View style={styles.tagsContainer}>
+              <TouchableOpacity style={styles.tag}>
+                <Image source={images.tagFood} style={styles.tagIcon} />
+
+                <Text style={styles.tagText}>Food & Drink</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.tag}>
+                <Image source={images.tagGeneral} style={styles.tagIcon} />
+
+                <Text style={styles.tagText}>General</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.tag}>
+                <Image source={images.tagArt} style={styles.tagIcon} />
+
+                <Text style={styles.tagText}>Art</Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity onPress={() => this.setState({ modalVisible: false })}>
               <Image source={images.close} style={styles.closeIcon} />
             </TouchableOpacity>
           </LinearGradient>
@@ -63,6 +83,29 @@ const styles = StyleSheet.create({
 
   title: {
     marginTop: 7,
+    color: 'white',
+    fontSize: 10,
+    fontFamily: fonts.MontserratBold
+  },
+
+  tagsContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+    marginBottom: 10
+  },
+
+  tag: {
+    marginHorizontal: 13,
+    alignItems: 'center'
+  },
+
+  tagIcon: {
+    height: 35,
+    width: 56,
+    resizeMode: 'contain'
+  },
+
+  tagText: {
     color: 'white',
     fontSize: 10,
     fontFamily: fonts.MontserratBold
