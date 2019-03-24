@@ -7,27 +7,33 @@ import LinearGradient from 'react-native-linear-gradient';
 import { colors, fonts, images } from 'theme';
 
 class CustomTabBarComponent extends React.Component {
-  state = { modalVisible: false };
+  state = { tagModal: false, postModal: false, tag: null };
 
   onTabPress = config => {
     if (config.route.key === 'ModalCustomButton') {
-      this.setState({ modalVisible: true });
+      this.setState({ tagModal: true });
     } else {
       this.props.onTabPress(config);
     }
   };
 
+  onTagPress = tag => {
+    this.setState({ tagModal: false, postModal: true, tag });
+  };
+
   render() {
-    const { modalVisible } = this.state;
+    const { tagModal, postModal } = this.state;
+
+    console.log(postModal);
 
     return (
       <React.Fragment>
         <BottomTabBar {...this.props} onTabPress={this.onTabPress} />
 
         <Modal
-          isVisible={modalVisible}
-          onBackdropPress={() => this.setState({ modalVisible: false })}
-          onBackButtonPress={() => this.setState({ modalVisible: false })}
+          isVisible={tagModal}
+          onBackdropPress={() => this.setState({ tagModal: false })}
+          onBackButtonPress={() => this.setState({ tagModal: false })}
           style={styles.modal}
         >
           <LinearGradient
@@ -39,29 +45,37 @@ class CustomTabBarComponent extends React.Component {
             <Text style={styles.title}>Choose Post Type</Text>
 
             <View style={styles.tagsContainer}>
-              <TouchableOpacity style={styles.tag}>
+              <TouchableOpacity style={styles.tag} onPress={() => this.onTagPress('food')}>
                 <Image source={images.tagFood} style={styles.tagIcon} />
 
                 <Text style={styles.tagText}>Food & Drink</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.tag}>
+              <TouchableOpacity style={styles.tag} onPress={() => this.onTagPress('general')}>
                 <Image source={images.tagGeneral} style={styles.tagIcon} />
 
                 <Text style={styles.tagText}>General</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.tag}>
+              <TouchableOpacity style={styles.tag} onPress={() => this.onTagPress('art')}>
                 <Image source={images.tagArt} style={styles.tagIcon} />
 
                 <Text style={styles.tagText}>Art</Text>
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity onPress={() => this.setState({ modalVisible: false })}>
+            <TouchableOpacity onPress={() => this.setState({ tagModal: false })}>
               <Image source={images.close} style={styles.closeIcon} />
             </TouchableOpacity>
           </LinearGradient>
+        </Modal>
+
+        <Modal
+          isVisible={postModal}
+          onBackdropPress={() => this.setState({ postModal: false })}
+          onBackButtonPress={() => this.setState({ postModal: false })}
+        >
+          <View style={{ flex: 1, backgroundColor: 'red' }} />
         </Modal>
       </React.Fragment>
     );
