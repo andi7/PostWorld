@@ -13,6 +13,7 @@ class PostList extends React.Component {
   render() {
     return (
       <FlatList
+        style={{ backgroundColor: 'black' }}
         keyExtractor={item => `${item.id}`}
         data={posts}
         renderItem={({ item }) => (

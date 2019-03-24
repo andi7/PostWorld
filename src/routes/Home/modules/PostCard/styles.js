@@ -4,6 +4,7 @@ import { fonts } from 'theme';
 
 export default StyleSheet.create({
   card: {
+    backgroundColor: 'white',
     borderRadius: 5,
     overflow: 'hidden',
     borderWidth: StyleSheet.hairlineWidth,
