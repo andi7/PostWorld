@@ -2,10 +2,10 @@ import React from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
-import { InputWithSuffix, GradientButton } from '../../components';
-import styles from './styles';
+import { InputWithSuffix, GradientButton } from 'components';
+import { images, colors } from 'theme';
 
-import { images, colors } from '../../theme';
+import styles from './styles';
 
 class EnterUsername extends React.Component {
   state = {
@@ -35,7 +35,7 @@ class EnterUsername extends React.Component {
   };
 
   finishSignUp = () => {
-    this.props.navigation.navigate('Feed');
+    this.props.navigation.navigate('MainNavigator');
   };
 
   render() {

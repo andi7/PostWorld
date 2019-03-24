@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { fonts } from '../../../../theme';
+import { fonts } from 'theme';
 
 export default StyleSheet.create({
   card: {
@@ -63,13 +63,6 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
 
-  iconButton: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-
   locationIcon: {
     height: 20,
     width: 20,
@@ -106,7 +99,6 @@ export default StyleSheet.create({
 
   likesText: {
     color: 'black',
-    opacity: 0.5,
     fontSize: 11,
     fontFamily: fonts.MontserratMedium,
     marginHorizontal: 9

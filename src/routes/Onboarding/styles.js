@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { fonts, colors } from '../../theme';
+import { fonts, colors } from 'theme';
 
 export default StyleSheet.create({
   footer: {

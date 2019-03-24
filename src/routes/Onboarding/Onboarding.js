@@ -5,36 +5,35 @@ import SplashScreen from 'react-native-splash-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import { SafeAreaView } from 'react-navigation';
 
+import { images } from 'theme';
+
 import SwiperPage from './modules/SwiperPage';
 import { Dot, ActiveDot } from './modules/SwiperPagination';
-import { images } from '../../theme';
 import styles from './styles';
 
 class Onboarding extends React.Component {
   componentDidMount() {
     const { navigation } = this.props;
 
-    // AsyncStorage.getItem('@onboardingDone')
-    //   .then(value => {
-    //     if (value) {
-    //       navigation.navigate('SignUp');
-    //       SplashScreen.hide();
-    //     } else {
-    //       SplashScreen.hide();
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
+    AsyncStorage.getItem('@onboardingDone')
+      .then(value => {
+        if (value) {
+          navigation.navigate('SignUp');
+          SplashScreen.hide();
+        } else {
+          SplashScreen.hide();
+        }
+      })
+      .catch(err => {
+        console.log(err);
 
-    //     SplashScreen.hide();
-    //   });
-
-    SplashScreen.hide();
+        SplashScreen.hide();
+      });
   }
 
   signIn = () => {
     AsyncStorage.setItem('@onboardingDone', 'true');
-    this.props.navigation.navigate('SignIn');
+    this.props.navigation.navigate('SignUp', { mode: 'SIGN IN' });
   };
 
   signUp = () => {

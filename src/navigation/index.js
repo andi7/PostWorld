@@ -1,28 +1,23 @@
-import { createSwitchNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
 import Onboarding from '../routes/Onboarding/Onboarding';
+import AuthNavigator from '../routes/Auth';
 
-import SignUp from '../routes/SignUp/SignUp';
-import EnterUsername from '../routes/EnterUsername/EnterUsername';
-
-import Feed from '../routes/Feed/Feed';
+import PostComments from '../routes/Home/PostComments/PostComments';
+import TabNavigator from './TabNavigator';
 
 const MainNavigator = createStackNavigator({
-  Feed: {
-    screen: Feed,
+  TabNavigator: {
+    screen: TabNavigator,
     navigationOptions: { title: 'postworld' }
+  },
+  PostComments: {
+    screen: PostComments,
+    navigationOptions: {
+      tabBarVisible: false
+    }
   }
 });
-
-const AuthNavigator = createStackNavigator(
-  {
-    SignUp,
-    EnterUsername
-  },
-  {
-    headerMode: 'none'
-  }
-);
 
 const AppNavigation = createSwitchNavigator(
   {
