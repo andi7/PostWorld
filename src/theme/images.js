@@ -10,6 +10,11 @@ export default {
   like: require('../assets/images/icons/like.png'),
   likeActive: require('../assets/images/icons/like_active.png'),
   dots: require('../assets/images/icons/dots.png'),
+  clock: require('../assets/images/icons/clock.png'),
+  group: require('../assets/images/icons/group.png'),
+  going: require('../assets/images/icons/going.png'),
+  goingActive: require('../assets/images/icons/going_active.png'),
+  close: require('../assets/images/icons/close.png'),
 
   // TabBar Icons
   home: require('../assets/images/icons/home.png'),

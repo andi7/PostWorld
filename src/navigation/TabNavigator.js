@@ -6,6 +6,9 @@ import faker from 'faker';
 import { images } from 'theme';
 
 import HomeNavigator from '../routes/Home';
+import EventsNavigator from '../routes/Events';
+
+import CustomTabBarComponent from './CustomTabBarComponent';
 
 export default createBottomTabNavigator(
   {
@@ -18,7 +21,7 @@ export default createBottomTabNavigator(
       }
     },
     SearchNavigator: {
-      screen: () => <View />,
+      screen: EventsNavigator,
       navigationOptions: {
         tabBarIcon: () => (
           <Image source={images.search} style={{ height: 20, width: 24, resizeMode: 'contain' }} />
@@ -56,6 +59,7 @@ export default createBottomTabNavigator(
   {
     tabBarOptions: {
       showLabel: false
-    }
+    },
+    tabBarComponent: props => <CustomTabBarComponent {...props} />
   }
 );

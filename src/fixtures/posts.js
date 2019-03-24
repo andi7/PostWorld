@@ -1,20 +1,8 @@
 import faker from 'faker';
 
+import { generateUser, generateLikes, generateTimestamp } from './utils';
+
 const distances = ['close', 'here', 'far'];
-
-const generateTimestamp = () => ({
-  created_at: faker.date.recent()
-});
-
-const generateLikes = () => ({
-  likes: faker.random.number(7),
-  liked: faker.random.boolean()
-});
-
-const generateUser = () => ({
-  name: faker.name.firstName(),
-  avatar: faker.image.avatar()
-});
 
 const generateComments = () =>
   new Array(faker.random.number(30)).fill(0).map((a, i) => ({
