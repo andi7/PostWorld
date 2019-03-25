@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 
-import posts from 'fixtures/posts';
+import postsFixture from 'fixtures/posts';
 
 import PostCard from '../modules/PostCard/PostCard';
 
@@ -11,9 +11,10 @@ class PostList extends React.Component {
   };
 
   render() {
+    const { posts } = this.props;
+
     return (
       <FlatList
-        style={{ backgroundColor: 'black' }}
         keyExtractor={item => `${item.id}`}
         data={posts}
         renderItem={({ item }) => (
@@ -23,5 +24,9 @@ class PostList extends React.Component {
     );
   }
 }
+
+PostList.defaultProps = {
+  posts: postsFixture()
+};
 
 export default PostList;

@@ -13,20 +13,21 @@ const generateComments = () =>
     ...generateTimestamp()
   }));
 
-export default new Array(20).fill(0).map((el, index) => {
-  const hasImage = Math.random() > 0.7;
-  const hasText = hasImage ? Math.random() > 0.3 : true;
+export default (onlyImage = false) =>
+  new Array(20).fill(0).map((el, index) => {
+    const hasImage = onlyImage || Math.random() > 0.7;
+    const hasText = !onlyImage && (hasImage ? Math.random() > 0.3 : true);
 
-  return {
-    id: index,
-    user: generateUser(),
-    content: {
-      image: hasImage ? faker.image.food() : '',
-      text: hasText ? faker.lorem.sentences() : ''
-    },
-    distance: distances[faker.random.number(2)],
-    comments: generateComments(),
-    ...generateLikes(),
-    ...generateTimestamp()
-  };
-});
+    return {
+      id: index,
+      user: generateUser(),
+      content: {
+        image: hasImage ? faker.image.food() : '',
+        text: hasText ? faker.lorem.sentences() : ''
+      },
+      distance: distances[faker.random.number(2)],
+      comments: generateComments(),
+      ...generateLikes(),
+      ...generateTimestamp()
+    };
+  });

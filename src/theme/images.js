@@ -15,11 +15,14 @@ export default {
   going: require('../assets/images/icons/going.png'),
   goingActive: require('../assets/images/icons/going_active.png'),
   close: require('../assets/images/icons/close.png'),
+  camera: require('../assets/images/icons/camera.png'),
 
   //Tags
   tagFood: require('../assets/images/tags/type_food.png'),
   tagGeneral: require('../assets/images/tags/type_general.png'),
   tagArt: require('../assets/images/tags/type_art.png'),
+  tagOffer: require('../assets/images/tags/type_offer.png'),
+  tagGroup: require('../assets/images/tags/type_group.png'),
 
   // TabBar Icons
   home: require('../assets/images/icons/home.png'),

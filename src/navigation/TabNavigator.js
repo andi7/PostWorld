@@ -8,7 +8,7 @@ import { images } from 'theme';
 import HomeNavigator from '../routes/Home';
 import EventsNavigator from '../routes/Events';
 
-import CustomTabBarComponent from './CustomTabBarComponent';
+import CustomTabBarComponent from './CustomTabBar/CustomTabBarComponent';
 
 export default createBottomTabNavigator(
   {
