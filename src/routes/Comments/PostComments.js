@@ -3,8 +3,8 @@ import { View, ScrollView, FlatList, TextInput, Image, TouchableOpacity } from '
 
 import { images } from 'theme';
 
-import PostCard from '../modules/PostCard/PostCard';
-import CommentCard from '../modules/CommentCard/CommentCard';
+import PostCard from 'domains/posts/PostCard/PostCard';
+import CommentCard from 'domains/comments/CommentCard/CommentCard';
 
 import styles from './styles';
 

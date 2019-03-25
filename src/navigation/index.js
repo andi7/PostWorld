@@ -1,10 +1,12 @@
 import SplashScreen from 'react-native-splash-screen';
 import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
+import { colors } from 'theme';
+
 import Onboarding from '../routes/Onboarding/Onboarding';
 import AuthNavigator from '../routes/Auth';
 
-import PostComments from '../routes/Home/PostComments/PostComments';
+import PostComments from '../routes/Comments/PostComments';
 import TabNavigator from './TabNavigator';
 
 SplashScreen.hide();
@@ -24,7 +26,8 @@ const MainNavigator = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      headerBackTitle: null
+      headerBackTitle: null,
+      headerTintColor: colors.primary
     }
   }
 );

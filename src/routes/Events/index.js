@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import EventList from './EventList/EventList';
-import EventHeader from './modules/EventHeader/EventHeader';
+import EventHeader from './EventHeader/EventHeader';
 
 export default createStackNavigator({
   EventList: {

@@ -8,7 +8,8 @@
           "components": "./src/components",
           "theme": "./src/theme",
           "utils": "./src/utils",
-          "fixtures": "./src/fixtures"
+          "fixtures": "./src/fixtures",
+          "domains": "./src/domains"
         }
       }
     ]

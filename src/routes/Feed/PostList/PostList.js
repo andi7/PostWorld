@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 
 import postsFixture from 'fixtures/posts';
 
-import PostCard from '../modules/PostCard/PostCard';
+import PostCard from 'domains/posts/PostCard/PostCard';
 
 class PostList extends React.Component {
   checkComments = post => {

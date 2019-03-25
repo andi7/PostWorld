@@ -5,15 +5,15 @@ import faker from 'faker';
 
 import { images } from 'theme';
 
-import HomeNavigator from '../routes/Home';
+import FeedNavigator from '../routes/Feed';
 import EventsNavigator from '../routes/Events';
 
 import CustomTabBarComponent from './CustomTabBar/CustomTabBarComponent';
 
 export default createBottomTabNavigator(
   {
-    HomeNavigator: {
-      screen: HomeNavigator,
+    Feedavigator: {
+      screen: FeedNavigator,
       navigationOptions: {
         tabBarIcon: () => (
           <Image source={images.home} style={{ height: 21, width: 27, resizeMode: 'contain' }} />
