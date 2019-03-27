@@ -8,14 +8,20 @@ class DynamicHeightImage extends React.PureComponent {
     const { source } = this.props;
 
     if (source) {
-      Image.getSize(source, (width, height) => {
-        // calculate image width and height
-        const screenWidth = Dimensions.get('window').width;
-        const scaleFactor = width / screenWidth;
-        const imageHeight = height / scaleFactor;
+      const src = typeof source === 'number' ? source : source.uri;
 
-        this.setState({ imageHeight });
-      });
+      Image.getSize(
+        src,
+        (width, height) => {
+          // calculate image width and height
+          const screenWidth = Dimensions.get('window').width;
+          const scaleFactor = width / screenWidth;
+          const imageHeight = height / scaleFactor;
+
+          this.setState({ imageHeight });
+        },
+        (...p) => console.log(p, src)
+      );
     }
   }
 

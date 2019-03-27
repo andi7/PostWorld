@@ -54,7 +54,10 @@ const AppNavigation = createSwitchNavigator(
   },
   {
     initialRouteName: 'MainNavigator',
-    headerMode: 'none'
+    headerMode: 'none',
+    cardStyle: {
+      backgroundColor: '#fff'
+    }
   }
 );
 

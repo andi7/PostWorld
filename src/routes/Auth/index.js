@@ -9,6 +9,9 @@ export default createStackNavigator(
     EnterUsername
   },
   {
-    headerMode: 'none'
+    headerMode: 'none',
+    cardStyle: {
+      backgroundColor: '#fff'
+    }
   }
 );
