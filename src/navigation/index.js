@@ -1,4 +1,3 @@
-import SplashScreen from 'react-native-splash-screen';
 import {
   createAppContainer,
   createSwitchNavigator,
@@ -13,8 +12,6 @@ import AuthNavigator from '../routes/Auth';
 
 import PostComments from '../routes/Comments/PostComments';
 import TabNavigator from './TabNavigator';
-
-SplashScreen.hide();
 
 const DrawerNavigator = createDrawerNavigator(
   {
