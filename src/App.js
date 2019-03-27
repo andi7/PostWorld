@@ -3,6 +3,8 @@ import { UIManager } from 'react-native';
 import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 
+import * as NavigationUtils from 'utils/navigation';
+
 import createStore from './redux';
 import AppNavigator from './navigation';
 
@@ -17,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppNavigator />
+        <AppNavigator ref={navRef => NavigationUtils.setNavigator(navRef)} />
       </Provider>
     );
   }

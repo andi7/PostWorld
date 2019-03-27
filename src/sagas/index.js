@@ -15,8 +15,5 @@ import { startup } from './StartupSagas';
 /* ------------- Connect Types To Sagas ------------- */
 
 export default function* root() {
-  yield all([
-    // some sagas only receive an action
-    // takeLatest(StartupTypes.STARTUP, startup)
-  ]);
+  yield all([takeLatest(StartupTypes.STARTUP, startup)]);
 }

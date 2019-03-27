@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import Swiper from 'react-native-swiper';
-import SplashScreen from 'react-native-splash-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import { SafeAreaView } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import { images } from 'theme';
+
+import StartupActions from '../../redux/StartupRedux';
 
 import SwiperPage from './modules/SwiperPage';
 import { Dot, ActiveDot } from './modules/SwiperPagination';
@@ -13,24 +15,7 @@ import styles from './styles';
 
 class Onboarding extends React.Component {
   componentDidMount() {
-    const { navigation } = this.props;
-
-    // AsyncStorage.getItem('@onboardingDone')
-    //   .then(value => {
-    //     if (value) {
-    //       navigation.navigate('SignUp');
-    //       SplashScreen.hide();
-    //     } else {
-    //       SplashScreen.hide();
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-
-    //     SplashScreen.hide();
-    //   });
-
-    SplashScreen.hide();
+    this.props.startup();
   }
 
   signIn = () => {
@@ -44,6 +29,12 @@ class Onboarding extends React.Component {
   };
 
   render() {
+    const { loading } = this.props;
+
+    if (loading) {
+      return <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }} />;
+    }
+
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
         <Swiper dot={Dot} activeDot={ActiveDot}>
@@ -82,4 +73,10 @@ class Onboarding extends React.Component {
   }
 }
 
-export default Onboarding;
+const mapStateToProps = ({ startup }) => ({ loading: startup.loading });
+const mapDispatchToProps = dispatch => ({ startup: () => dispatch(StartupActions.startup()) });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Onboarding);
