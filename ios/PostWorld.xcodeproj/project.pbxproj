@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -59,6 +58,7 @@
 		E664B2C6913F414789E01978 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A74F9CB2E44173835C5EFD /* libRCTFBSDK.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
+		809A9488FEAB4141BA3B69B9 /* AvenirNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1BEDACD63C8C4C74B64B4C41 /* AvenirNextLTPro-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -462,6 +462,7 @@
 		F29799EEAEB043D28A12407E /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
 		F79DAE4F9EDA4CEDACF99465 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		F84E1D7AE25B49BEB7862285 /* libSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSplashScreen.a; sourceTree = "<group>"; };
+		1BEDACD63C8C4C74B64B4C41 /* AvenirNextLTPro-Regular.otf */ = {isa = PBXFileReference; name = "AvenirNextLTPro-Regular.otf"; path = "../src/assets/fonts/AvenirNextLTPro-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -835,6 +836,7 @@
 				A7129336DE964FA1BC0CBF1E /* Montserrat-SemiBold.ttf */,
 				1C710DA172944ACCA004ED71 /* Montserrat-Light.ttf */,
 				51D119F6AFE8464C9BE7192C /* WorkSans-Light.ttf */,
+				1BEDACD63C8C4C74B64B4C41 /* AvenirNextLTPro-Regular.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1394,6 +1396,7 @@
 				8409660B4DAE40A19D7336E7 /* Montserrat-SemiBold.ttf in Resources */,
 				882D6743436C4C248EE845B5 /* Montserrat-Light.ttf in Resources */,
 				BC6021E9A7EC43A48E35FB56 /* WorkSans-Light.ttf in Resources */,
+				809A9488FEAB4141BA3B69B9 /* AvenirNextLTPro-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

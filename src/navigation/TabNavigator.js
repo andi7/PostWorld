@@ -45,15 +45,15 @@ export default createBottomTabNavigator(
     },
     DrawerCustomButton: {
       screen: () => <View />,
-      navigationOptions: {
+      navigationOptions: ({ navigation }) => ({
         tabBarIcon: () => (
           <Image
             source={{ uri: faker.image.avatar() }}
             style={{ height: 37, width: 37, borderRadius: 15, resizeMode: 'contain' }}
           />
         ),
-        tabBarOnPress: () => {}
-      }
+        tabBarOnPress: () => navigation.openDrawer()
+      })
     }
   },
   {

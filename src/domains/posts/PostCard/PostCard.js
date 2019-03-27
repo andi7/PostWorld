@@ -66,7 +66,7 @@ class PostCard extends React.PureComponent {
             style={{ flex: 1, justifyContent: 'flex-end' }}
             onPress={this.like}
           >
-            <Text style={[styles.likesText, { color: liked ? '#FF5353' : 'black' }]}>
+            <Text style={[styles.likesText, { color: liked ? '#FF5353' : '#3B3B3BC0' }]}>
               {item.likes + (item.liked && !liked ? -1 : !item.liked && liked ? 1 : 0)}
             </Text>
           </IconButton>

@@ -5,10 +5,16 @@ import { fonts } from 'theme';
 export default StyleSheet.create({
   card: {
     backgroundColor: 'white',
-    borderRadius: 5,
-    overflow: 'hidden',
+    borderRadius: 10,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#D2D2D088'
+    borderColor: '#D2D2D088',
+    marginVertical: 5,
+    marginHorizontal: 5,
+    shadowOpacity: 0.2,
+    shadowColor: '#000',
+    shadowOffset: { height: 1 },
+    shadowRadius: 1,
+    elevation: 3
   },
 
   topRow: {
@@ -43,7 +49,7 @@ export default StyleSheet.create({
   postText: {
     color: 'black',
     fontSize: 12,
-    fontFamily: fonts.WorkSansLight,
+    fontFamily: fonts.AvenirNext,
     marginLeft: 60,
     marginRight: 47,
     marginBottom: 8
@@ -71,10 +77,9 @@ export default StyleSheet.create({
   },
 
   locationText: {
-    color: 'black',
-    opacity: 0.5,
+    color: '#3B3B3BC0',
     fontSize: 9,
-    fontFamily: fonts.MontserratRegular,
+    fontFamily: fonts.MontserratLight,
     marginLeft: 5
   },
 
@@ -85,8 +90,7 @@ export default StyleSheet.create({
   },
 
   commentsText: {
-    color: 'black',
-    opacity: 0.5,
+    color: '#3B3B3BC0',
     fontSize: 11,
     fontFamily: fonts.MontserratLight,
     marginLeft: 6
@@ -99,9 +103,8 @@ export default StyleSheet.create({
   },
 
   likesText: {
-    color: 'black',
     fontSize: 11,
-    fontFamily: fonts.MontserratMedium,
+    fontFamily: fonts.MontserratLight,
     marginHorizontal: 9
   }
 });

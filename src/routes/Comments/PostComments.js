@@ -15,8 +15,6 @@ class PostComments extends React.Component {
     const { comment } = this.state;
     const post = this.props.navigation.getParam('post', null);
 
-    console.log(post);
-
     return (
       <View style={{ flex: 1 }}>
         <ScrollView>

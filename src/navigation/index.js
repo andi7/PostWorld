@@ -1,5 +1,10 @@
 import SplashScreen from 'react-native-splash-screen';
-import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
+import {
+  createAppContainer,
+  createSwitchNavigator,
+  createStackNavigator,
+  createDrawerNavigator
+} from 'react-navigation';
 
 import { colors } from 'theme';
 
@@ -11,10 +16,19 @@ import TabNavigator from './TabNavigator';
 
 SplashScreen.hide();
 
+const DrawerNavigator = createDrawerNavigator(
+  {
+    TabNavigator
+  },
+  {
+    drawerPosition: 'right'
+  }
+);
+
 const MainNavigator = createStackNavigator(
   {
-    TabNavigator: {
-      screen: TabNavigator,
+    DrawerNavigator: {
+      screen: DrawerNavigator,
       navigationOptions: { header: null }
     },
     PostComments: {
