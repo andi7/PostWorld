@@ -1,16 +1,23 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Image } from 'react-native';
+import { View, TouchableOpacity, Text, Image, ActivityIndicator } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import { connect } from 'react-redux';
 
 import { InputWithSuffix, GradientButton } from 'components';
 import { images, colors } from 'theme';
+import AuthActions from 'models/auth';
 
 import styles from './styles';
 
 class EnterUsername extends React.Component {
   state = {
     avatar: null,
-    username: ''
+    username: '',
+    localError: ''
+  };
+
+  onChange = (field, val) => {
+    this.setState({ [field]: val, localError: '' });
   };
 
   openAvatarPicker = () => {
@@ -35,11 +42,27 @@ class EnterUsername extends React.Component {
   };
 
   finishSignUp = () => {
-    this.props.navigation.navigate('MainNavigator');
+    const { avatar, username } = this.state;
+    const email = this.props.navigation.getParam('email');
+    const password = this.props.navigation.getParam('password');
+
+    if (username.trim() === '') {
+      this.setState({ localError: 'Please enter a valid username!' });
+      return;
+    }
+
+    if (username.length < 3) {
+      this.setState({ localError: 'Username must be at least 3 characters long!' });
+      return;
+    }
+
+    this.props.signUpByEmail(email, password, username, avatar);
   };
 
   render() {
-    const { avatar, username } = this.state;
+    const { avatar, username, localError } = this.state;
+    const { loading } = this.props;
+    const usernameValid = username.trim() !== '' && username.length >= 3;
 
     return (
       <View style={{ flex: 1 }}>
@@ -56,12 +79,22 @@ class EnterUsername extends React.Component {
 
           <InputWithSuffix
             value={username}
-            onChangeText={val => this.setState({ username: val })}
-            valid={username.trim() !== ''}
+            onChangeText={val => this.onChange('username', val)}
+            valid={usernameValid}
           />
 
-          <GradientButton colors={colors.blueGradient} onPress={this.finishSignUp}>
-            <Text style={styles.signText}>Join the world</Text>
+          <Text style={{ color: 'red' }}>{localError}</Text>
+
+          <GradientButton
+            disabled={loading}
+            colors={colors.blueGradient}
+            onPress={this.finishSignUp}
+          >
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.signText}>Join the world</Text>
+            )}
           </GradientButton>
         </View>
       </View>
@@ -69,4 +102,16 @@ class EnterUsername extends React.Component {
   }
 }
 
-export default EnterUsername;
+const mapsStateToProps = ({ auth: { loading, error } }) => ({
+  loading,
+  error
+});
+
+const mapDispatchToProps = dispatch => ({
+  signUpByEmail: (...p) => dispatch(AuthActions.signUpByEmail(...p))
+});
+
+export default connect(
+  mapsStateToProps,
+  mapDispatchToProps
+)(EnterUsername);

@@ -39,6 +39,10 @@ export default StyleSheet.create({
     fontFamily: fonts.MontserratBold
   },
 
+  error: {
+    color: 'red'
+  },
+
   signText: {
     color: 'white',
     fontSize: 12,

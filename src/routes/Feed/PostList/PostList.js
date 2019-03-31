@@ -3,7 +3,7 @@ import { FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 import PostCard from 'domains/posts/PostCard/PostCard';
-import PostsActions from '../../../redux/PostsRedux';
+import PostsActions from 'models/posts';
 
 class PostList extends React.Component {
   componentDidMount() {

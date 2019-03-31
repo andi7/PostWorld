@@ -50,7 +50,7 @@ const AppNavigation = createSwitchNavigator(
     MainNavigator
   },
   {
-    initialRouteName: 'AuthNavigator',
+    initialRouteName: 'Onboarding',
     headerMode: 'none',
     cardStyle: {
       backgroundColor: '#fff'

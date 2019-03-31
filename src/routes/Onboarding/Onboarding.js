@@ -6,8 +6,7 @@ import { SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { images } from 'theme';
-
-import StartupActions from '../../redux/StartupRedux';
+import StartupActions from 'models/startup';
 
 import SwiperPage from './modules/SwiperPage';
 import { Dot, ActiveDot } from './modules/SwiperPagination';

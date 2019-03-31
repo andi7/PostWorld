@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
+import { connect } from 'react-redux';
 
 import { images, colors } from 'theme';
 import { InputWithSuffix, GradientButton } from 'components';
 import { validate } from 'utils/email';
+import AuthActions from 'models/auth';
 
 import styles from './styles';
 
@@ -12,8 +14,13 @@ class SignUp extends React.Component {
   state = {
     email: '',
     password: '',
+    localError: '',
     showPassword: false,
     mode: this.props.navigation.getParam('mode', 'SIGN UP')
+  };
+
+  onChange = (field, value) => {
+    this.setState({ [field]: value, localError: '' });
   };
 
   changeMode = () => {
@@ -29,7 +36,33 @@ class SignUp extends React.Component {
   };
 
   byEmail = () => {
-    this.props.navigation.navigate('EnterUsername');
+    const { mode, email, password } = this.state;
+
+    if (email.trim() === '' || password.trim() === '') {
+      this.setState({ localError: 'Please fill all fields!' });
+      return;
+    }
+
+    if (!validate(email)) {
+      this.setState({ localError: 'This email is not valid!' });
+      return;
+    }
+
+    if (password.length < 8) {
+      this.setState({ localError: 'Password must be at least 8 characters long!' });
+      return;
+    }
+
+    if (mode === 'SIGN UP') {
+      this.props.navigation.navigate('EnterUsername', {
+        email,
+        password
+      });
+    }
+
+    if (mode === 'SIGN IN') {
+      this.props.signInByEmail(email, password);
+    }
   };
 
   byFacebook = () => {
@@ -49,7 +82,7 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { email, password, showPassword, mode } = this.state;
+    const { email, password, showPassword, localError, mode } = this.state;
     const emailValid = validate(email);
 
     return (
@@ -63,14 +96,17 @@ class SignUp extends React.Component {
         {mode !== 'none' && (
           <React.Fragment>
             <InputWithSuffix
+              placeholder="Email"
               value={email}
-              onChangeText={val => this.setState({ email: val })}
+              onChangeText={val => this.onChange('email', val)}
               valid={email.trim() !== '' ? emailValid : undefined}
+              autoCapitalize="none"
             />
 
             <InputWithSuffix
+              placeholder="Password"
               value={password}
-              onChangeText={val => this.setState({ password: val })}
+              onChangeText={val => this.onChange('password', val)}
               secureTextEntry={!showPassword}
               suffix={
                 <TouchableOpacity
@@ -81,6 +117,8 @@ class SignUp extends React.Component {
                 </TouchableOpacity>
               }
             />
+
+            <Text style={styles.error}>{localError}</Text>
 
             <GradientButton colors={colors.blueGradient} onPress={this.byEmail}>
               <Text style={styles.signText}>{mode} WITH EMAIL</Text>
@@ -103,4 +141,16 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = ({ auth: { loading, error } }) => ({
+  loading,
+  error
+});
+
+const mapDispatchToProps = dispatch => ({
+  signInByEmail: (...p) => dispatch(AuthActions.signInByEmail(...p))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);

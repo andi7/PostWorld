@@ -1,8 +1,7 @@
 import { put, call } from 'redux-saga/effects';
 
 import postsFixture from 'fixtures/posts';
-
-import PostsActions from '../redux/PostsRedux';
+import PostsActions from 'models/posts';
 
 const queryAll = () =>
   new Promise(resolve => {

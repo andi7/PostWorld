@@ -9,7 +9,10 @@
           "theme": "./src/theme",
           "utils": "./src/utils",
           "fixtures": "./src/fixtures",
-          "domains": "./src/domains"
+          "domains": "./src/domains",
+          "models": "./src/redux/models",
+          "config": "./src/config",
+          "services": "./src/services"
         }
       }
     }
