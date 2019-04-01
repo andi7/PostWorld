@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Text, Image, ActivityIndicator } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { InputWithSuffix, GradientButton } from 'components';
 import { images, colors } from 'theme';
@@ -65,7 +66,7 @@ class EnterUsername extends React.Component {
     const usernameValid = username.trim() !== '' && username.length >= 3;
 
     return (
-      <View style={{ flex: 1 }}>
+      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
         <Image source={images.logo} style={styles.logo} />
 
         <View style={styles.container}>
@@ -97,7 +98,7 @@ class EnterUsername extends React.Component {
             )}
           </GradientButton>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }

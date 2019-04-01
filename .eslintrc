@@ -12,7 +12,9 @@
           "domains": "./src/domains",
           "models": "./src/redux/models",
           "config": "./src/config",
-          "services": "./src/services"
+          "services": "./src/services",
+          "selectors": "./src/selectors",
+          "sagas": "./src/sagas"
         }
       }
     }

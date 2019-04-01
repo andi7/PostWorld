@@ -8,6 +8,22 @@ export default (rootReducer, rootSaga) => {
   const middleware = [];
   const enhancers = [];
 
+  /* ------------- Logger Middleware ------------- */
+
+  const logger = store => next => action => {
+    const returnValue = next(action);
+
+    if (console.group) {
+      console.group(action.type);
+      console.log('%c action', 'color: #03A9F4', action);
+      console.log('%c newState', 'color: #03A9F4', store.getState());
+      console.groupEnd();
+    }
+
+    return returnValue;
+  };
+  middleware.push(logger);
+
   /* ------------- Saga Middleware ------------- */
 
   const sagaMiddleware = createSagaMiddleware();

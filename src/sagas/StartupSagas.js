@@ -5,20 +5,26 @@ import AsyncStorage from '@react-native-community/async-storage';
 import * as NavigationUtils from 'utils/navigation';
 
 import StartupActions from 'models/startup';
+import AuthActions from 'models/auth';
 
 const getOnboardingDone = () => AsyncStorage.getItem('@onboardingDone');
-const getUserToken = () => AsyncStorage.getItem('@token');
+const getUserToken = () => AsyncStorage.multiGet(['@token', '@user']);
 
 // process STARTUP actions
 export function* startup() {
   const onboardingDone = yield call(getOnboardingDone);
 
   if (onboardingDone) {
-    const hasToken = yield call(getUserToken);
+    const localData = yield call(getUserToken);
+    const token = localData[0][1];
+    const user = localData[1][1];
 
-    console.log(hasToken);
-
-    NavigationUtils.navigate('SignUp');
+    if (token && user) {
+      yield put(AuthActions.authSuccess(JSON.parse(user)));
+      NavigationUtils.navigate('MainNavigator');
+    } else {
+      NavigationUtils.navigate('SignUp');
+    }
   }
 
   yield put(StartupActions.startupFinish());

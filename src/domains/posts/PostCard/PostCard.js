@@ -56,7 +56,7 @@ class PostCard extends React.PureComponent {
               style={{ flex: 1 }}
               onPress={commentPress}
             >
-              <Text style={styles.commentsText}>{item.comments.length}</Text>
+              <Text style={styles.commentsText}>{item.comments}</Text>
             </IconButton>
           )}
 

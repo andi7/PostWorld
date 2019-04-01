@@ -7,7 +7,8 @@ import { signUp, signIn } from 'services/auth';
 
 import AuthActions from 'models/auth';
 
-const storeUser = user => AsyncStorage.setItem('@token', user.token);
+const storeUser = user =>
+  AsyncStorage.multiSet([['@token', user.token], ['@user', JSON.stringify(user)]]);
 
 export function* signInByEmail({ email, password }) {
   const result = yield call(signIn, email, password);

@@ -10,7 +10,8 @@ export default StyleSheet.create({
     borderColor: '#D2D2D088',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    backgroundColor: 'white'
   },
 
   composerInput: {

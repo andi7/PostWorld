@@ -1,17 +1,19 @@
 import { combineReducers } from 'redux';
 
-import configureStore from './createStore';
-import rootSaga from '../sagas';
+import { reducer as StartupReducer } from 'models/startup';
+import { reducer as AuthReducer } from 'models/auth';
+import { reducer as PostsReducer } from 'models/posts';
+import { reducer as CommentsReducer } from 'models/comments';
+import rootSaga from 'sagas';
 
-import { reducer as StartupReducer } from './models/startup';
-import { reducer as PostsReducer } from './models/posts';
-import { reducer as AuthReducer } from './models/auth';
+import configureStore from './createStore';
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
   startup: StartupReducer,
   auth: AuthReducer,
-  posts: PostsReducer
+  posts: PostsReducer,
+  comments: CommentsReducer
 });
 
 export default () => {

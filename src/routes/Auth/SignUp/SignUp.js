@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { images, colors } from 'theme';
 import { InputWithSuffix, GradientButton } from 'components';
@@ -86,57 +87,59 @@ class SignUp extends React.Component {
     const emailValid = validate(email);
 
     return (
-      <View style={styles.container}>
-        <View style={{ alignItems: 'center' }}>
-          <Image source={images.logo} style={styles.logo} />
+      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
+        <View style={styles.container}>
+          <View style={{ alignItems: 'center' }}>
+            <Image source={images.logo} style={styles.logo} />
 
-          <Text style={styles.title}>postworld</Text>
-        </View>
+            <Text style={styles.title}>postworld</Text>
+          </View>
 
-        {mode !== 'none' && (
-          <React.Fragment>
-            <InputWithSuffix
-              placeholder="Email"
-              value={email}
-              onChangeText={val => this.onChange('email', val)}
-              valid={email.trim() !== '' ? emailValid : undefined}
-              autoCapitalize="none"
-            />
+          {mode !== 'none' && (
+            <React.Fragment>
+              <InputWithSuffix
+                placeholder="Email"
+                value={email}
+                onChangeText={val => this.onChange('email', val)}
+                valid={email.trim() !== '' ? emailValid : undefined}
+                autoCapitalize="none"
+              />
 
-            <InputWithSuffix
-              placeholder="Password"
-              value={password}
-              onChangeText={val => this.onChange('password', val)}
-              secureTextEntry={!showPassword}
-              suffix={
-                <TouchableOpacity
-                  style={styles.showPasswordButton}
-                  onPress={() => this.setState({ showPassword: !showPassword })}
-                >
-                  <Text style={styles.showPasswordText}>{showPassword ? 'HIDE' : 'SHOW'}</Text>
-                </TouchableOpacity>
-              }
-            />
+              <InputWithSuffix
+                placeholder="Password"
+                value={password}
+                onChangeText={val => this.onChange('password', val)}
+                secureTextEntry={!showPassword}
+                suffix={
+                  <TouchableOpacity
+                    style={styles.showPasswordButton}
+                    onPress={() => this.setState({ showPassword: !showPassword })}
+                  >
+                    <Text style={styles.showPasswordText}>{showPassword ? 'HIDE' : 'SHOW'}</Text>
+                  </TouchableOpacity>
+                }
+              />
 
-            <Text style={styles.error}>{localError}</Text>
+              <Text style={styles.error}>{localError}</Text>
 
-            <GradientButton colors={colors.blueGradient} onPress={this.byEmail}>
-              <Text style={styles.signText}>{mode} WITH EMAIL</Text>
-            </GradientButton>
+              <GradientButton colors={colors.blueGradient} onPress={this.byEmail}>
+                <Text style={styles.signText}>{mode} WITH EMAIL</Text>
+              </GradientButton>
 
-            <GradientButton colors={[colors.primary, colors.primary]} onPress={this.byFacebook}>
-              <Text style={styles.signText}>{mode} WITH FACEBOOK</Text>
-            </GradientButton>
+              <GradientButton colors={[colors.primary, colors.primary]} onPress={this.byFacebook}>
+                <Text style={styles.signText}>{mode} WITH FACEBOOK</Text>
+              </GradientButton>
 
-            <Text style={styles.footerText}>
-              {mode === 'SIGN UP' ? 'Already have an account?' : "Don't have an account?"}{' '}
-              <Text style={styles.footerTextHighlight} onPress={this.changeMode}>
-                {mode === 'SIGN UP' ? 'Sign in' : 'Sign up'}
+              <Text style={styles.footerText}>
+                {mode === 'SIGN UP' ? 'Already have an account?' : "Don't have an account?"}{' '}
+                <Text style={styles.footerTextHighlight} onPress={this.changeMode}>
+                  {mode === 'SIGN UP' ? 'Sign in' : 'Sign up'}
+                </Text>
               </Text>
-            </Text>
-          </React.Fragment>
-        )}
-      </View>
+            </React.Fragment>
+          )}
+        </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
