@@ -5,8 +5,8 @@ import faker from 'faker';
 
 import { images } from 'theme';
 
-import FeedNavigator from '../routes/Feed';
-import EventsNavigator from '../routes/Events';
+import FeedNavigator from 'routes/Feed';
+import EventsNavigator from 'routes/Events';
 
 import CustomTabBarComponent from './CustomTabBar/CustomTabBarComponent';
 

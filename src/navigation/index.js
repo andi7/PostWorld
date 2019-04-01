@@ -7,10 +7,10 @@ import {
 
 import { colors } from 'theme';
 
-import Onboarding from '../routes/Onboarding/Onboarding';
-import AuthNavigator from '../routes/Auth';
+import Onboarding from 'routes/Onboarding/Onboarding';
+import AuthNavigator from 'routes/Auth';
 
-import PostComments from '../routes/Comments/PostComments';
+import PostComments from 'routes/Comments/PostComments';
 import TabNavigator from './TabNavigator';
 
 const DrawerNavigator = createDrawerNavigator(

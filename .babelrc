@@ -4,6 +4,7 @@
       "module-resolver",
       {
         "alias": {
+          "routes": "./src/routes",
           "components": "./src/components",
           "theme": "./src/theme",
           "utils": "./src/utils",

@@ -5,6 +5,7 @@
       "babel-module": {
         "extensions": [".js", ".ios.js", ".android.js", ".json"],
         "alias": {
+          "routes": "./src/routes",
           "components": "./src/components",
           "theme": "./src/theme",
           "utils": "./src/utils",

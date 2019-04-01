@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
-import { fonts } from '../../theme';
+import { fonts } from 'theme';
 
 const InputWithSuffix = ({ wrapperStyle, suffix, valid, ...props }) => (
   <View style={[styles.wrapper, wrapperStyle]}>
