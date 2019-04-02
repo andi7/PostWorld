@@ -21,12 +21,17 @@ class PostCard extends React.PureComponent {
     return (
       <View style={styles.card}>
         <View style={styles.topRow}>
-          <IconButton
-            icon={{ uri: item.user.avatar }}
-            iconStyle={styles.avatar}
-            style={[styles.iconButton, { flex: 0 }]}
-          >
-            <Text style={styles.userName}>{item.user.name}</Text>
+          <IconButton icon={{ uri: item.user.avatar }} iconStyle={styles.avatar}>
+            <Text
+              style={[
+                styles.userName,
+                {
+                  marginTop: item.content.text ? -16 : 0
+                }
+              ]}
+            >
+              {item.user.name}
+            </Text>
           </IconButton>
 
           {!hideShare && <IconButton icon={images.dots} iconStyle={styles.dots} />}

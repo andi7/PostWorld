@@ -26,7 +26,8 @@ export default (onlyImage = false) =>
         text: hasText ? faker.lorem.sentences() : ''
       },
       distance: distances[faker.random.number(2)],
-      comments: generateComments(),
+      comments: faker.random.number(20),
+      commentsList: generateComments(),
       ...generateLikes(),
       ...generateTimestamp()
     };

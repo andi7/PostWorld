@@ -7,11 +7,11 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#D2D2D088',
-    marginVertical: 5,
+    borderColor: '#D2D2D034',
+    marginVertical: 6,
     marginHorizontal: 5,
-    shadowOpacity: 0.2,
-    shadowColor: '#000',
+    shadowOpacity: 1,
+    shadowColor: '#D2D2D0',
     shadowOffset: { height: 1 },
     shadowRadius: 1,
     elevation: 3
@@ -21,9 +21,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     height: 50,
     width: '100%',
-    paddingHorizontal: 15,
-    alignItems: 'center',
-    justifyContent: 'space-between'
+    paddingHorizontal: 16,
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
 
   avatar: {
@@ -33,26 +33,27 @@ export default StyleSheet.create({
   },
 
   userName: {
-    marginLeft: 7,
+    marginLeft: 6,
     color: '#5882F2',
     fontSize: 12,
     fontFamily: fonts.MontserratMedium
   },
 
   dots: {
-    height: 27,
-    width: 27,
+    height: 5,
+    width: 19,
     resizeMode: 'contain',
-    marginRight: 5
+    marginRight: 9
   },
 
   postText: {
+    marginTop: -22,
     color: 'black',
     fontSize: 12,
     fontFamily: fonts.AvenirNext,
     marginLeft: 60,
-    marginRight: 47,
-    marginBottom: 8
+    marginRight: 58,
+    marginBottom: 4
   },
 
   postImage: {
