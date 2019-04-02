@@ -50,6 +50,7 @@ class CustomTabBarComponent extends React.Component {
         >
           <PostCreate
             tag={tag}
+            fullscreen
             onSubmit={() => this.setState({ postModal: false })}
             onClose={() => this.setState({ postModal: false })}
           />

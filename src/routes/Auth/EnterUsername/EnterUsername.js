@@ -23,15 +23,13 @@ class EnterUsername extends React.Component {
 
   openAvatarPicker = () => {
     ImagePicker.showImagePicker({ title: 'Select Avatar' }, response => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
       } else {
+        console.log('Response = ', response);
+
         const source = { uri: response.uri };
 
         // You can also display the image using data:

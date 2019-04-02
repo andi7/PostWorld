@@ -3,6 +3,12 @@ import { StyleSheet } from 'react-native';
 import { fonts, colors } from 'theme';
 
 export default StyleSheet.create({
+  postModalFull: {
+    height: '100%',
+    width: '100%',
+    paddingTop: 20
+  },
+
   postModal: {
     height: 220,
     width: '90%',
@@ -24,7 +30,7 @@ export default StyleSheet.create({
     width: 70,
     height: 20,
     borderRadius: 8,
-    backgroundColor: '#5A79FD',
+    backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center'
   },
