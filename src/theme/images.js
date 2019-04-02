@@ -17,7 +17,7 @@ export default {
   close: require('../assets/images/icons/close.png'),
   camera: require('../assets/images/icons/camera.png'),
 
-  //Tags
+  // Tags
   tagFood: require('../assets/images/tags/type_food.png'),
   tagGeneral: require('../assets/images/tags/type_general.png'),
   tagArt: require('../assets/images/tags/type_art.png'),
@@ -28,6 +28,13 @@ export default {
   home: require('../assets/images/icons/home.png'),
   search: require('../assets/images/icons/search.png'),
   compose: require('../assets/images/icons/compose.png'),
+
+  // Drawer Icons
+  drawerBurger: require('../assets/images/drawer_burger.png'),
+  drawerStar: require('../assets/images/drawer_star.png'),
+  drawerShop: require('../assets/images/drawer_shop.png'),
+  cog: require('../assets/images/cog.png'),
+  arrowRight: require('../assets/images/angle_right.png'),
 
   // Other
   logo: require('../assets/images/logo.png'),

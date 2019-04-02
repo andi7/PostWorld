@@ -1,11 +1,13 @@
 import React from 'react';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const IconButton = ({ icon, iconStyle, style, children, ...params }) => (
+const IconButton = ({ icon, iconStyle, iconPosition = 'left', style, children, ...params }) => (
   <TouchableOpacity {...params} style={[styles.button, style]}>
-    <Image source={icon} style={iconStyle} />
+    {iconPosition === 'left' && <Image source={icon} style={iconStyle} />}
 
     {children}
+
+    {iconPosition === 'right' && <Image source={icon} style={iconStyle} />}
   </TouchableOpacity>
 );
 

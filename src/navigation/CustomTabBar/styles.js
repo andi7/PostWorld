@@ -23,12 +23,14 @@ export default StyleSheet.create({
 
   tagsList: {
     flexDirection: 'row',
+    width: '65%',
     marginTop: 10,
     marginBottom: 10
   },
 
   tagContainer: {
-    marginHorizontal: 13,
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center'
   },
 

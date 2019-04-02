@@ -13,12 +13,15 @@ import AuthNavigator from 'routes/Auth';
 import PostComments from 'routes/Comments/PostComments';
 import TabNavigator from './TabNavigator';
 
+import CustomDrawer from './CustomDrawer/CustomDrawer';
+
 const DrawerNavigator = createDrawerNavigator(
   {
     TabNavigator
   },
   {
-    drawerPosition: 'right'
+    drawerPosition: 'right',
+    contentComponent: CustomDrawer
   }
 );
 
