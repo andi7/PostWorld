@@ -2,8 +2,9 @@ import React from 'react';
 import { BottomTabBar } from 'react-navigation';
 import Modal from 'react-native-modal';
 
+import PostCreate from 'domains/posts/PostCreate/PostCreate';
+
 import TypePicker from './TypePicker';
-import PostCreate from './PostCreate';
 import styles from './styles';
 
 class CustomTabBarComponent extends React.Component {
@@ -48,6 +49,7 @@ class CustomTabBarComponent extends React.Component {
           style={[styles.modal, { justifyContent: 'center' }]}
         >
           <PostCreate
+            tag={tag}
             onSubmit={() => this.setState({ postModal: false })}
             onClose={() => this.setState({ postModal: false })}
           />

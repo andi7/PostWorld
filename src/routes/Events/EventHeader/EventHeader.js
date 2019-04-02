@@ -1,44 +1,65 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
-import { images } from 'theme';
+import { images, gradients } from 'theme';
+import { GradientButton } from 'components';
 
 import styles from './styles';
 
-const EventHeader = ({ navigation }) => (
-  <View style={styles.header}>
-    <TouchableOpacity
-      style={styles.tagContainer}
-      onPress={() => navigation.setParams({ type: 'group' })}
-    >
-      <Image source={images.tagGroup} style={styles.tag} />
-    </TouchableOpacity>
+const EventHeader = ({ navigation }) => {
+  const currentType = navigation.getParam('type', 'group');
 
-    <TouchableOpacity
-      style={styles.tagContainer}
-      onPress={() => navigation.setParams({ type: 'food' })}
-    >
-      <Image source={images.tagFood} style={styles.tag} />
-    </TouchableOpacity>
+  return (
+    <View style={styles.header}>
+      <GradientButton
+        style={styles.tagContainer}
+        onPress={() => navigation.setParams({ type: 'group' })}
+        {...gradients.yellow}
+      >
+        <Image
+          source={images.tagGroup}
+          style={[styles.tag, currentType === 'group' && styles.tagActive]}
+        />
+      </GradientButton>
 
-    <TouchableOpacity
-      style={styles.tagContainer}
-      onPress={() => navigation.setParams({ type: 'art' })}
-    >
-      <Image source={images.tagArt} style={styles.tag} />
-    </TouchableOpacity>
+      <GradientButton
+        style={styles.tagContainer}
+        onPress={() => navigation.setParams({ type: 'food' })}
+        {...gradients.red}
+      >
+        <Image
+          source={images.tagFood}
+          style={[styles.tag, currentType === 'food' && styles.tagActive]}
+        />
+      </GradientButton>
 
-    <TouchableOpacity
-      style={styles.tagContainer}
-      onPress={() => navigation.setParams({ type: 'offer' })}
-    >
-      <Image source={images.tagOffer} style={styles.tag} />
-    </TouchableOpacity>
+      <GradientButton
+        style={styles.tagContainer}
+        onPress={() => navigation.setParams({ type: 'art' })}
+        {...gradients.purple}
+      >
+        <Image
+          source={images.tagArt}
+          style={[styles.tag, currentType === 'art' && styles.tagActive]}
+        />
+      </GradientButton>
 
-    <TouchableOpacity>
-      <Image source={images.logo} style={styles.logo} />
-    </TouchableOpacity>
-  </View>
-);
+      <GradientButton
+        style={styles.tagContainer}
+        onPress={() => navigation.setParams({ type: 'offer' })}
+        {...gradients.green}
+      >
+        <Image
+          source={images.tagOffer}
+          style={[styles.tag, currentType === 'offer' && styles.tagActive]}
+        />
+      </GradientButton>
+
+      <TouchableOpacity>
+        <Image source={images.logo} style={styles.logo} />
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 export default EventHeader;

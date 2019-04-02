@@ -2,34 +2,35 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { colors, images } from 'theme';
+import { images, gradients } from 'theme';
 
 import styles from './styles';
 
 const TypePicker = ({ onSelect, onClose }) => (
-  <LinearGradient
-    style={styles.gradient}
-    colors={colors.blueGradient}
-    start={{ x: 0.5, y: 0.5 }}
-    end={{ x: 1, y: 1 }}
-  >
+  <LinearGradient style={styles.gradient} {...gradients.lightBlue}>
     <Text style={styles.title}>Choose Post Type</Text>
 
-    <View style={styles.tagsContainer}>
-      <TouchableOpacity style={styles.tag} onPress={() => onSelect('food')}>
-        <Image source={images.tagFood} style={styles.tagIcon} />
+    <View style={styles.tagsList}>
+      <TouchableOpacity style={styles.tagContainer} onPress={() => onSelect('food')}>
+        <LinearGradient style={styles.tag} {...gradients.red}>
+          <Image source={images.tagFood} style={styles.tagIcon} />
+        </LinearGradient>
 
         <Text style={styles.tagText}>Food & Drink</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.tag} onPress={() => onSelect('general')}>
-        <Image source={images.tagGeneral} style={styles.tagIcon} />
+      <TouchableOpacity style={styles.tagContainer} onPress={() => onSelect('general')}>
+        <LinearGradient style={styles.tag} {...gradients.blue}>
+          <Image source={images.tagGeneral} style={styles.tagIcon} />
+        </LinearGradient>
 
         <Text style={styles.tagText}>General</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.tag} onPress={() => onSelect('art')}>
-        <Image source={images.tagArt} style={styles.tagIcon} />
+      <TouchableOpacity style={styles.tagContainer} onPress={() => onSelect('art')}>
+        <LinearGradient style={styles.tag} {...gradients.purple}>
+          <Image source={images.tagArt} style={styles.tagIcon} />
+        </LinearGradient>
 
         <Text style={styles.tagText}>Art</Text>
       </TouchableOpacity>

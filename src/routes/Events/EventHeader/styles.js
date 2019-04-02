@@ -11,13 +11,20 @@ export default StyleSheet.create({
 
   tagContainer: {
     width: '16%',
-    height: 35
+    height: 35,
+    borderRadius: 12
   },
 
   tag: {
-    height: 35,
-    width: '100%',
-    resizeMode: 'contain'
+    height: 24,
+    resizeMode: 'contain',
+    tintColor: '#000',
+    opacity: 0.5
+  },
+
+  tagActive: {
+    tintColor: '#fff',
+    opacity: 1
   },
 
   logo: {

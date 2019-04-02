@@ -21,20 +21,27 @@ export default StyleSheet.create({
     fontFamily: fonts.MontserratBold
   },
 
-  tagsContainer: {
+  tagsList: {
     flexDirection: 'row',
     marginTop: 10,
     marginBottom: 10
   },
 
-  tag: {
+  tagContainer: {
     marginHorizontal: 13,
     alignItems: 'center'
   },
 
-  tagIcon: {
+  tag: {
     height: 35,
     width: 56,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  tagIcon: {
+    height: 24,
     resizeMode: 'contain'
   },
 
@@ -47,61 +54,6 @@ export default StyleSheet.create({
   closeIcon: {
     height: 11,
     width: 11,
-    resizeMode: 'contain'
-  },
-
-  postModal: {
-    height: 220,
-    width: '90%',
-    backgroundColor: 'white',
-    alignSelf: 'center',
-    borderRadius: 10,
-    padding: 10
-  },
-
-  postModalHeader: {
-    height: 20,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-
-  postModalSubmit: {
-    width: 70,
-    height: 20,
-    borderRadius: 8,
-    backgroundColor: '#5A79FD',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-
-  postModalSubmitText: {
-    color: 'white',
-    fontSize: 10,
-    fontFamily: fonts.MontserratMedius
-  },
-
-  postModalContent: {
-    flex: 1,
-    color: '#3B3B3B',
-    fontSize: 10,
-    fontFamily: fonts.MontserratMedius,
-    marginHorizontal: 30,
-    marginVertical: 5
-  },
-
-  postModalFooter: {
-    height: 24,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-
-  cameraIcon: {
-    height: 24,
-    width: 24,
     resizeMode: 'contain'
   }
 });
