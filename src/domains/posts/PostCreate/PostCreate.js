@@ -1,23 +1,12 @@
 import React from 'react';
-import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import { connect } from 'react-redux';
 
 import { images, colors } from 'theme';
+import PostsActions from 'models/posts';
 
 import styles from './styles';
-
-const getIconForTag = tag => {
-  switch (tag) {
-    case 'food':
-      return images.tagFood;
-    case 'general':
-      return images.tagGeneral;
-    case 'art':
-      return images.tagArt;
-    default:
-      return null;
-  }
-};
 
 class CreatePost extends React.Component {
   state = {
@@ -44,8 +33,19 @@ class CreatePost extends React.Component {
     });
   };
 
+  submitPost = () => {
+    const { tag, onSubmit } = this.props;
+    const { text } = this.state;
+
+    if (onSubmit) {
+      onSubmit();
+    }
+
+    this.props.dispatch(PostsActions.createPost(tag, text));
+  };
+
   render() {
-    const { tag, fullscreen, onSubmit, onClose } = this.props;
+    const { tag, fullscreen, onClose } = this.props;
     const { text } = this.state;
 
     return (
@@ -58,7 +58,7 @@ class CreatePost extends React.Component {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.postModalSubmit} onPress={onSubmit}>
+          <TouchableOpacity style={styles.postModalSubmit} onPress={this.submitPost}>
             <Text style={styles.postModalSubmitText}>POST</Text>
           </TouchableOpacity>
         </View>
@@ -71,16 +71,16 @@ class CreatePost extends React.Component {
           multiline
         />
 
-        <View style={styles.postModalFooter}>
-          <TouchableOpacity onPress={this.openImagePicker}>
-            <Image source={images.camera} style={styles.cameraIcon} />
-          </TouchableOpacity>
-
-          <Image source={getIconForTag(tag)} style={styles.tagIcon} />
-        </View>
+        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+          <View style={styles.postModalFooter}>
+            <TouchableOpacity onPress={this.openImagePicker}>
+              <Image source={images.camera} style={styles.cameraIcon} />
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }
 }
 
-export default CreatePost;
+export default connect()(CreatePost);

@@ -3,7 +3,8 @@ import { createActions, createReducer } from 'reduxsauce';
 const { Types, Creators } = createActions({
   fetchPosts: null,
   fetchPostsSuccess: ['data'],
-  fetchPostsFailed: ['error']
+  fetchPostsFailed: ['error'],
+  createPost: ['tag', 'body']
 });
 
 export const PostsTypes = Types;

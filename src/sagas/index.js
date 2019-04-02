@@ -11,7 +11,7 @@ import { CommentsTypes } from 'models/comments';
 
 import { startup } from './StartupSagas';
 import { signInByEmail, signUpByEmail } from './AuthSagas';
-import { queryPosts } from './PostsSagas';
+import { queryPosts, createPost } from './PostsSagas';
 import { queryComments, postComment } from './CommentsSagas';
 
 /* ------------- API ------------- */
@@ -26,6 +26,7 @@ export default function* root() {
     takeLatest(AuthTypes.SIGN_IN_BY_EMAIL, signInByEmail),
     takeLatest(AuthTypes.SIGN_UP_BY_EMAIL, signUpByEmail),
     takeLatest(PostsTypes.FETCH_POSTS, queryPosts),
+    takeLatest(PostsTypes.CREATE_POST, createPost),
     takeLatest(CommentsTypes.FETCH_COMMENTS, queryComments),
     takeLatest(CommentsTypes.POST_COMMENT, postComment)
   ]);

@@ -2,7 +2,7 @@ import { put, call, select } from 'redux-saga/effects';
 
 import postsFixture from 'fixtures/posts';
 import PostsActions from 'models/posts';
-import { queryAll } from 'services/posts';
+import { queryAll, create } from 'services/posts';
 import { getUser } from 'selectors/auth';
 
 const queryAllFixture = () =>
@@ -38,5 +38,14 @@ export function* queryPosts() {
     yield put(PostsActions.fetchPostsSuccess(transformPosts(result.data.data)));
   } else {
     yield put(PostsActions.fetchPostsFailed(result.data.message));
+  }
+}
+
+export function* createPost({ tag, body }) {
+  const user = yield select(getUser);
+  const result = yield call(create, user.id, user.token, tag, body);
+
+  if (result.data.success) {
+    yield put(PostsActions.fetchPosts());
   }
 }
