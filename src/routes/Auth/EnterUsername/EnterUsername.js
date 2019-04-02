@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { InputWithSuffix, GradientButton } from 'components';
-import { images, colors } from 'theme';
+import { images, gradients } from 'theme';
 import AuthActions from 'models/auth';
 
 import styles from './styles';
@@ -87,9 +87,10 @@ class EnterUsername extends React.Component {
           <Text style={{ color: 'red' }}>{localError}</Text>
 
           <GradientButton
+            style={styles.signButton}
             disabled={loading}
-            colors={colors.blueGradient}
             onPress={this.finishSignUp}
+            {...gradients.lightBlue}
           >
             {loading ? (
               <ActivityIndicator color="#fff" />

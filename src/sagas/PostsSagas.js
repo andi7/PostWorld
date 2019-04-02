@@ -35,9 +35,7 @@ export function* queryPosts() {
   const result = yield call(queryAll, user.id, user.token);
 
   if (result.data.success) {
-    yield put(PostsActions.fetchPostsSuccess(postsFixture()));
-
-    // yield put(PostsActions.fetchPostsSuccess(transformPosts(result.data.data)));
+    yield put(PostsActions.fetchPostsSuccess(transformPosts(result.data.data)));
   } else {
     yield put(PostsActions.fetchPostsFailed(result.data.message));
   }

@@ -34,6 +34,14 @@ export default StyleSheet.create({
     marginTop: 10
   },
 
+  signButton: {
+    marginTop: 15,
+    marginBottom: 10,
+    height: 44,
+    width: '100%',
+    borderRadius: 22
+  },
+
   signText: {
     color: 'white',
     fontSize: 14,

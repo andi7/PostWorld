@@ -4,7 +4,7 @@ import { LoginManager } from 'react-native-fbsdk';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { images, colors } from 'theme';
+import { images, colors, gradients } from 'theme';
 import { InputWithSuffix, GradientButton } from 'components';
 import { validate } from 'utils/email';
 import AuthActions from 'models/auth';
@@ -122,11 +122,19 @@ class SignUp extends React.Component {
 
               <Text style={styles.error}>{localError}</Text>
 
-              <GradientButton colors={colors.blueGradient} onPress={this.byEmail}>
+              <GradientButton
+                style={styles.signButton}
+                onPress={this.byEmail}
+                {...gradients.lightBlue}
+              >
                 <Text style={styles.signText}>{mode} WITH EMAIL</Text>
               </GradientButton>
 
-              <GradientButton colors={[colors.primary, colors.primary]} onPress={this.byFacebook}>
+              <GradientButton
+                style={styles.signButton}
+                colors={[colors.primary, colors.primary]}
+                onPress={this.byFacebook}
+              >
                 <Text style={styles.signText}>{mode} WITH FACEBOOK</Text>
               </GradientButton>
 

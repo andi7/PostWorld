@@ -4,17 +4,18 @@ export default StyleSheet.create({
   header: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 18
   },
 
   tagContainer: {
-    height: '100%',
-    width: '15%'
+    width: '16%',
+    height: 35
   },
 
   tag: {
-    height: '100%',
+    height: 35,
     width: '100%',
     resizeMode: 'contain'
   },

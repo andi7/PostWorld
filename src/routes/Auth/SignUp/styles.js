@@ -43,6 +43,14 @@ export default StyleSheet.create({
     color: 'red'
   },
 
+  signButton: {
+    marginTop: 15,
+    marginBottom: 10,
+    height: 44,
+    width: '100%',
+    borderRadius: 22
+  },
+
   signText: {
     color: 'white',
     fontSize: 12,
