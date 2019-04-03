@@ -13,7 +13,17 @@ const storeUser = user =>
 export function* signInByEmail({ email, password }) {
   const result = yield call(signIn, email, password);
 
-  console.log(result);
+  if (!result.data.success) {
+    if (result.data.message === 'No user found') {
+      Alert.alert('Sign in failed!', 'Email on password is incorrect!');
+    } else {
+      yield put(AuthActions.authFailure(result.data.message));
+    }
+  } else {
+    yield put(AuthActions.authSuccess(result.data.data));
+    storeUser(result.data.data);
+    NavigationUtils.navigate('MainNavigator');
+  }
 }
 
 export function* signUpByEmail({ email, password, username, avatar }) {

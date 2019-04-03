@@ -15,6 +15,7 @@ class SignUp extends React.Component {
   state = {
     email: '',
     password: '',
+    username: '',
     localError: '',
     showPassword: false,
     mode: this.props.navigation.getParam('mode', 'SIGN UP')
@@ -37,15 +38,24 @@ class SignUp extends React.Component {
   };
 
   byEmail = () => {
-    const { mode, email, password } = this.state;
+    const { mode, email, username, password } = this.state;
 
-    if (email.trim() === '' || password.trim() === '') {
+    if (
+      (mode === 'SIGN IN' && username.trim() === '') ||
+      (mode === 'SIGN UP' && email.trim() === '') ||
+      password.trim() === ''
+    ) {
       this.setState({ localError: 'Please fill all fields!' });
       return;
     }
 
-    if (!validate(email)) {
+    if (mode === 'SIGN UP' && !validate(email)) {
       this.setState({ localError: 'This email is not valid!' });
+      return;
+    }
+
+    if (mode === 'SIGN IN' && username.length < 3) {
+      this.setState({ localError: 'Username must be at least 3 characters long!' });
       return;
     }
 
@@ -62,7 +72,7 @@ class SignUp extends React.Component {
     }
 
     if (mode === 'SIGN IN') {
-      this.props.signInByEmail(email, password);
+      this.props.signInByEmail(username, password);
     }
   };
 
@@ -83,8 +93,9 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { email, password, showPassword, localError, mode } = this.state;
+    const { email, username, password, showPassword, localError, mode } = this.state;
     const emailValid = validate(email);
+    const usernameValid = username.length > 3;
 
     return (
       <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }}>
@@ -97,13 +108,23 @@ class SignUp extends React.Component {
 
           {mode !== 'none' && (
             <React.Fragment>
-              <InputWithSuffix
-                placeholder="Email"
-                value={email}
-                onChangeText={val => this.onChange('email', val)}
-                valid={email.trim() !== '' ? emailValid : undefined}
-                autoCapitalize="none"
-              />
+              {mode === 'SIGN IN' ? (
+                <InputWithSuffix
+                  placeholder="Username"
+                  value={username}
+                  onChangeText={val => this.onChange('username', val)}
+                  valid={usernameValid}
+                  autoCapitalize="none"
+                />
+              ) : (
+                <InputWithSuffix
+                  placeholder="Email"
+                  value={email}
+                  onChangeText={val => this.onChange('email', val)}
+                  valid={emailValid}
+                  autoCapitalize="none"
+                />
+              )}
 
               <InputWithSuffix
                 placeholder="Password"
