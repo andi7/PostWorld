@@ -2,7 +2,7 @@ import { put, call, select } from 'redux-saga/effects';
 
 import postsFixture from 'fixtures/posts';
 import PostsActions from 'models/posts';
-import { queryAll, create } from 'services/posts';
+import { queryAll, create, like, unlike } from 'services/posts';
 import { getUser } from 'selectors/auth';
 
 const queryAllFixture = () =>
@@ -26,7 +26,7 @@ const transformPosts = posts =>
     distance: 3,
     comments: post.comments,
     likes: post.likes,
-    liked: false,
+    liked: post.liked,
     created_at: 1553782682.3891044
   }));
 
@@ -48,4 +48,14 @@ export function* createPost({ tag, body }) {
   if (result.data.success) {
     yield put(PostsActions.fetchPosts());
   }
+}
+
+export function* likePost({ postId }) {
+  const user = yield select(getUser);
+  yield call(like, user.id, user.token, postId);
+}
+
+export function* unlikePost({ postId }) {
+  const user = yield select(getUser);
+  yield call(unlike, user.id, user.token, postId);
 }

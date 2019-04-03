@@ -7,11 +7,19 @@ import PostsActions from 'models/posts';
 
 class PostList extends React.Component {
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.dispatch(PostsActions.fetchPosts());
   }
 
   checkComments = post => {
     this.props.navigation.navigate('PostComments', { post });
+  };
+
+  like = post => {
+    if (post.liked) {
+      this.props.dispatch(PostsActions.unlikePost(post.id));
+    } else {
+      this.props.dispatch(PostsActions.likePost(post.id));
+    }
   };
 
   render() {
@@ -26,7 +34,11 @@ class PostList extends React.Component {
         keyExtractor={item => `${item.id}`}
         data={posts}
         renderItem={({ item }) => (
-          <PostCard item={item} commentPress={() => this.checkComments(item)} />
+          <PostCard
+            item={item}
+            commentPress={() => this.checkComments(item)}
+            likePress={() => this.like(item)}
+          />
         )}
       />
     );
@@ -34,9 +46,5 @@ class PostList extends React.Component {
 }
 
 const mapStateToProps = ({ posts }) => ({ loading: posts.loading, posts: posts.data });
-const mapDispatchToProps = dispatch => ({ fetchPosts: () => dispatch(PostsActions.fetchPosts()) });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostList);
+export default connect(mapStateToProps)(PostList);

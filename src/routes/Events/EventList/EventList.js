@@ -1,13 +1,12 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 
-import postsFixture from 'fixtures/posts';
 import events from 'fixtures/events';
 
 import EventCard from 'domains/events/EventCard/EventCard';
 import OfferCard from 'domains/events/OfferCard/OfferCard';
 
-import PostList from 'routes/Feed/PostList/PostList';
+import PostList from 'domains/posts/PostList/PostList';
 
 class EventList extends React.Component {
   renderList = () => {

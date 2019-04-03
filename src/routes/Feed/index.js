@@ -1,10 +1,10 @@
 import { createStackNavigator } from 'react-navigation';
 
-import PostList from './PostList/PostList';
+import FeedPosts from './FeedPosts/FeedPosts';
 
 export default createStackNavigator({
-  PostList: {
-    screen: PostList,
+  FeedPosts: {
+    screen: FeedPosts,
     navigationOptions: { headerTitle: 'postworld' }
   }
 });

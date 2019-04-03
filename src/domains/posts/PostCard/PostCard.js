@@ -8,15 +8,8 @@ import { images } from 'theme';
 import styles from './styles';
 
 class PostCard extends React.PureComponent {
-  state = { liked: this.props.item.liked };
-
-  like = () => {
-    this.setState({ liked: !this.state.liked });
-  };
-
   render() {
-    const { item, commentPress, hideComment, hideShare } = this.props;
-    const { liked } = this.state;
+    const { item, commentPress, likePress, hideComment, hideShare } = this.props;
 
     return (
       <View style={styles.card}>
@@ -66,13 +59,13 @@ class PostCard extends React.PureComponent {
           )}
 
           <IconButton
-            icon={liked ? images.likeActive : images.like}
+            icon={item.liked ? images.likeActive : images.like}
             iconStyle={styles.likesIcon}
             style={{ flex: 1, justifyContent: 'flex-end' }}
-            onPress={this.like}
+            onPress={likePress}
           >
-            <Text style={[styles.likesText, { color: liked ? '#FF5353' : '#3B3B3BC0' }]}>
-              {item.likes + (item.liked && !liked ? -1 : !item.liked && liked ? 1 : 0)}
+            <Text style={[styles.likesText, { color: item.liked ? '#FF5353' : '#3B3B3BC0' }]}>
+              {item.likes}
             </Text>
           </IconButton>
         </View>
