@@ -12,7 +12,7 @@ import { CommentsTypes } from 'models/comments';
 import { startup } from './StartupSagas';
 import { signInByEmail, signUpByEmail } from './AuthSagas';
 import { queryPosts, createPost, likePost, unlikePost } from './PostsSagas';
-import { queryComments, postComment } from './CommentsSagas';
+import { queryComments, postComment, likeComment, unlikeComment } from './CommentsSagas';
 
 /* ------------- API ------------- */
 
@@ -30,6 +30,8 @@ export default function* root() {
     takeLatest(PostsTypes.LIKE_POST, likePost),
     takeLatest(PostsTypes.UNLIKE_POST, unlikePost),
     takeLatest(CommentsTypes.FETCH_COMMENTS, queryComments),
-    takeLatest(CommentsTypes.POST_COMMENT, postComment)
+    takeLatest(CommentsTypes.POST_COMMENT, postComment),
+    takeLatest(CommentsTypes.LIKE_COMMENT, likeComment),
+    takeLatest(CommentsTypes.UNLIKE_COMMENT, unlikeComment)
   ]);
 }

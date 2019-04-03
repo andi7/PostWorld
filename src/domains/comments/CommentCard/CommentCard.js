@@ -7,7 +7,7 @@ import { IconButton } from 'components';
 
 import styles from './styles';
 
-const CommentCard = ({ comment }) => (
+const CommentCard = ({ comment, likePress }) => (
   <View style={styles.card}>
     <View style={styles.topRow}>
       <IconButton
@@ -27,7 +27,7 @@ const CommentCard = ({ comment }) => (
       <IconButton
         icon={comment.liked ? images.likeActive : images.like}
         iconStyle={styles.likesIcon}
-        n
+        onPress={likePress}
       >
         <Text style={[styles.likesText, { color: comment.liked ? '#FF5353' : 'black' }]}>
           {comment.likes}

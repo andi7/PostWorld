@@ -44,6 +44,14 @@ class PostComments extends React.Component {
     this.setState({ comment: '' });
   };
 
+  like = comment => {
+    if (comment.liked) {
+      this.props.dispatch(CommentsActions.unlikeComment(comment.id));
+    } else {
+      this.props.dispatch(CommentsActions.likeComment(comment.id));
+    }
+  };
+
   render() {
     const { comment } = this.state;
     const { comments, loading } = this.props;
@@ -59,7 +67,9 @@ class PostComments extends React.Component {
           <FlatList
             keyExtractor={item => `${item.id}`}
             data={reversedComments}
-            renderItem={({ item }) => <CommentCard comment={item} />}
+            renderItem={({ item }) => (
+              <CommentCard comment={item} likePress={() => this.like(item)} />
+            )}
             ListEmptyComponent={() => (
               <ActivityIndicator style={{ marginTop: 30 }} size="large" animating={loading} />
             )}

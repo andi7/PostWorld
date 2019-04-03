@@ -21,3 +21,9 @@ export const create = (comment, postId, id, token) =>
       token
     })
   );
+
+export const like = (id, token, commentId) =>
+  request.post('/like', qs.stringify({ id, token, object_id: commentId, type: 'comment' }));
+
+export const unlike = (id, token, commentId) =>
+  request.post('/unlike', qs.stringify({ id, token, object_id: commentId, type: 'comment' }));
