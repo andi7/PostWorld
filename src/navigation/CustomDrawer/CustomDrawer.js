@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
+import { connect } from 'react-redux';
+
+import AuthActions from 'models/auth';
 
 import { IconButton } from 'components';
 import { images } from 'theme';
 
 import styles from './styles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Stat = ({ name, value }) => (
   <View style={styles.stat}>
@@ -27,10 +29,27 @@ const DrawerItem = ({ name, icon, onPress }) => (
   </IconButton>
 );
 
-const CustomDrawer = ({ navigation }) => (
+const showLogoutDialog = dispatch => {
+  Alert.alert(
+    'Log out',
+    '',
+    [
+      {
+        text: 'Cancel'
+      },
+      { text: 'OK', onPress: () => dispatch(AuthActions.logOut()) }
+    ],
+    { cancelable: true }
+  );
+};
+
+const CustomDrawer = ({ navigation, dispatch }) => (
   <View style={styles.container}>
     <View style={styles.avatarContainer}>
-      <Image source={null} style={styles.avatarIcon} />
+      <TouchableOpacity onPress={() => showLogoutDialog(dispatch)}>
+        <Image source={null} style={styles.avatarIcon} />
+      </TouchableOpacity>
+
       <Text style={styles.avatarName}>Collin</Text>
     </View>
 
@@ -56,4 +75,4 @@ const CustomDrawer = ({ navigation }) => (
   </View>
 );
 
-export default CustomDrawer;
+export default connect()(CustomDrawer);
