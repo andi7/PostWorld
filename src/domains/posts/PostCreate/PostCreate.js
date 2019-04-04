@@ -6,7 +6,8 @@ import {
   Image,
   TouchableOpacity,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
+  SafeAreaView
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { connect } from 'react-redux';
@@ -59,38 +60,40 @@ class CreatePost extends React.Component {
 
     return (
       <View style={[styles.postModal, fullscreen && styles.postModalFull]}>
-        <View style={styles.postModalHeader}>
-          <TouchableOpacity onPress={onClose}>
-            <Image
-              source={images.close}
-              style={[styles.closeIcon, { tintColor: colors.primary }]}
-            />
-          </TouchableOpacity>
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.postModalHeader}>
+            <TouchableOpacity onPress={onClose}>
+              <Image
+                source={images.close}
+                style={[styles.closeIcon, { tintColor: colors.primary }]}
+              />
+            </TouchableOpacity>
 
-          <TouchableOpacity style={styles.postModalSubmit} onPress={this.submitPost}>
-            <Text style={styles.postModalSubmitText}>POST</Text>
-          </TouchableOpacity>
-        </View>
-
-        <ScrollView style={{ flex: 1 }}>
-          <TextInput
-            style={styles.postModalContent}
-            value={text}
-            onChangeText={val => this.setState({ text: val })}
-            placeholder="What’s happening in Omaha?"
-            multiline
-          />
-
-          <DynamicHeightImage source={image} style={styles.postModalContentImage} />
-        </ScrollView>
-
-        <KeyboardAvoidingView behavior="position">
-          <View style={styles.postModalFooter}>
-            <TouchableOpacity style={{ width: 24 }} onPress={this.openImagePicker}>
-              <Image source={images.camera} style={styles.cameraIcon} />
+            <TouchableOpacity style={styles.postModalSubmit} onPress={this.submitPost}>
+              <Text style={styles.postModalSubmitText}>POST</Text>
             </TouchableOpacity>
           </View>
-        </KeyboardAvoidingView>
+
+          <ScrollView style={{ flex: 1 }}>
+            <TextInput
+              style={styles.postModalContent}
+              value={text}
+              onChangeText={val => this.setState({ text: val })}
+              placeholder="What’s happening in Omaha?"
+              multiline
+            />
+
+            <DynamicHeightImage source={image} style={styles.postModalContentImage} />
+          </ScrollView>
+
+          <KeyboardAvoidingView behavior="position">
+            <View style={styles.postModalFooter}>
+              <TouchableOpacity style={{ width: 24 }} onPress={this.openImagePicker}>
+                <Image source={images.camera} style={styles.cameraIcon} />
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
+        </SafeAreaView>
       </View>
     );
   }

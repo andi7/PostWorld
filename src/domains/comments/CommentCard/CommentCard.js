@@ -19,7 +19,7 @@ const CommentCard = ({ comment, likePress }) => (
       </IconButton>
     </View>
 
-    <Text style={styles.postText}>{comment.text}</Text>
+    <Text style={styles.postText}>{comment.body}</Text>
 
     <View style={styles.footerRow}>
       <Text style={styles.timeText}>{moment(comment.created_at).fromNow(true)}</Text>

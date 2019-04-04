@@ -43,7 +43,7 @@ class PostCard extends React.PureComponent {
             style={{ flex: 1, justifyContent: 'flex-start' }}
           >
             <Text style={styles.locationText}>
-              {moment(item.created_at).fromNow(true)} - {item.distance}
+              {moment.unix(item.created_at).fromNow(true)} - {item.distance}
             </Text>
           </IconButton>
 
