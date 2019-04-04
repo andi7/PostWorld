@@ -1,9 +1,18 @@
 import React from 'react';
-import { View, Text, TextInput, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView
+} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { connect } from 'react-redux';
 
 import { images, colors } from 'theme';
+import { DynamicHeightImage } from 'components';
 import PostsActions from 'models/posts';
 
 import styles from './styles';
@@ -46,7 +55,7 @@ class CreatePost extends React.Component {
 
   render() {
     const { tag, fullscreen, onClose } = this.props;
-    const { text } = this.state;
+    const { text, image } = this.state;
 
     return (
       <View style={[styles.postModal, fullscreen && styles.postModalFull]}>
@@ -63,17 +72,21 @@ class CreatePost extends React.Component {
           </TouchableOpacity>
         </View>
 
-        <TextInput
-          style={styles.postModalContent}
-          value={text}
-          onChangeText={val => this.setState({ text: val })}
-          placeholder="What’s happening in Omaha?"
-          multiline
-        />
+        <ScrollView style={{ flex: 1 }}>
+          <TextInput
+            style={styles.postModalContent}
+            value={text}
+            onChangeText={val => this.setState({ text: val })}
+            placeholder="What’s happening in Omaha?"
+            multiline
+          />
 
-        <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={10}>
+          <DynamicHeightImage source={image} style={styles.postModalContentImage} />
+        </ScrollView>
+
+        <KeyboardAvoidingView behavior="position">
           <View style={styles.postModalFooter}>
-            <TouchableOpacity onPress={this.openImagePicker}>
+            <TouchableOpacity style={{ width: 24 }} onPress={this.openImagePicker}>
               <Image source={images.camera} style={styles.cameraIcon} />
             </TouchableOpacity>
           </View>

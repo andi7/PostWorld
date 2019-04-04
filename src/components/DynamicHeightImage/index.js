@@ -5,6 +5,16 @@ class DynamicHeightImage extends React.PureComponent {
   state = { imageHeight: 0 };
 
   componentDidMount() {
+    this.calculateImageHeight();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.source !== prevProps.source) {
+      this.calculateImageHeight();
+    }
+  }
+
+  calculateImageHeight() {
     const { source } = this.props;
 
     if (source) {

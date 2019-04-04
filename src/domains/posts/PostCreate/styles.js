@@ -15,7 +15,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     alignSelf: 'center',
     borderRadius: 10,
-    padding: 10
+    paddingTop: 10
   },
 
   postModalHeader: {
@@ -23,7 +23,8 @@ export default StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 10
   },
 
   postModalSubmit: {
@@ -42,7 +43,7 @@ export default StyleSheet.create({
   },
 
   postModalContent: {
-    flex: 1,
+    width: '100%',
     color: '#3B3B3B',
     fontSize: 10,
     fontFamily: fonts.MontserratMedius,
@@ -50,12 +51,23 @@ export default StyleSheet.create({
     marginVertical: 5
   },
 
+  postModalContentImage: {
+    width: '100%',
+    marginVertical: 10
+  },
+
   postModalFooter: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    marginTop: 5,
     height: 24,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderTopColor: '#000',
+    borderTopWidth: StyleSheet.hairlineWidth
   },
 
   cameraIcon: {
