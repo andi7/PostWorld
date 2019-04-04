@@ -11,10 +11,10 @@ const transformComments = comments =>
       name: comment.author,
       avatar: ''
     },
-    text: '',
+    body: comment.body,
     likes: comment.likes,
     liked: false,
-    created_at: 1553782682
+    created_at: comment.created
   }));
 
 export function* queryComments({ postId }) {
@@ -31,8 +31,6 @@ export function* queryComments({ postId }) {
 export function* postComment({ comment, postId }) {
   const user = yield select(getUser);
   const result = yield call(create, comment, postId, user.id, user.token);
-
-  console.log(result);
 
   if (result.data.success) {
     yield put(CommentsActions.fetchComments(postId));

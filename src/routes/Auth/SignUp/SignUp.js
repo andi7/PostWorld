@@ -18,7 +18,7 @@ class SignUp extends React.Component {
     username: '',
     localError: '',
     showPassword: false,
-    mode: this.props.navigation.getParam('mode', 'SIGN UP')
+    mode: this.props.navigation.getParam('mode', 'SIGN IN')
   };
 
   onChange = (field, value) => {
