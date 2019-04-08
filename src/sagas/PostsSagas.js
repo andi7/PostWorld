@@ -23,7 +23,7 @@ const transformPosts = posts =>
       image: '',
       text: post.body
     },
-    distance: 3,
+    coordinates: post.coordinates,
     comments: post.comments,
     likes: post.likes,
     liked: post.liked,

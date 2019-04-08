@@ -4,12 +4,15 @@ import moment from 'moment';
 
 import { DynamicHeightImage, IconButton } from 'components';
 import { images } from 'theme';
+import { calcDistance } from 'utils/geolocation';
 
 import styles from './styles';
 
 class PostCard extends React.PureComponent {
   render() {
-    const { item, commentPress, likePress, hideComment, hideShare } = this.props;
+    const { item, commentPress, likePress, hideComment, hideShare, userLocation } = this.props;
+
+    const distance = 3;
 
     return (
       <View style={styles.card}>
@@ -43,7 +46,7 @@ class PostCard extends React.PureComponent {
             style={{ flex: 1, justifyContent: 'flex-start' }}
           >
             <Text style={styles.locationText}>
-              {moment(item.created_at).fromNow(true)} - {item.distance}
+              {moment(item.created_at).fromNow(true)} - {distance}
             </Text>
           </IconButton>
 

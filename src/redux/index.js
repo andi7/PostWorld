@@ -4,6 +4,7 @@ import { reducer as StartupReducer } from 'models/startup';
 import { reducer as AuthReducer } from 'models/auth';
 import { reducer as PostsReducer } from 'models/posts';
 import { reducer as CommentsReducer } from 'models/comments';
+import { reducer as LocationReducer } from 'models/location';
 import rootSaga from 'sagas';
 
 import configureStore from './createStore';
@@ -13,7 +14,8 @@ export const reducers = combineReducers({
   startup: StartupReducer,
   auth: AuthReducer,
   posts: PostsReducer,
-  comments: CommentsReducer
+  comments: CommentsReducer,
+  location: LocationReducer
 });
 
 export default () => {

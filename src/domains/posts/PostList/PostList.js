@@ -23,7 +23,7 @@ class PostList extends React.Component {
   };
 
   render() {
-    const { posts, loading } = this.props;
+    const { posts, loading, userLocation } = this.props;
 
     if (loading) {
       return <ActivityIndicator size="large" style={{ flex: 1 }} />;
@@ -38,6 +38,7 @@ class PostList extends React.Component {
             item={item}
             commentPress={() => this.checkComments(item)}
             likePress={() => this.like(item)}
+            userLocation={userLocation}
           />
         )}
       />
@@ -45,6 +46,10 @@ class PostList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ posts }) => ({ loading: posts.loading, posts: posts.data });
+const mapStateToProps = ({ posts, location }) => ({
+  loading: posts.loading,
+  posts: posts.data,
+  userLocation: location.data
+});
 
 export default connect(mapStateToProps)(PostList);
