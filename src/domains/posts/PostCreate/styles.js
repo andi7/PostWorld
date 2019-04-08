@@ -48,7 +48,8 @@ export default StyleSheet.create({
     fontSize: 10,
     fontFamily: fonts.MontserratMedius,
     marginHorizontal: 30,
-    marginVertical: 5
+    marginVertical: 5,
+    minHeight: 75
   },
 
   postModalContentImage: {

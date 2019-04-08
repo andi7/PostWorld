@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>7</string>
 	<key>FacebookAppID</key>
 	<string>267315424160757</string>
 	<key>FacebookDisplayName</key>
@@ -52,13 +52,13 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your camera</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like access to your location</string>
+	<key>NSLocationUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like access to your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like access to your location</string>
-  <key>NSLocationAlwaysUsageDescription</key>
-  <string>$(PRODUCT_NAME) would like access to your location</string>
   <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>some string</string>
-  <key>NSLocationUsageDescription</key>
   <string>some string</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to your microphone (for videos)</string>

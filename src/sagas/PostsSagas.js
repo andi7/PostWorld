@@ -27,7 +27,7 @@ const transformPosts = posts =>
     comments: post.comments,
     likes: post.likes,
     liked: post.liked,
-    created_at: 1553782682.3891044
+    created_at: post.created
   }));
 
 export function* queryPosts() {
