@@ -6,6 +6,7 @@ import * as NavigationUtils from 'utils/navigation';
 
 import StartupActions from 'models/startup';
 import AuthActions from 'models/auth';
+import LocationActions from 'models/location';
 
 const getOnboardingDone = () => AsyncStorage.getItem('@onboardingDone');
 const getUserToken = () => AsyncStorage.multiGet(['@token', '@user']);
@@ -22,6 +23,8 @@ export function* startup() {
     if (token && user) {
       yield put(AuthActions.authSuccess(JSON.parse(user)));
       NavigationUtils.navigate('MainNavigator');
+
+      yield put(LocationActions.startTracking());
     } else {
       NavigationUtils.navigate('SignUp');
     }
