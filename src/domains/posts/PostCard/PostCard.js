@@ -12,7 +12,14 @@ class PostCard extends React.PureComponent {
   render() {
     const { item, commentPress, likePress, hideComment, hideShare, userLocation } = this.props;
 
-    const distance = 3;
+    const distance =
+      userLocation && item.coordinates && item.coordinates[0] !== 0 && item.coordinates[1] !== 0
+        ? calcDistance(userLocation.latitude, userLocation.longitude, ...item.coordinates).toFixed(
+            1
+          )
+        : '';
+
+    console.log(distance);
 
     return (
       <View style={styles.card}>
@@ -46,7 +53,8 @@ class PostCard extends React.PureComponent {
             style={{ flex: 1, justifyContent: 'flex-start' }}
           >
             <Text style={styles.locationText}>
-              {moment(item.created_at).fromNow(true)} - {distance}
+              {moment(item.created_at).fromNow(true)}
+              {distance && ` - ${distance}km`}
             </Text>
           </IconButton>
 
