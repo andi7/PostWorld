@@ -4,21 +4,29 @@ import { fonts } from 'theme';
 
 export default StyleSheet.create({
   card: {
-    width: '100%',
     height: 147,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 8,
-    borderColor: '#D2D2D088',
     paddingLeft: 18,
     paddingRight: 8,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#D2D2D034',
+    marginVertical: 6,
+    marginHorizontal: 5,
+    shadowOpacity: 1,
+    shadowColor: '#D2D2D0',
+    shadowOffset: { height: 1 },
+    shadowRadius: 1,
+    elevation: 3
   },
 
   title: {
-    color: '#5A79FD',
-    fontSize: 15,
-    fontFamily: fonts.MontserratBold,
+    color: '#5882F2',
+    fontSize: 14,
+    fontFamily: fonts.MontserratSemiBold,
     marginBottom: 5,
     width: '95%'
   },
@@ -26,7 +34,7 @@ export default StyleSheet.create({
   offerText: {
     color: 'black',
     fontSize: 16,
-    fontFamily: fonts.WorkSansLight,
+    fontFamily: fonts.AvenirNext,
     marginBottom: 9,
     height: 46,
     textAlign: 'center'

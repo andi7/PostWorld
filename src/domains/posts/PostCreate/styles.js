@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
 
   postModalHeader: {
-    height: 20,
+    height: 30,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -38,15 +38,15 @@ export default StyleSheet.create({
 
   postModalSubmitText: {
     color: 'white',
-    fontSize: 10,
-    fontFamily: fonts.MontserratMedius
+    fontSize: 12,
+    fontFamily: fonts.MontserratMedium
   },
 
   postModalContent: {
     width: '100%',
     color: '#3B3B3B',
-    fontSize: 10,
-    fontFamily: fonts.MontserratMedius,
+    fontSize: 12,
+    fontFamily: fonts.MontserratMedium,
     marginHorizontal: 30,
     marginVertical: 5,
     minHeight: 75
@@ -85,8 +85,8 @@ export default StyleSheet.create({
   },
 
   closeIcon: {
-    height: 11,
-    width: 11,
+    height: 13,
+    width: 13,
     resizeMode: 'contain'
   }
 });

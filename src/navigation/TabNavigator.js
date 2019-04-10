@@ -15,16 +15,32 @@ export default createBottomTabNavigator(
     Feedavigator: {
       screen: FeedNavigator,
       navigationOptions: {
-        tabBarIcon: () => (
-          <Image source={images.home} style={{ height: 21, width: 27, resizeMode: 'contain' }} />
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={images.home}
+            style={{
+              opacity: focused ? 1 : 0.6,
+              height: 21,
+              width: 27,
+              resizeMode: 'contain'
+            }}
+          />
         )
       }
     },
     SearchNavigator: {
       screen: EventsNavigator,
       navigationOptions: {
-        tabBarIcon: () => (
-          <Image source={images.search} style={{ height: 20, width: 24, resizeMode: 'contain' }} />
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={images.search}
+            style={{
+              opacity: focused ? 1 : 0.6,
+              height: 20,
+              width: 24,
+              resizeMode: 'contain'
+            }}
+          />
         )
       }
     },

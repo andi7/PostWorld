@@ -48,7 +48,7 @@ class PostCard extends React.PureComponent {
 
         <View style={styles.footerRow}>
           <IconButton
-            icon={images.locationArrow}
+            icon={distance && images.locationArrow}
             iconStyle={styles.locationIcon}
             style={{ flex: 1, justifyContent: 'flex-start' }}
           >

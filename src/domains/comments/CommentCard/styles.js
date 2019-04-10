@@ -65,9 +65,8 @@ export default StyleSheet.create({
   },
 
   likesText: {
-    color: 'black',
     fontSize: 11,
-    fontFamily: fonts.MontserratMedium,
+    fontFamily: fonts.MontserratLight,
     marginHorizontal: 9
   }
 });

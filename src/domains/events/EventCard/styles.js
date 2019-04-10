@@ -4,15 +4,23 @@ import { fonts } from 'theme';
 
 export default StyleSheet.create({
   card: {
-    width: '100%',
     height: 116,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 8,
-    borderColor: '#D2D2D088',
     paddingLeft: 18,
     paddingRight: 8,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#D2D2D034',
+    marginVertical: 6,
+    marginHorizontal: 5,
+    shadowOpacity: 1,
+    shadowColor: '#D2D2D0',
+    shadowOffset: { height: 1 },
+    shadowRadius: 1,
+    elevation: 3
   },
 
   titleRow: {
@@ -21,9 +29,9 @@ export default StyleSheet.create({
   },
 
   title: {
-    color: '#212121',
+    color: '#5882F2',
     fontSize: 14,
-    fontFamily: fonts.MontserratRegular,
+    fontFamily: fonts.MontserratSemiBold,
     marginBottom: 5,
     width: '95%'
   },
