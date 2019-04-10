@@ -19,7 +19,8 @@ export default createBottomTabNavigator(
           <Image
             source={images.home}
             style={{
-              opacity: focused ? 1 : 0.6,
+              opacity: focused ? 1 : 0.8,
+              transform: [{ scale: focused ? 1 : 0.8 }],
               height: 21,
               width: 27,
               resizeMode: 'contain'
@@ -35,7 +36,8 @@ export default createBottomTabNavigator(
           <Image
             source={images.search}
             style={{
-              opacity: focused ? 1 : 0.6,
+              opacity: focused ? 1 : 0.8,
+              transform: [{ scale: focused ? 1 : 0.8 }],
               height: 20,
               width: 24,
               resizeMode: 'contain'
