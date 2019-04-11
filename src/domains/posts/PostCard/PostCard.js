@@ -19,8 +19,6 @@ class PostCard extends React.PureComponent {
           )
         : '';
 
-    console.log(distance);
-
     return (
       <View style={styles.card}>
         <View style={styles.topRow}>

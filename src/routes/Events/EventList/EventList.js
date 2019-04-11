@@ -23,9 +23,9 @@ class EventList extends React.Component {
           />
         );
       case 'food':
-        return <PostList key="food" navigation={this.props.navigation} />;
+        return <PostList key="food" navigation={this.props.navigation} postType="food" />;
       case 'art':
-        return <PostList key="art" navigation={this.props.navigation} />;
+        return <PostList key="art" navigation={this.props.navigation} postType="art" />;
       case 'offer':
         return (
           <FlatList

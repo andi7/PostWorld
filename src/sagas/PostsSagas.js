@@ -27,7 +27,8 @@ const transformPosts = posts =>
     comments: post.comments,
     likes: post.likes,
     liked: post.liked,
-    created_at: post.created
+    created_at: post.created,
+    post_type: post.post_type
   }));
 
 export function* queryPosts() {

@@ -23,7 +23,7 @@ class PostList extends React.Component {
   };
 
   render() {
-    const { posts, loading, userLocation } = this.props;
+    const { posts, postType, loading, userLocation } = this.props;
 
     if (loading) {
       return <ActivityIndicator size="large" style={{ flex: 1 }} />;
@@ -32,7 +32,7 @@ class PostList extends React.Component {
     return (
       <FlatList
         keyExtractor={item => `${item.id}`}
-        data={posts}
+        data={posts.filter(post => post.post_type === postType)}
         renderItem={({ item }) => (
           <PostCard
             item={item}
