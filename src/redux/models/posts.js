@@ -1,7 +1,7 @@
 import { createActions, createReducer } from 'reduxsauce';
 
 const { Types, Creators } = createActions({
-  fetchPosts: ['postType'],
+  fetchPosts: ['postType', 'sortType'],
   fetchPostsSuccess: ['postType', 'data'],
   fetchPostsFailed: ['postType', 'error'],
   selectPost: ['postType', 'postId'],

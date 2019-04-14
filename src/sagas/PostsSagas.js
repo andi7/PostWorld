@@ -4,9 +4,9 @@ import PostsActions from 'models/posts';
 import { queryAll, create, like, unlike } from 'services/posts';
 import { getUser } from 'selectors/auth';
 
-export function* queryPosts({ postType }) {
+export function* queryPosts({ postType, sortType }) {
   const user = yield select(getUser);
-  const result = yield call(queryAll, user.id, user.token, postType);
+  const result = yield call(queryAll, user.id, user.token, postType, sortType);
 
   if (result.data.success) {
     yield put(PostsActions.fetchPostsSuccess(postType, result.data.data));

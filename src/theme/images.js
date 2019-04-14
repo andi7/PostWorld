@@ -17,6 +17,11 @@ export default {
   close: require('../assets/images/icons/close.png'),
   camera: require('../assets/images/icons/camera.png'),
 
+  // Sorting
+  flame: require('../assets/images/icons/flame.png'),
+  crown: require('../assets/images/icons/crown.png'),
+  badge: require('../assets/images/icons/badge.png'),
+
   // Tags
   tagFood: require('../assets/images/tags/type_food.png'),
   tagGeneral: require('../assets/images/tags/type_general.png'),
