@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 import PostCard from 'domains/posts/PostCard/PostCard';
@@ -56,28 +56,31 @@ class PostList extends React.Component {
     const { posts, postType, userLocation } = this.props;
     const { data, loading, loadingMore } = posts[postType];
 
-    if (loading) {
-      return <ActivityIndicator size="large" style={{ flex: 1 }} />;
-    }
-
     return (
-      <FlatList
-        contentContainerStyle={styles.postList}
-        keyExtractor={item => `${item.id}`}
-        data={data}
-        ListHeaderComponent={<PostListHeader selected={sortType} onSelect={this.changeSort} />}
-        ListFooterComponent={
-          loadingMore && <ActivityIndicator style={styles.loadingMore} size="small" />
-        }
-        renderItem={({ item }) => (
-          <PostCard
-            item={item}
-            commentPress={() => this.checkComments(item)}
-            userLocation={userLocation}
+      <View style={{ flex: 1 }}>
+        <PostListHeader selected={sortType} onSelect={this.changeSort} />
+
+        {loading ? (
+          <ActivityIndicator size="large" style={{ flex: 1 }} />
+        ) : (
+          <FlatList
+            contentContainerStyle={styles.postList}
+            keyExtractor={item => `${item.id}`}
+            data={data}
+            ListFooterComponent={
+              loadingMore && <ActivityIndicator style={styles.loadingMore} size="small" />
+            }
+            renderItem={({ item }) => (
+              <PostCard
+                item={item}
+                commentPress={() => this.checkComments(item)}
+                userLocation={userLocation}
+              />
+            )}
+            onEndReached={this.loadNextPage}
           />
         )}
-        onEndReached={this.loadNextPage}
-      />
+      </View>
     );
   }
 }
