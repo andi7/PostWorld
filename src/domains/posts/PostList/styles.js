@@ -8,11 +8,12 @@ export default StyleSheet.create({
   },
 
   postListHeader: {
-    height: 21,
+    height: 26,
     width: '100%',
     flexDirection: 'row',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#D2D2D0'
+    borderColor: '#D2D2D0',
+    marginBottom: 6
   },
 
   headerIcon: {
