@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 
 import PostCard from 'domains/posts/PostCard/PostCard';
 import PostsActions from 'models/posts';
+import { queryAll } from 'services/posts';
 
 class PostList extends React.Component {
+  state = { data: [], page: 0 };
+
   componentDidMount() {
     this.props.dispatch(PostsActions.fetchPosts());
   }
@@ -41,6 +44,7 @@ class PostList extends React.Component {
             userLocation={userLocation}
           />
         )}
+        onEndReached={this.loadMore}
       />
     );
   }

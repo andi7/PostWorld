@@ -1,42 +1,15 @@
 import { put, call, select } from 'redux-saga/effects';
 
-import postsFixture from 'fixtures/posts';
 import PostsActions from 'models/posts';
 import { queryAll, create, like, unlike } from 'services/posts';
 import { getUser } from 'selectors/auth';
-
-const queryAllFixture = () =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve(postsFixture());
-    }, 1000);
-  });
-
-const transformPosts = posts =>
-  posts.map(post => ({
-    id: post.id,
-    user: {
-      name: post.author,
-      avatar: ''
-    },
-    content: {
-      image: '',
-      text: post.body
-    },
-    coordinates: post.coordinates,
-    comments: post.comments,
-    likes: post.likes,
-    liked: post.liked,
-    created_at: post.created,
-    post_type: post.post_type
-  }));
 
 export function* queryPosts() {
   const user = yield select(getUser);
   const result = yield call(queryAll, user.id, user.token);
 
   if (result.data.success) {
-    yield put(PostsActions.fetchPostsSuccess(transformPosts(result.data.data)));
+    yield put(PostsActions.fetchPostsSuccess(result.data.data));
   } else {
     yield put(PostsActions.fetchPostsFailed(result.data.message));
   }

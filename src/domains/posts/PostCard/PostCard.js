@@ -22,26 +22,26 @@ class PostCard extends React.PureComponent {
     return (
       <View style={styles.card}>
         <View style={styles.topRow}>
-          <IconButton icon={{ uri: item.user.avatar }} iconStyle={styles.avatar}>
+          <IconButton icon={{ uri: item.avatar }} iconStyle={styles.avatar}>
             <Text
               style={[
                 styles.userName,
                 {
-                  marginTop: item.content.text ? -16 : 0
+                  marginTop: item.body ? -16 : 0
                 }
               ]}
             >
-              {item.user.name}
+              {item.author}
             </Text>
           </IconButton>
 
           {!hideShare && <IconButton icon={images.dots} iconStyle={styles.dots} />}
         </View>
 
-        {!!item.content.text && <Text style={styles.postText}>{item.content.text}</Text>}
+        {!!item.body && <Text style={styles.postText}>{item.body}</Text>}
 
-        {!!item.content.image && (
-          <DynamicHeightImage source={{ uri: item.content.image }} style={styles.postImage} />
+        {!!item.image && (
+          <DynamicHeightImage source={{ uri: item.image }} style={styles.postImage} />
         )}
 
         <View style={styles.footerRow}>
