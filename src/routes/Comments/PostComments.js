@@ -18,6 +18,7 @@ import PostCard from 'domains/posts/PostCard/PostCard';
 import CommentCard from 'domains/comments/CommentCard/CommentCard';
 
 import CommentsActions from 'models/comments';
+import { getSelectedPost } from 'selectors/posts';
 
 import styles from './styles';
 
@@ -25,7 +26,7 @@ class PostComments extends React.Component {
   state = { comment: '' };
 
   componentDidMount() {
-    const post = this.props.navigation.getParam('post', null);
+    const { post } = this.props;
 
     this.props.dispatch(CommentsActions.fetchComments(post.id));
   }
@@ -36,7 +37,7 @@ class PostComments extends React.Component {
 
   postComment = () => {
     const { comment } = this.state;
-    const post = this.props.navigation.getParam('post', null);
+    const { post } = this.props;
 
     this.props.dispatch(CommentsActions.postComment(comment, post.id));
 
@@ -54,8 +55,7 @@ class PostComments extends React.Component {
 
   render() {
     const { comment } = this.state;
-    const { comments, loading } = this.props;
-    const post = this.props.navigation.getParam('post', null);
+    const { post, comments, loading } = this.props;
 
     const reversedComments = [...comments].reverse();
 
@@ -95,7 +95,8 @@ class PostComments extends React.Component {
   }
 }
 
-const mapStateToProps = ({ comments: { data, loading } }) => ({
+const mapStateToProps = ({ comments: { data, loading }, ...state }) => ({
+  post: getSelectedPost(state),
   comments: data,
   loading
 });

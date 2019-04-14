@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import PostCard from 'domains/posts/PostCard/PostCard';
 import PostsActions from 'models/posts';
-import { queryAll } from 'services/posts';
 
 class PostList extends React.Component {
   componentDidMount() {
@@ -12,7 +11,8 @@ class PostList extends React.Component {
   }
 
   checkComments = post => {
-    this.props.navigation.navigate('PostComments', { post });
+    this.props.dispatch(PostsActions.selectPost(post.id));
+    this.props.navigation.navigate('PostComments');
   };
 
   render() {
@@ -25,7 +25,7 @@ class PostList extends React.Component {
     return (
       <FlatList
         keyExtractor={item => `${item.id}`}
-        data={posts.filter(post => post.post_type === postType)}
+        data={posts}
         renderItem={({ item }) => (
           <PostCard
             item={item}
