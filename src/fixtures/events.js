@@ -14,6 +14,7 @@ export default new Array(20).fill(0).map((el, i) => ({
   time: faker.date.future(),
   location: faker.address.streetName(),
   image: faker.image.business(),
+  description: faker.lorem.paragraph(),
   ...generateGoing(),
   ...generateLikes()
 }));

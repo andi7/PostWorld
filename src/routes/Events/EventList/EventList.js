@@ -19,7 +19,12 @@ class EventList extends React.Component {
             key="groupList"
             keyExtractor={el => `group${el.id}`}
             data={events}
-            renderItem={({ item }) => <EventCard event={item} />}
+            renderItem={({ item }) => (
+              <EventCard
+                event={item}
+                onPress={() => this.props.navigation.navigate('EventDetails', { event: item })}
+              />
+            )}
           />
         );
       case 'food':
