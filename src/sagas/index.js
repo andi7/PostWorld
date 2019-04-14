@@ -12,7 +12,7 @@ import { LocationTypes } from 'models/location';
 
 import { startup } from './StartupSagas';
 import { signInByEmail, signUpByEmail } from './AuthSagas';
-import { queryPosts, createPost, likePost, unlikePost } from './PostsSagas';
+import { queryPosts, loadMorePosts, createPost, likePost, unlikePost } from './PostsSagas';
 import { queryComments, postComment, likeComment, unlikeComment } from './CommentsSagas';
 import { startTracking } from './LocationSagas';
 
@@ -33,6 +33,7 @@ export default function* root() {
 
     // POSTS
     takeLatest(PostsTypes.FETCH_POSTS, queryPosts),
+    takeLatest(PostsTypes.LOAD_MORE_POSTS, loadMorePosts),
     takeLatest(PostsTypes.CREATE_POST, createPost),
     takeLatest(PostsTypes.LIKE_POST, likePost),
     takeLatest(PostsTypes.UNLIKE_POST, unlikePost),

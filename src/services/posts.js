@@ -1,13 +1,14 @@
 import request from 'utils/request';
 import qs from 'querystring';
 
-export const queryAll = (id, token, postType, sortType) =>
+export const queryAll = (id, token, postType, sortType, page = 0) =>
   request.get('/posts/get', {
     params: {
       id,
       token,
       filter: postType,
-      sort: sortType
+      sort: sortType,
+      page
     }
   });
 

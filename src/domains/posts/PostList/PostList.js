@@ -8,18 +8,20 @@ import PostsActions from 'models/posts';
 import PostListHeader from './PostListHeader';
 import styles from './styles';
 
+const PAGE_SIZE = 25;
+
 class PostList extends React.Component {
-  state = { sortType: 'hot' };
+  state = { sortType: 'hot', page: 0 };
 
   componentDidMount() {
     this.updatePosts();
   }
 
   updatePosts = () => {
-    const { sortType } = this.state;
+    const { sortType, page } = this.state;
     const { postType } = this.props;
 
-    this.props.dispatch(PostsActions.fetchPosts(postType, sortType));
+    this.props.dispatch(PostsActions.fetchPosts(postType, sortType, page));
   };
 
   checkComments = post => {
@@ -31,14 +33,28 @@ class PostList extends React.Component {
 
   changeSort = sortType => {
     if (sortType !== this.state.sortType) {
-      this.setState({ sortType }, () => this.updatePosts());
+      this.setState({ sortType, page: 0 }, () => this.updatePosts());
     }
+  };
+
+  loadNextPage = () => {
+    const { page, sortType } = this.state;
+    const { posts, postType } = this.props;
+    const { data, loading, loadingMore } = posts[postType];
+
+    if (loading || loadingMore || data.length < (page + 1) * PAGE_SIZE) {
+      return;
+    }
+
+    this.setState({ page: page + 1 }, () =>
+      this.props.dispatch(PostsActions.loadMorePosts(postType, sortType, page + 1))
+    );
   };
 
   render() {
     const { sortType } = this.state;
     const { posts, postType, userLocation } = this.props;
-    const { data, loading } = posts[postType];
+    const { data, loading, loadingMore } = posts[postType];
 
     if (loading) {
       return <ActivityIndicator size="large" style={{ flex: 1 }} />;
@@ -50,6 +66,9 @@ class PostList extends React.Component {
         keyExtractor={item => `${item.id}`}
         data={data}
         ListHeaderComponent={<PostListHeader selected={sortType} onSelect={this.changeSort} />}
+        ListFooterComponent={
+          loadingMore && <ActivityIndicator style={styles.loadingMore} size="small" />
+        }
         renderItem={({ item }) => (
           <PostCard
             item={item}
@@ -57,6 +76,7 @@ class PostList extends React.Component {
             userLocation={userLocation}
           />
         )}
+        onEndReached={this.loadNextPage}
       />
     );
   }

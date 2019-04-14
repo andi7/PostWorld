@@ -4,6 +4,7 @@ const { Types, Creators } = createActions({
   fetchPosts: ['postType', 'sortType'],
   fetchPostsSuccess: ['postType', 'data'],
   fetchPostsFailed: ['postType', 'error'],
+  loadMorePosts: ['postType', 'sortType', 'page'],
   selectPost: ['postType', 'postId'],
   createPost: ['tag', 'body'],
   likePost: ['postType', 'postId'],
@@ -16,6 +17,7 @@ export default Creators;
 const model = {
   data: [],
   loading: true,
+  loadingMore: false,
   error: null
 };
 
@@ -42,23 +44,34 @@ const changeLikeStatus = toLike => (state, { postId, postType }) => {
 };
 
 export const reducer = createReducer(INITIAL_STATE, {
+  // Fetch
   [Types.FETCH_POSTS]: (state, { postType }) => ({
     ...state,
     [postType]: { ...state[postType], loading: true }
   }),
   [Types.FETCH_POSTS_SUCCESS]: (state, { postType, data }) => ({
     ...state,
-    [postType]: { ...state[postType], loading: false, data }
+    [postType]: { ...state[postType], loading: false, loadingMore: false, data }
   }),
   [Types.FETCH_POSTS_FAILED]: (state, { postType, error }) => ({
     ...state,
-    [postType]: { ...state[postType], loading: false, error }
+    [postType]: { ...state[postType], loading: false, loadingMore: false, error }
   }),
+
+  // Load More
+  [Types.LOAD_MORE_POSTS]: (state, { postType }) => ({
+    ...state,
+    [postType]: { ...state[postType], loadingMore: true }
+  }),
+
+  // Single Post Screen
   [Types.SELECT_POST]: (state, { postType, postId }) => ({
     ...state,
     selectedPostType: postType,
     selectedPostId: postId
   }),
+
+  // Likes
   [Types.LIKE_POST]: changeLikeStatus(true),
   [Types.UNLIKE_POST]: changeLikeStatus(false)
 });

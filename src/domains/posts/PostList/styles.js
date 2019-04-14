@@ -3,6 +3,10 @@ import { StyleSheet } from 'react-native';
 import { fonts, colors } from 'theme';
 
 export default StyleSheet.create({
+  loadingMore: {
+    marginVertical: 10
+  },
+
   postListHeader: {
     height: 21,
     width: '100%',
