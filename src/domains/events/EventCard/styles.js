@@ -63,12 +63,6 @@ export default StyleSheet.create({
     marginRight: 7
   },
 
-  goingIcon: {
-    height: 25,
-    width: 25,
-    resizeMode: 'contain'
-  },
-
   detailsText: {
     color: '#7F7F7F',
     fontSize: 12,

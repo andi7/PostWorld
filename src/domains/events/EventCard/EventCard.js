@@ -24,14 +24,6 @@ const EventCard = ({ event }) => (
             </Text>
           </View>
         </View>
-
-        <IconButton
-          style={{ flexDirection: 'column' }}
-          icon={event.going ? images.goingActive : images.going}
-          iconStyle={styles.goingIcon}
-        >
-          <Text style={styles.detailsText}>Going</Text>
-        </IconButton>
       </View>
 
       <View style={styles.row}>
