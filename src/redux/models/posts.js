@@ -7,8 +7,8 @@ const { Types, Creators } = createActions({
   loadMorePosts: ['postType', 'sortType', 'page'],
   selectPost: ['postType', 'postId'],
   createPost: ['tag', 'body'],
-  likePost: ['postType', 'postId'],
-  unlikePost: ['postType', 'postId']
+  likePost: ['postId'],
+  unlikePost: ['postId']
 });
 
 export const PostsTypes = Types;
@@ -21,27 +21,38 @@ const model = {
   error: null
 };
 
+const postTypes = ['all', 'food', 'art'];
+
 const INITIAL_STATE = {
-  general: model,
-  art: model,
-  food: model,
+  ...postTypes.reduce((acc, postType) => ({ ...acc, [postType]: model }), {}),
 
   selectedPostType: null,
   selectedPostId: -1
 };
 
-const changeLikeStatus = toLike => (state, { postId, postType }) => {
-  const postsCpy = [...state[postType].data];
-  const postIndex = postsCpy.findIndex(post => post.id === postId);
+const changeLikeStatus = toLike => (state, { postId }) => ({
+  ...state,
+  ...postTypes.reduce((acc, postType) => {
+    const postsCpy = [...state[postType].data];
+    const postIndex = postsCpy.findIndex(post => post.id === postId);
 
-  postsCpy[postIndex] = {
-    ...postsCpy[postIndex],
-    liked: toLike,
-    likes: postsCpy[postIndex].likes + (toLike ? 1 : -1)
-  };
+    if (postIndex !== -1) {
+      postsCpy[postIndex] = {
+        ...postsCpy[postIndex],
+        liked: toLike,
+        likes: postsCpy[postIndex].likes + (toLike ? 1 : -1)
+      };
+    }
 
-  return { ...state, [postType]: { ...state[postType], data: postsCpy } };
-};
+    return {
+      ...acc,
+      [postType]: {
+        ...state[postType],
+        data: postsCpy
+      }
+    };
+  }, {})
+});
 
 export const reducer = createReducer(INITIAL_STATE, {
   // Fetch

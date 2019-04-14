@@ -14,9 +14,9 @@ import styles from './styles';
 class PostCard extends React.PureComponent {
   like = post => {
     if (post.liked) {
-      this.props.dispatch(PostsActions.unlikePost(post.post_type, post.id));
+      this.props.dispatch(PostsActions.unlikePost(post.id));
     } else {
-      this.props.dispatch(PostsActions.likePost(post.post_type, post.id));
+      this.props.dispatch(PostsActions.likePost(post.id));
     }
   };
 
