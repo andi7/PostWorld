@@ -1,2 +1,6 @@
-export const getSelectedPost = state =>
-  state.posts.data[state.posts.data.findIndex(post => post.id === state.posts.selectedPostId)];
+export const getSelectedPost = state => {
+  const posts = state.posts;
+  const postsData = posts[posts.selectedPostType].data;
+
+  return postsData[postsData.findIndex(post => post.id === posts.selectedPostId)];
+};

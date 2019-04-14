@@ -1,9 +1,13 @@
 import request from 'utils/request';
 import qs from 'querystring';
 
-export const queryAll = (id, token) =>
+export const queryAll = (id, token, postType) =>
   request.get('/posts/get', {
-    params: { id, token }
+    params: {
+      id,
+      token,
+      filter: postType
+    }
   });
 
 export const create = (id, token, tag, body) =>

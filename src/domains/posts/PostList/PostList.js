@@ -7,16 +7,21 @@ import PostsActions from 'models/posts';
 
 class PostList extends React.Component {
   componentDidMount() {
-    this.props.dispatch(PostsActions.fetchPosts());
+    const { postType } = this.props;
+
+    this.props.dispatch(PostsActions.fetchPosts(postType));
   }
 
   checkComments = post => {
-    this.props.dispatch(PostsActions.selectPost(post.id));
+    const { postType } = this.props;
+
+    this.props.dispatch(PostsActions.selectPost(postType, post.id));
     this.props.navigation.navigate('PostComments');
   };
 
   render() {
-    const { posts, postType, loading, userLocation } = this.props;
+    const { posts, postType, userLocation } = this.props;
+    const { data, loading } = posts[postType];
 
     if (loading) {
       return <ActivityIndicator size="large" style={{ flex: 1 }} />;
@@ -25,7 +30,7 @@ class PostList extends React.Component {
     return (
       <FlatList
         keyExtractor={item => `${item.id}`}
-        data={posts}
+        data={data}
         renderItem={({ item }) => (
           <PostCard
             item={item}
@@ -40,8 +45,7 @@ class PostList extends React.Component {
 }
 
 const mapStateToProps = ({ posts, location }) => ({
-  loading: posts.loading,
-  posts: posts.data,
+  posts,
   userLocation: location.data
 });
 
