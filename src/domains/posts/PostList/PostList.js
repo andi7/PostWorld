@@ -7,22 +7,12 @@ import PostsActions from 'models/posts';
 import { queryAll } from 'services/posts';
 
 class PostList extends React.Component {
-  state = { data: [], page: 0 };
-
   componentDidMount() {
     this.props.dispatch(PostsActions.fetchPosts());
   }
 
   checkComments = post => {
     this.props.navigation.navigate('PostComments', { post });
-  };
-
-  like = post => {
-    if (post.liked) {
-      this.props.dispatch(PostsActions.unlikePost(post.id));
-    } else {
-      this.props.dispatch(PostsActions.likePost(post.id));
-    }
   };
 
   render() {
@@ -40,7 +30,6 @@ class PostList extends React.Component {
           <PostCard
             item={item}
             commentPress={() => this.checkComments(item)}
-            likePress={() => this.like(item)}
             userLocation={userLocation}
           />
         )}

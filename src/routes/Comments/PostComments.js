@@ -17,7 +17,6 @@ import { images } from 'theme';
 import PostCard from 'domains/posts/PostCard/PostCard';
 import CommentCard from 'domains/comments/CommentCard/CommentCard';
 
-import PostsActions from 'models/posts';
 import CommentsActions from 'models/comments';
 
 import styles from './styles';
@@ -53,16 +52,6 @@ class PostComments extends React.Component {
     }
   };
 
-  likePost = () => {
-    const post = this.props.navigation.getParam('post', null);
-
-    if (post.liked) {
-      this.props.dispatch(PostsActions.unlikePost(post.id));
-    } else {
-      this.props.dispatch(PostsActions.likePost(post.id));
-    }
-  };
-
   render() {
     const { comment } = this.state;
     const { comments, loading } = this.props;
@@ -73,7 +62,7 @@ class PostComments extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <ScrollView>
-          <PostCard item={post} hideComment hideShare likePress={this.likePost} />
+          <PostCard item={post} hideComment hideShare />
 
           <FlatList
             keyExtractor={item => `${item.id}`}

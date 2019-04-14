@@ -1,16 +1,27 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 import { DynamicHeightImage, IconButton } from 'components';
 import { images } from 'theme';
 import { calcDistance } from 'utils/geolocation';
 
+import PostsActions from 'models/posts';
+
 import styles from './styles';
 
 class PostCard extends React.PureComponent {
+  like = post => {
+    if (post.liked) {
+      this.props.dispatch(PostsActions.unlikePost(post.id));
+    } else {
+      this.props.dispatch(PostsActions.likePost(post.id));
+    }
+  };
+
   render() {
-    const { item, commentPress, likePress, hideComment, hideShare, userLocation } = this.props;
+    const { item, commentPress, hideComment, hideShare, userLocation } = this.props;
 
     const distance =
       userLocation && item.coordinates && item.coordinates[0] !== 0 && item.coordinates[1] !== 0
@@ -71,7 +82,7 @@ class PostCard extends React.PureComponent {
             icon={item.liked ? images.likeActive : images.like}
             iconStyle={styles.likesIcon}
             style={{ flex: 1, justifyContent: 'flex-end' }}
-            onPress={likePress}
+            onPress={() => this.like(item)}
           >
             <Text style={[styles.likesText, { color: item.liked ? '#FF5353' : '#3B3B3BC0' }]}>
               {item.likes}
@@ -83,4 +94,4 @@ class PostCard extends React.PureComponent {
   }
 }
 
-export default PostCard;
+export default connect()(PostCard);
