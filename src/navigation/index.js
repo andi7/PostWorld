@@ -11,6 +11,8 @@ import Onboarding from 'routes/Onboarding/Onboarding';
 import AuthNavigator from 'routes/Auth';
 
 import PostComments from 'routes/Comments/PostComments';
+import MapView from 'routes/Map/MapView';
+
 import TabNavigator from './TabNavigator';
 
 import CustomDrawer from './CustomDrawer/CustomDrawer';
@@ -36,9 +38,11 @@ const MainNavigator = createStackNavigator(
       navigationOptions: {
         tabBarVisible: false
       }
-    }
+    },
+    MapView
   },
   {
+    initialRouteName: 'MapView',
     defaultNavigationOptions: {
       headerBackTitle: null,
       headerTintColor: colors.primary
