@@ -20,11 +20,13 @@ export default StyleSheet.create({
     height: 16,
     width: 16,
     resizeMode: 'contain',
-    opacity: 1
+    opacity: 0.62,
+    tintColor: '#3B3B3B'
   },
 
   headerIconActive: {
-    tintColor: '#004ec9'
+    opacity: 1,
+    tintColor: colors.primary
   },
 
   headerText: {
