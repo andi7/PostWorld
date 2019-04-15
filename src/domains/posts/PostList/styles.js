@@ -17,13 +17,14 @@ export default StyleSheet.create({
   },
 
   headerIcon: {
-    height: 14,
-    width: 14,
-    resizeMode: 'contain'
+    height: 16,
+    width: 16,
+    resizeMode: 'contain',
+    opacity: 1
   },
 
   headerIconActive: {
-    tintColor: colors.primary
+    tintColor: '#004ec9'
   },
 
   headerText: {

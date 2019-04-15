@@ -42,7 +42,7 @@ const MainNavigator = createStackNavigator(
     MapView
   },
   {
-    initialRouteName: 'MapView',
+    initialRouteName: 'DrawerNavigator',
     defaultNavigationOptions: {
       headerBackTitle: null,
       headerTintColor: colors.primary
