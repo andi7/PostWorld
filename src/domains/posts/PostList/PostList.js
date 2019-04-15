@@ -53,7 +53,7 @@ class PostList extends React.Component {
 
   render() {
     const { sortType } = this.state;
-    const { posts, postType, userLocation } = this.props;
+    const { posts, postType } = this.props;
     const { data, loading, loadingMore } = posts[postType];
 
     return (
@@ -71,11 +71,7 @@ class PostList extends React.Component {
               loadingMore && <ActivityIndicator style={styles.loadingMore} size="small" />
             }
             renderItem={({ item }) => (
-              <PostCard
-                item={item}
-                commentPress={() => this.checkComments(item)}
-                userLocation={userLocation}
-              />
+              <PostCard item={item} commentPress={() => this.checkComments(item)} />
             )}
             onEndReached={this.loadNextPage}
           />
@@ -85,9 +81,8 @@ class PostList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ posts, location }) => ({
-  posts,
-  userLocation: location.data
+const mapStateToProps = ({ posts }) => ({
+  posts
 });
 
 export default connect(mapStateToProps)(PostList);

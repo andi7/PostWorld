@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import ActionSheet from 'react-native-action-sheet';
 
 import { DynamicHeightImage, IconButton } from 'components';
 import { images } from 'theme';
@@ -11,6 +12,9 @@ import PostsActions from 'models/posts';
 
 import styles from './styles';
 
+const BUTTONS = ['Block', 'Report', 'Delete', 'Cancel'];
+const DESTRUCTIVE_INDEX = 2;
+
 class PostCard extends React.PureComponent {
   like = post => {
     if (post.liked) {
@@ -18,6 +22,24 @@ class PostCard extends React.PureComponent {
     } else {
       this.props.dispatch(PostsActions.likePost(post.id));
     }
+  };
+
+  openActionSheet = () => {
+    const { user, item } = this.props;
+    const isPostAuthor = item.author === user.username;
+
+    const dynamicButtons = isPostAuthor ? BUTTONS : BUTTONS.filter(el => el !== 'Delete');
+
+    ActionSheet.showActionSheetWithOptions(
+      {
+        options: dynamicButtons,
+        cancelButtonIndex: dynamicButtons.length - 1,
+        destructiveButtonIndex: isPostAuthor ? DESTRUCTIVE_INDEX : BUTTONS.length
+      },
+      buttonIndex => {
+        console.log('button clicked :', buttonIndex);
+      }
+    );
   };
 
   render() {
@@ -46,7 +68,9 @@ class PostCard extends React.PureComponent {
             </Text>
           </IconButton>
 
-          {!hideShare && <IconButton icon={images.dots} iconStyle={styles.dots} />}
+          {!hideShare && (
+            <IconButton onPress={this.openActionSheet} icon={images.dots} iconStyle={styles.dots} />
+          )}
         </View>
 
         {!!item.body && <Text style={styles.postText}>{item.body}</Text>}
@@ -94,4 +118,9 @@ class PostCard extends React.PureComponent {
   }
 }
 
-export default connect()(PostCard);
+const mapStateToProps = ({ auth, location }) => ({
+  user: auth.user,
+  userLocation: location.data
+});
+
+export default connect(mapStateToProps)(PostCard);

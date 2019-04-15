@@ -43,7 +43,8 @@ export default StyleSheet.create({
     height: 5,
     width: 19,
     resizeMode: 'contain',
-    marginRight: 9
+    marginRight: 9,
+    paddingVertical: 10
   },
 
   postText: {
