@@ -1,48 +1,69 @@
 import React from 'react';
-import { Image, View } from 'react-native';
+import { Image, View, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
-import faker from 'faker';
+import { connect } from 'react-redux';
 
 import { images } from 'theme';
+import MapActions from 'models/map';
 
 import FeedNavigator from 'routes/Feed';
 import EventsNavigator from 'routes/Events';
 
 import CustomTabBarComponent from './CustomTabBar/CustomTabBarComponent';
 
+const ConnectedTabButton = mapType =>
+  connect(({ map }) => ({
+    map
+  }))(({ style, children, onPress, map, dispatch }) => (
+    <TouchableOpacity
+      style={style}
+      onPress={() => {
+        if (map.isActive) {
+          dispatch(MapActions.setMapType(mapType));
+        } else {
+          onPress();
+        }
+      }}
+    >
+      {children}
+    </TouchableOpacity>
+  ));
+
+const ConnectedTabIcon = connect(({ map }) => ({
+  map
+}))(({ focused, icon, type, map }) => {
+  const isActive = (map.isActive && map.mapType === type) || (!map.isActive && focused);
+  return (
+    <Image
+      source={icon}
+      style={{
+        opacity: isActive ? 1 : 0.8,
+        transform: [{ scale: isActive ? 1 : 0.8 }],
+        height: 21,
+        width: 27,
+        resizeMode: 'contain'
+      }}
+    />
+  );
+});
+
 export default createBottomTabNavigator(
   {
-    Feedavigator: {
+    FeedNavigator: {
       screen: FeedNavigator,
       navigationOptions: {
+        tabBarButtonComponent: ConnectedTabButton('posts'),
         tabBarIcon: ({ focused }) => (
-          <Image
-            source={images.home}
-            style={{
-              opacity: focused ? 1 : 0.8,
-              transform: [{ scale: focused ? 1 : 0.8 }],
-              height: 21,
-              width: 27,
-              resizeMode: 'contain'
-            }}
-          />
+          <ConnectedTabIcon focused={focused} icon={images.home} type="posts" />
         )
       }
     },
     SearchNavigator: {
       screen: EventsNavigator,
       navigationOptions: {
+        tabBarButtonComponent: ConnectedTabButton('events'),
         tabBarIcon: ({ focused }) => (
-          <Image
-            source={images.search}
-            style={{
-              opacity: focused ? 1 : 0.8,
-              transform: [{ scale: focused ? 1 : 0.8 }],
-              height: 20,
-              width: 24,
-              resizeMode: 'contain'
-            }}
-          />
+          <ConnectedTabIcon focused={focused} icon={images.search} type="events" />
         )
       }
     },
@@ -66,7 +87,7 @@ export default createBottomTabNavigator(
       navigationOptions: ({ navigation }) => ({
         tabBarIcon: () => (
           <Image
-            source={{ uri: faker.image.avatar() }}
+            source={null}
             style={{ height: 37, width: 37, borderRadius: 15, resizeMode: 'contain' }}
           />
         ),

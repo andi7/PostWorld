@@ -1,10 +1,24 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+
+import MapActions from 'models/map';
 
 import { images, gradients } from 'theme';
 import { GradientButton } from 'components';
 
 import styles from './styles';
+
+const LogoButton = connect()(({ navigation, dispatch }) => (
+  <TouchableOpacity
+    onPress={() => {
+      dispatch(MapActions.openMap('posts'));
+      navigation.navigate('EventMap');
+    }}
+  >
+    <Image source={images.logo} style={styles.logo} />
+  </TouchableOpacity>
+));
 
 const EventHeader = ({ navigation }) => {
   const currentType = navigation.getParam('type', 'group');
@@ -55,9 +69,7 @@ const EventHeader = ({ navigation }) => {
         />
       </GradientButton>
 
-      <TouchableOpacity>
-        <Image source={images.logo} style={styles.logo} />
-      </TouchableOpacity>
+      <LogoButton navigation={navigation} />
     </View>
   );
 };

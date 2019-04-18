@@ -5,6 +5,8 @@ import EventList from './EventList/EventList';
 import EventHeader from './EventHeader/EventHeader';
 import EventDetails from './EventDetails/EventDetails';
 
+import MapView from '../Map/MapView';
+
 export default createStackNavigator({
   EventList: {
     screen: EventList,
@@ -19,6 +21,13 @@ export default createStackNavigator({
     screen: EventDetails,
     navigationOptions: {
       headerStyle: { height: 55 }
+    }
+  },
+
+  EventMap: {
+    screen: MapView,
+    navigationOptions: {
+      header: null
     }
   }
 });
