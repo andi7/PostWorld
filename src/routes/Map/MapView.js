@@ -7,10 +7,21 @@ import MapActions from 'models/map';
 
 import { IconButton } from 'components';
 import { images } from 'theme';
+import mapboxConfig from 'config/mapbox';
 
-// import mapboxConfig from 'config/mapbox';
+import MapMarker from 'domains/map/MapMarker/MapMarker';
 
 import styles from './styles';
+
+const markers = [
+  {
+    id: 1,
+    title: 'AAAAAAAA',
+    x: -122.0312186,
+    y: 37.33233141,
+    type: 'general'
+  }
+];
 
 class MapView extends React.Component {
   goBack = () => {
@@ -21,31 +32,17 @@ class MapView extends React.Component {
   };
 
   render() {
-    const { userLocation } = this.props;
-    const markers = [
-      {
-        id: 1,
-        title: 'AAAAAAAA',
-        x: userLocation.longitude,
-        y: userLocation.latitude
-      }
-    ];
-
     return (
       <View style={{ flex: 1 }}>
         <MapboxGL.MapView
           style={{ flex: 1 }}
-          showUserLocation
+          // showUserLocation
           userTrackingMode={MapboxGL.UserTrackingModes.Follow}
-          // styleURL={mapboxConfig.mapStyleUrl}
+          styleURL={mapboxConfig.mapStyleUrl}
+          pitch={45}
         >
           {markers.map(marker => (
-            <MapboxGL.PointAnnotation
-              key={marker.id}
-              id={String(marker.id)}
-              title={marker.title}
-              coordinate={[marker.x, marker.y]}
-            />
+            <MapMarker key={marker.id} data={marker} />
           ))}
         </MapboxGL.MapView>
 
