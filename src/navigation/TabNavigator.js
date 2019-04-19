@@ -12,7 +12,7 @@ import EventsNavigator from 'routes/Events';
 
 import CustomTabBarComponent from './CustomTabBar/CustomTabBarComponent';
 
-const ConnectedTabButton = mapType =>
+const ConnectedTabButton = buttonMapType =>
   connect(({ map }) => ({
     map
   }))(({ style, children, onPress, map, dispatch }) => (
@@ -20,7 +20,13 @@ const ConnectedTabButton = mapType =>
       style={style}
       onPress={() => {
         if (map.isActive) {
-          dispatch(MapActions.setMapType(mapType));
+          if (map.mapType !== buttonMapType) {
+            dispatch(MapActions.setMapType(buttonMapType));
+
+            if (buttonMapType === 'posts') {
+              dispatch(MapActions.fetchMapPosts());
+            }
+          }
         } else {
           onPress();
         }

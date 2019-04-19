@@ -14,6 +14,7 @@ const LogoButton = connect()(({ navigation, dispatch }) => (
   <TouchableOpacity
     onPress={() => {
       dispatch(MapActions.openMap('posts'));
+      dispatch(MapActions.fetchMapPosts());
       navigation.navigate('FeedMap');
     }}
   >

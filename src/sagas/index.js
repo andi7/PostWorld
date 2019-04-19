@@ -7,6 +7,7 @@ import { AuthTypes } from 'models/auth';
 import { PostsTypes } from 'models/posts';
 import { CommentsTypes } from 'models/comments';
 import { LocationTypes } from 'models/location';
+import { MapTypes } from 'models/map';
 
 /* ------------- Sagas ------------- */
 
@@ -15,6 +16,7 @@ import { signInByEmail, signUpByEmail } from './AuthSagas';
 import { queryPosts, loadMorePosts, createPost, likePost, unlikePost } from './PostsSagas';
 import { queryComments, postComment, likeComment, unlikeComment } from './CommentsSagas';
 import { startTracking } from './LocationSagas';
+import { queryMapPosts } from './MapSagas';
 
 /* ------------- API ------------- */
 
@@ -45,6 +47,9 @@ export default function* root() {
     takeLatest(CommentsTypes.UNLIKE_COMMENT, unlikeComment),
 
     // LOCATION
-    takeLatest(LocationTypes.START_TRACKING, startTracking)
+    takeLatest(LocationTypes.START_TRACKING, startTracking),
+
+    // MAP
+    takeLatest(MapTypes.FETCH_MAP_POSTS, queryMapPosts)
   ]);
 }
