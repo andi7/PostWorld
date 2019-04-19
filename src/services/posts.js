@@ -12,6 +12,17 @@ export const queryAll = (id, token, postType, sortType, page = 0) =>
     }
   });
 
+export const queryMap = (id, token, x, y) =>
+  request.post(
+    '/posts/map',
+    qs.stringify({
+      id,
+      token,
+      x,
+      y
+    })
+  );
+
 export const create = (id, token, tag, body) =>
   request.post('/posts/create', qs.stringify({ id, token, ptype: tag, body }));
 

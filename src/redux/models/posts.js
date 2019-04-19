@@ -4,6 +4,11 @@ const { Types, Creators } = createActions({
   fetchPosts: ['postType', 'sortType'],
   fetchPostsSuccess: ['postType', 'data'],
   fetchPostsFailed: ['postType', 'error'],
+
+  fetchMapPosts: [],
+  fetchMapPostsSuccess: ['data'],
+  fetchMapPostsFailure: ['error'],
+
   loadMorePosts: ['postType', 'sortType', 'page'],
   selectPost: ['postType', 'postId'],
   createPost: ['tag', 'body'],
@@ -21,7 +26,7 @@ const model = {
   error: null
 };
 
-const postTypes = ['all', 'food', 'art'];
+const postTypes = ['all', 'food', 'art', 'map'];
 
 const INITIAL_STATE = {
   ...postTypes.reduce((acc, postType) => ({ ...acc, [postType]: model }), {}),
@@ -67,6 +72,20 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_POSTS_FAILED]: (state, { postType, error }) => ({
     ...state,
     [postType]: { ...state[postType], loading: false, loadingMore: false, error }
+  }),
+
+  // Map Posts
+  [Types.FETCH_MAP_POSTS]: state => ({
+    ...state,
+    map: { ...state.map, loading: true }
+  }),
+  [Types.FETCH_MAP_POSTS_SUCCESS]: (state, { data }) => ({
+    ...state,
+    map: { ...state.map, data, loading: false }
+  }),
+  [Types.FETCH_MAP_POSTS_FAILURE]: (state, { error }) => ({
+    ...state,
+    map: { ...state.posts, error, loading: false }
   }),
 
   // Load More

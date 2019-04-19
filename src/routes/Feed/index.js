@@ -4,7 +4,9 @@ import { createStackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { fonts, images } from 'theme';
+
 import MapActions from 'models/map';
+import PostsActions from 'models/posts';
 
 import FeedPosts from './FeedPosts/FeedPosts';
 
@@ -14,7 +16,7 @@ const LogoButton = connect()(({ navigation, dispatch }) => (
   <TouchableOpacity
     onPress={() => {
       dispatch(MapActions.openMap('posts'));
-      dispatch(MapActions.fetchMapPosts());
+      dispatch(PostsActions.fetchMapPosts());
       navigation.navigate('FeedMap');
     }}
   >

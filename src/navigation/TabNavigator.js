@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { images } from 'theme';
 import api from 'config/api';
 import MapActions from 'models/map';
+import PostsActions from 'models/posts';
 
 import FeedNavigator from 'routes/Feed';
 import EventsNavigator from 'routes/Events';
@@ -24,7 +25,7 @@ const ConnectedTabButton = buttonMapType =>
             dispatch(MapActions.setMapType(buttonMapType));
 
             if (buttonMapType === 'posts') {
-              dispatch(MapActions.fetchMapPosts());
+              dispatch(PostsActions.fetchMapPosts());
             }
           }
         } else {

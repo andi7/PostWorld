@@ -7,16 +7,21 @@ import { AuthTypes } from 'models/auth';
 import { PostsTypes } from 'models/posts';
 import { CommentsTypes } from 'models/comments';
 import { LocationTypes } from 'models/location';
-import { MapTypes } from 'models/map';
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas';
 import { signInByEmail, signUpByEmail } from './AuthSagas';
-import { queryPosts, loadMorePosts, createPost, likePost, unlikePost } from './PostsSagas';
+import {
+  queryPosts,
+  queryMapPosts,
+  loadMorePosts,
+  createPost,
+  likePost,
+  unlikePost
+} from './PostsSagas';
 import { queryComments, postComment, likeComment, unlikeComment } from './CommentsSagas';
 import { startTracking } from './LocationSagas';
-import { queryMapPosts } from './MapSagas';
 
 /* ------------- API ------------- */
 
@@ -40,6 +45,9 @@ export default function* root() {
     takeLatest(PostsTypes.LIKE_POST, likePost),
     takeLatest(PostsTypes.UNLIKE_POST, unlikePost),
 
+    // MAP
+    takeLatest(PostsTypes.FETCH_MAP_POSTS, queryMapPosts),
+
     // COMMENTS
     takeLatest(CommentsTypes.FETCH_COMMENTS, queryComments),
     takeLatest(CommentsTypes.POST_COMMENT, postComment),
@@ -47,9 +55,6 @@ export default function* root() {
     takeLatest(CommentsTypes.UNLIKE_COMMENT, unlikeComment),
 
     // LOCATION
-    takeLatest(LocationTypes.START_TRACKING, startTracking),
-
-    // MAP
-    takeLatest(MapTypes.FETCH_MAP_POSTS, queryMapPosts)
+    takeLatest(LocationTypes.START_TRACKING, startTracking)
   ]);
 }

@@ -1,9 +1,10 @@
 import { put, call, select } from 'redux-saga/effects';
 
 import PostsActions from 'models/posts';
-import { queryAll, create, like, unlike } from 'services/posts';
+import { queryAll, queryMap, create, like, unlike } from 'services/posts';
 import { getUser } from 'selectors/auth';
 import { getPostsForType } from 'selectors/posts';
+import { getUserLocation } from 'selectors/location';
 
 export function* queryPosts({ postType, sortType }) {
   const user = yield select(getUser);
@@ -13,6 +14,18 @@ export function* queryPosts({ postType, sortType }) {
     yield put(PostsActions.fetchPostsSuccess(postType, result.data.data));
   } else {
     yield put(PostsActions.fetchPostsFailed(postType, result.data.message));
+  }
+}
+
+export function* queryMapPosts() {
+  const user = yield select(getUser);
+  const location = yield select(getUserLocation);
+  const result = yield call(queryMap, user.id, user.token, location.latitude, location.longitude);
+
+  if (result.data.success) {
+    yield put(PostsActions.fetchMapPostsSuccess(result.data.data));
+  } else {
+    yield put(PostsActions.fetchMapPostsFailed(result.data.message));
   }
 }
 
