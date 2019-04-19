@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  LayoutAnimation,
+  ActivityIndicator
+} from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -94,6 +101,8 @@ class SignUp extends React.Component {
 
   render() {
     const { email, username, password, showPassword, localError, mode } = this.state;
+    const { loading } = this.props;
+
     const emailValid = validate(email);
     const usernameValid = username.length > 3;
 
@@ -148,7 +157,11 @@ class SignUp extends React.Component {
                 onPress={this.byEmail}
                 {...gradients.lightBlue}
               >
-                <Text style={styles.signText}>{mode} WITH EMAIL</Text>
+                {loading ? (
+                  <ActivityIndicator color="#fff" />
+                ) : (
+                  <Text style={styles.signText}>{mode} WITH EMAIL</Text>
+                )}
               </GradientButton>
 
               <GradientButton
