@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    implementation project(':@mapbox_react-native-mapbox-gl')
     implementation project(':react-native-action-sheet')
     implementation project(':react-native-svg')
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
