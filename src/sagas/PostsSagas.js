@@ -3,6 +3,7 @@ import { put, call, select } from 'redux-saga/effects';
 import PostsActions from 'models/posts';
 import { queryAll, queryMap, create, like, unlike } from 'services/posts';
 import { getUser } from 'selectors/auth';
+import { getMapActive } from 'selectors/map';
 import { getPostsForType } from 'selectors/posts';
 import { getUserLocation } from 'selectors/location';
 
@@ -46,7 +47,24 @@ export function* loadMorePosts({ postType, sortType, page }) {
 
 export function* createPost({ tag, body }) {
   const user = yield select(getUser);
-  const result = yield call(create, user.id, user.token, tag, body);
+  const isMapActive = yield select(getMapActive);
+  let result;
+
+  if (isMapActive) {
+    const userLocation = yield select(getUserLocation);
+
+    result = yield call(
+      create,
+      user.id,
+      user.token,
+      tag,
+      body,
+      userLocation.latitude,
+      userLocation.longitude
+    );
+  } else {
+    result = yield call(create, user.id, user.token, tag, body);
+  }
 
   if (result.data.success) {
     yield put(PostsActions.fetchPosts(tag));

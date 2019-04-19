@@ -74,7 +74,7 @@ const CustomDrawer = ({ user, navigation, dispatch }) => (
     </View>
 
     <TouchableOpacity onPress={() => navigation.closeDrawer()}>
-      <Image source={images.arrowRight} style={styles.arrowIcon} />
+      <Image source={images.arrowLeft} style={styles.arrowIcon} />
     </TouchableOpacity>
   </View>
 );

@@ -4,7 +4,7 @@ export default {
   intro2: require('../assets/images/intro_2.png'),
   intro3: require('../assets/images/intro_3.png'),
 
-  // Icons
+  // Post && Event Icons
   locationArrow: require('../assets/images/icons/location_arrow.png'),
   comments: require('../assets/images/icons/comments.png'),
   like: require('../assets/images/icons/like.png'),
@@ -29,6 +29,13 @@ export default {
   tagOffer: require('../assets/images/tags/type_offer.png'),
   tagGroup: require('../assets/images/tags/type_group.png'),
 
+  // Markers
+  tagFood: require('../assets/images/tags/type_food.png'),
+  tagGeneral: require('../assets/images/tags/type_general.png'),
+  tagArt: require('../assets/images/tags/type_art.png'),
+  tagOffer: require('../assets/images/tags/type_offer.png'),
+  tagGroup: require('../assets/images/tags/type_group.png'),
+
   // TabBar Icons
   home: require('../assets/images/icons/home.png'),
   search: require('../assets/images/icons/search.png'),
@@ -39,7 +46,7 @@ export default {
   drawerStar: require('../assets/images/drawer_star.png'),
   drawerShop: require('../assets/images/drawer_shop.png'),
   cog: require('../assets/images/cog.png'),
-  arrowRight: require('../assets/images/angle_right.png'),
+  arrowLeft: require('../assets/images/angle_left.png'),
 
   // Other
   logo: require('../assets/images/logo.png'),
