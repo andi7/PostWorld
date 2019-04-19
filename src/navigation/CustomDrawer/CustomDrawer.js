@@ -6,6 +6,7 @@ import AuthActions from 'models/auth';
 
 import { IconButton } from 'components';
 import { images } from 'theme';
+import api from 'config/api';
 
 import styles from './styles';
 
@@ -43,14 +44,17 @@ const showLogoutDialog = dispatch => {
   );
 };
 
-const CustomDrawer = ({ navigation, dispatch }) => (
+const CustomDrawer = ({ user, navigation, dispatch }) => (
   <View style={styles.container}>
     <View style={styles.avatarContainer}>
       <TouchableOpacity onPress={() => showLogoutDialog(dispatch)}>
-        <Image source={null} style={styles.avatarIcon} />
+        <Image
+          source={{ uri: api.imageUrl.concat(user.profile_image.path) }}
+          style={styles.avatarIcon}
+        />
       </TouchableOpacity>
 
-      <Text style={styles.avatarName}>Collin</Text>
+      <Text style={styles.avatarName}>{user.username}</Text>
     </View>
 
     <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -75,4 +79,8 @@ const CustomDrawer = ({ navigation, dispatch }) => (
   </View>
 );
 
-export default connect()(CustomDrawer);
+const mapStateToProps = ({ auth }) => ({
+  user: auth.user
+});
+
+export default connect(mapStateToProps)(CustomDrawer);

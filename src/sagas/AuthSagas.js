@@ -27,7 +27,9 @@ export function* signInByEmail({ email, password }) {
 }
 
 export function* signUpByEmail({ email, password, username, avatar }) {
-  const result = yield call(signUp, email, password, username);
+  const result = yield call(signUp, email, password, username, avatar);
+
+  console.log(result);
 
   if (!result.data.success) {
     if (result.data.message === 'Email already exists') {

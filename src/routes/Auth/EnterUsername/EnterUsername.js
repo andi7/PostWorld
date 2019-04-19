@@ -13,6 +13,7 @@ import styles from './styles';
 class EnterUsername extends React.Component {
   state = {
     avatar: null,
+    avatarData: null,
     username: '',
     localError: ''
   };
@@ -22,26 +23,29 @@ class EnterUsername extends React.Component {
   };
 
   openAvatarPicker = () => {
-    ImagePicker.showImagePicker({ title: 'Select Avatar' }, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        console.log('Response = ', response);
+    ImagePicker.showImagePicker(
+      { title: 'Select Avatar', maxWidth: 200, maxHeight: 200 },
+      response => {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else {
+          console.log('Response = ', response);
 
-        const source = { uri: response.uri };
+          const source = { uri: response.uri };
 
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+          // You can also display the image using data:
+          // const source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-        this.setState({ avatar: source });
+          this.setState({ avatar: source, avatarData: response.data });
+        }
       }
-    });
+    );
   };
 
   finishSignUp = () => {
-    const { avatar, username } = this.state;
+    const { avatarData, username } = this.state;
     const email = this.props.navigation.getParam('email');
     const password = this.props.navigation.getParam('password');
 
@@ -55,7 +59,7 @@ class EnterUsername extends React.Component {
       return;
     }
 
-    this.props.signUpByEmail(email, password, username, avatar);
+    this.props.signUpByEmail(email, password, username, avatarData);
   };
 
   render() {

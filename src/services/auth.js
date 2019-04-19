@@ -8,7 +8,8 @@ export const signUp = (email, password, username, avatar) =>
     qs.stringify({
       email,
       password,
-      username
+      username,
+      image: avatar
     })
   );
 

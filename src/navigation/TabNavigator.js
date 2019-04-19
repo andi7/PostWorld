@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { images } from 'theme';
+import api from 'config/api';
 import MapActions from 'models/map';
 
 import FeedNavigator from 'routes/Feed';
@@ -47,6 +48,13 @@ const ConnectedTabIcon = connect(({ map }) => ({
   );
 });
 
+const UserIcon = connect(({ auth }) => ({ user: auth.user }))(({ user }) => (
+  <Image
+    source={{ uri: api.imageUrl.concat(user.profile_image.path) }}
+    style={{ height: 37, width: 37, borderRadius: 15 }}
+  />
+));
+
 export default createBottomTabNavigator(
   {
     FeedNavigator: {
@@ -85,12 +93,7 @@ export default createBottomTabNavigator(
     DrawerCustomButton: {
       screen: () => <View />,
       navigationOptions: ({ navigation }) => ({
-        tabBarIcon: () => (
-          <Image
-            source={null}
-            style={{ height: 37, width: 37, borderRadius: 15, resizeMode: 'contain' }}
-          />
-        ),
+        tabBarIcon: <UserIcon />,
         tabBarOnPress: () => navigation.openDrawer()
       })
     }
