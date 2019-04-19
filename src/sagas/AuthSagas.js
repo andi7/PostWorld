@@ -6,6 +6,7 @@ import * as NavigationUtils from 'utils/navigation';
 import { signUp, signIn } from 'services/auth';
 
 import AuthActions from 'models/auth';
+import LocationActions from 'models/location';
 
 const storeUser = user =>
   AsyncStorage.multiSet([['@token', user.token], ['@user', JSON.stringify(user)]]);
@@ -21,6 +22,8 @@ export function* signInByEmail({ email, password }) {
     }
   } else {
     yield put(AuthActions.authSuccess(result.data.data));
+    yield put(LocationActions.startTracking());
+
     storeUser(result.data.data);
     NavigationUtils.navigate('MainNavigator');
   }
@@ -41,6 +44,8 @@ export function* signUpByEmail({ email, password, username, avatar }) {
     }
   } else {
     yield put(AuthActions.authSuccess(result.data.data));
+    yield put(LocationActions.startTracking());
+
     storeUser(result.data.data);
     NavigationUtils.navigate('MainNavigator');
   }

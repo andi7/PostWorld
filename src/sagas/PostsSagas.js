@@ -20,13 +20,15 @@ export function* queryPosts({ postType, sortType }) {
 export function* queryMapPosts() {
   const user = yield select(getUser);
   const location = yield select(getUserLocation);
-  const result = yield call(queryMap, user.id, user.token, location.latitude, location.longitude);
+  // const result = yield call(queryMap, user.id, user.token, location.latitude, location.longitude);
 
-  if (result.data.success) {
-    yield put(PostsActions.fetchMapPostsSuccess(result.data.data));
-  } else {
-    yield put(PostsActions.fetchMapPostsFailed(result.data.message));
-  }
+  // console.log(result);
+
+  // if (result.data.success) {
+  //   yield put(PostsActions.fetchMapPostsSuccess(result.data.data));
+  // } else {
+  //   yield put(PostsActions.fetchMapPostsFailed(result.data.message));
+  // }
 }
 
 export function* loadMorePosts({ postType, sortType, page }) {
