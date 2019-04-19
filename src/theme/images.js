@@ -30,11 +30,11 @@ export default {
   tagGroup: require('../assets/images/tags/type_group.png'),
 
   // Markers
-  tagFood: require('../assets/images/tags/type_food.png'),
-  tagGeneral: require('../assets/images/tags/type_general.png'),
-  tagArt: require('../assets/images/tags/type_art.png'),
-  tagOffer: require('../assets/images/tags/type_offer.png'),
-  tagGroup: require('../assets/images/tags/type_group.png'),
+  markerFood: require('../assets/images/markers/marker_food.png'),
+  markerGeneral: require('../assets/images/markers/marker_general.png'),
+  markerArt: require('../assets/images/markers/marker_art.png'),
+  markerOffer: require('../assets/images/markers/marker_offer.png'),
+  markerGroup: require('../assets/images/markers/marker_group.png'),
 
   // TabBar Icons
   home: require('../assets/images/icons/home.png'),

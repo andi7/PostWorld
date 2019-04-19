@@ -99,4 +99,8 @@ class CreatePost extends React.Component {
   }
 }
 
-export default connect()(CreatePost);
+const mapStateToProps = ({ map }) => ({
+  fullscreen: !map.isActive
+});
+
+export default connect(mapStateToProps)(CreatePost);

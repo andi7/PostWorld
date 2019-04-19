@@ -10,12 +10,13 @@ export default StyleSheet.create({
   },
 
   postModal: {
-    height: 220,
+    height: '65%',
     width: '90%',
     backgroundColor: 'white',
     alignSelf: 'center',
     borderRadius: 10,
-    paddingTop: 10
+    paddingTop: 10,
+    overflow: 'hidden'
   },
 
   postModalHeader: {
