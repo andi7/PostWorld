@@ -9,7 +9,7 @@ import { IconButton } from 'components';
 import { images } from 'theme';
 import mapboxConfig from 'config/mapbox';
 
-import MapMarker from 'domains/map/MapMarker/MapMarker';
+import MapMarkers from 'domains/map/MapMarkers/MapMarkers';
 
 import styles from './styles';
 
@@ -19,7 +19,7 @@ const markers = [
     title: 'AAAAAAAA',
     x: -122.0312186,
     y: 37.33233141,
-    type: 'general'
+    type: 'food'
   }
 ];
 
@@ -40,10 +40,12 @@ class MapView extends React.Component {
           userTrackingMode={MapboxGL.UserTrackingModes.Follow}
           styleURL={mapboxConfig.mapStyleUrl}
           pitch={45}
+          zoomLevel={19}
+          logoEnabled={false}
+          pitchEnabled={false}
+          compassEnabled={false}
         >
-          {markers.map(marker => (
-            <MapMarker key={marker.id} data={marker} />
-          ))}
+          <MapMarkers markers={markers} />
         </MapboxGL.MapView>
 
         <IconButton

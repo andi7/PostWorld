@@ -88,6 +88,7 @@ export default createBottomTabNavigator(
         tabBarIcon: () => (
           <Image source={images.compose} style={{ height: 46, width: 43, resizeMode: 'contain' }} />
         ),
+        // Function overritten on CustomTabBar
         tabBarOnPress: () => {}
       }
     },
