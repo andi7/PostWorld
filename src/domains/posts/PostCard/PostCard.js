@@ -6,6 +6,7 @@ import ActionSheet from 'react-native-action-sheet';
 
 import { DynamicHeightImage, IconButton } from 'components';
 import { images } from 'theme';
+import api from 'config/api';
 import { calcDistance } from 'utils/geolocation';
 
 import PostsActions from 'models/posts';
@@ -55,7 +56,10 @@ class PostCard extends React.PureComponent {
     return (
       <View style={styles.card}>
         <View style={styles.topRow}>
-          <IconButton icon={{ uri: item.avatar }} iconStyle={styles.avatar}>
+          <IconButton
+            icon={{ uri: api.imageUrl.concat(item.author.profile_image) }}
+            iconStyle={styles.avatar}
+          >
             <Text
               style={[
                 styles.userName,
@@ -64,7 +68,7 @@ class PostCard extends React.PureComponent {
                 }
               ]}
             >
-              {item.author}
+              {item.author.username}
             </Text>
           </IconButton>
 

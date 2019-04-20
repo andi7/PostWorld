@@ -11,17 +11,33 @@ import styles from './styles';
 const PAGE_SIZE = 25;
 
 class PostList extends React.Component {
-  state = { sortType: 'hot', page: 0 };
-
   componentDidMount() {
-    this.updatePosts();
+    const { posts, postType } = this.props;
+
+    this.resetPosts(posts[postType].sortType);
   }
 
-  updatePosts = () => {
-    const { sortType, page } = this.state;
+  changeSort = sortType => {
+    const { posts, postType } = this.props;
+
+    if (sortType !== posts[postType].sortType) {
+      this.resetPosts(sortType);
+    }
+  };
+
+  resetPosts = sortType => {
     const { postType } = this.props;
 
-    this.props.dispatch(PostsActions.fetchPosts(postType, sortType, page));
+    this.props.dispatch(PostsActions.fetchPosts(postType, sortType, 0));
+  };
+
+  loadNextPage = () => {
+    const { posts, postType } = this.props;
+    const { data, loading, loadingMore, page } = posts[postType];
+
+    if (!(loading || loadingMore || data.length < (page + 1) * PAGE_SIZE)) {
+      this.props.dispatch(PostsActions.loadMorePosts(postType));
+    }
   };
 
   checkComments = post => {
@@ -31,30 +47,9 @@ class PostList extends React.Component {
     this.props.navigation.navigate('PostComments');
   };
 
-  changeSort = sortType => {
-    if (sortType !== this.state.sortType) {
-      this.setState({ sortType, page: 0 }, () => this.updatePosts());
-    }
-  };
-
-  loadNextPage = () => {
-    const { page, sortType } = this.state;
-    const { posts, postType } = this.props;
-    const { data, loading, loadingMore } = posts[postType];
-
-    if (loading || loadingMore || data.length < (page + 1) * PAGE_SIZE) {
-      return;
-    }
-
-    this.setState({ page: page + 1 }, () =>
-      this.props.dispatch(PostsActions.loadMorePosts(postType, sortType, page + 1))
-    );
-  };
-
   render() {
-    const { sortType } = this.state;
     const { posts, postType } = this.props;
-    const { data, loading, loadingMore } = posts[postType];
+    const { data, loading, loadingMore, sortType } = posts[postType];
 
     return (
       <View style={{ flex: 1 }}>

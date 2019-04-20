@@ -4,19 +4,8 @@ import PostsActions from 'models/posts';
 import { queryAll, queryMap, create, like, unlike } from 'services/posts';
 import { getUser } from 'selectors/auth';
 import { getMapActive } from 'selectors/map';
-import { getPostsForType } from 'selectors/posts';
+import { getPostsForType, getPostsModelForType } from 'selectors/posts';
 import { getUserLocation } from 'selectors/location';
-
-export function* queryPosts({ postType, sortType }) {
-  const user = yield select(getUser);
-  const result = yield call(queryAll, user.id, user.token, postType, sortType);
-
-  if (result.data.success) {
-    yield put(PostsActions.fetchPostsSuccess(postType, result.data.data));
-  } else {
-    yield put(PostsActions.fetchPostsFailed(postType, result.data.message));
-  }
-}
 
 export function* queryMapPosts() {
   const user = yield select(getUser);
@@ -32,9 +21,29 @@ export function* queryMapPosts() {
   // }
 }
 
-export function* loadMorePosts({ postType, sortType, page }) {
+export function* queryPosts({ postType }) {
   const user = yield select(getUser);
-  const result = yield call(queryAll, user.id, user.token, postType, sortType, page);
+  const postModel = yield select(getPostsModelForType, postType);
+  const result = yield call(queryAll, user.id, user.token, postType, postModel.sortType, 0);
+
+  if (result.data.success) {
+    yield put(PostsActions.fetchPostsSuccess(postType, result.data.data));
+  } else {
+    yield put(PostsActions.fetchPostsFailed(postType, result.data.message));
+  }
+}
+
+export function* loadMorePosts({ postType }) {
+  const user = yield select(getUser);
+  const postModel = yield select(getPostsModelForType, postType);
+  const result = yield call(
+    queryAll,
+    user.id,
+    user.token,
+    postType,
+    postModel.sortType,
+    postModel.page
+  );
 
   if (result.data.success) {
     const prevPosts = yield select(getPostsForType, postType);
@@ -63,7 +72,7 @@ export function* createPost({ tag, body }) {
       userLocation.longitude
     );
   } else {
-    result = yield call(create, user.id, user.token, tag, body);
+    result = yield call(create, user.id, user.token, tag, body, 0, 0);
   }
 
   if (result.data.success) {

@@ -1,4 +1,4 @@
-import { takeLatest, all } from 'redux-saga/effects';
+import { takeLatest, takeEvery, all } from 'redux-saga/effects';
 
 /* ------------- Types ------------- */
 
@@ -39,7 +39,7 @@ export default function* root() {
     takeLatest(AuthTypes.SIGN_UP_BY_EMAIL, signUpByEmail),
 
     // POSTS
-    takeLatest(PostsTypes.FETCH_POSTS, queryPosts),
+    takeEvery(PostsTypes.FETCH_POSTS, queryPosts),
     takeLatest(PostsTypes.LOAD_MORE_POSTS, loadMorePosts),
     takeLatest(PostsTypes.CREATE_POST, createPost),
     takeLatest(PostsTypes.LIKE_POST, likePost),

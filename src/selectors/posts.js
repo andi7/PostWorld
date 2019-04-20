@@ -5,4 +5,5 @@ export const getSelectedPost = state => {
   return postsData[postsData.findIndex(post => post.id === posts.selectedPostId)];
 };
 
+export const getPostsModelForType = (state, postType) => state.posts[postType];
 export const getPostsForType = (state, postType) => state.posts[postType].data;

@@ -9,7 +9,7 @@ const { Types, Creators } = createActions({
   fetchMapPostsSuccess: ['data'],
   fetchMapPostsFailure: ['error'],
 
-  loadMorePosts: ['postType', 'sortType', 'page'],
+  loadMorePosts: ['postType'],
   selectPost: ['postType', 'postId'],
   createPost: ['tag', 'body'],
   likePost: ['postId'],
@@ -23,7 +23,9 @@ const model = {
   data: [],
   loading: true,
   loadingMore: false,
-  error: null
+  error: null,
+  sortType: 'hot',
+  page: 0
 };
 
 const postTypes = ['all', 'food', 'art', 'map'];
@@ -61,9 +63,9 @@ const changeLikeStatus = toLike => (state, { postId }) => ({
 
 export const reducer = createReducer(INITIAL_STATE, {
   // Fetch
-  [Types.FETCH_POSTS]: (state, { postType }) => ({
+  [Types.FETCH_POSTS]: (state, { postType, sortType }) => ({
     ...state,
-    [postType]: { ...state[postType], loading: true }
+    [postType]: { ...state[postType], loading: true, sortType }
   }),
   [Types.FETCH_POSTS_SUCCESS]: (state, { postType, data }) => ({
     ...state,
@@ -72,6 +74,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_POSTS_FAILED]: (state, { postType, error }) => ({
     ...state,
     [postType]: { ...state[postType], loading: false, loadingMore: false, error }
+  }),
+
+  // Load More
+  [Types.LOAD_MORE_POSTS]: (state, { postType }) => ({
+    ...state,
+    [postType]: { ...state[postType], loadingMore: true, page: state[postType].page + 1 }
   }),
 
   // Map Posts
@@ -86,12 +94,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_MAP_POSTS_FAILURE]: (state, { error }) => ({
     ...state,
     map: { ...state.posts, error, loading: false }
-  }),
-
-  // Load More
-  [Types.LOAD_MORE_POSTS]: (state, { postType }) => ({
-    ...state,
-    [postType]: { ...state[postType], loadingMore: true }
   }),
 
   // Single Post Screen
