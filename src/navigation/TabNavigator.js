@@ -57,7 +57,9 @@ const ConnectedTabIcon = connect(({ map }) => ({
 
 const UserIcon = connect(({ auth }) => ({ user: auth.user }))(({ user }) => (
   <Image
-    source={{ uri: api.imageUrl.concat(user.profile_image.path) }}
+    source={
+      user.profile_image.path ? { uri: api.imageUrl.concat(user.profile_image.path) } : images.user
+    }
     style={{ height: 37, width: 37, borderRadius: 15 }}
   />
 ));

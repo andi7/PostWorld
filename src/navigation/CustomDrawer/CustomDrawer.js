@@ -49,7 +49,11 @@ const CustomDrawer = ({ user, navigation, dispatch }) => (
     <View style={styles.avatarContainer}>
       <TouchableOpacity onPress={() => showLogoutDialog(dispatch)}>
         <Image
-          source={{ uri: api.imageUrl.concat(user.profile_image.path) }}
+          source={
+            user.profile_image.path
+              ? { uri: api.imageUrl.concat(user.profile_image.path) }
+              : images.user
+          }
           style={styles.avatarIcon}
         />
       </TouchableOpacity>
