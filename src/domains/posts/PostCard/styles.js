@@ -9,7 +9,6 @@ export default StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#D2D2D034',
     marginVertical: 6,
-    marginHorizontal: 5,
     shadowOpacity: 1,
     shadowColor: '#D2D2D0',
     shadowOffset: { height: 1 },
@@ -35,7 +34,7 @@ export default StyleSheet.create({
   userName: {
     marginLeft: 6,
     color: '#5882F2',
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: fonts.MontserratMedium
   },
 
@@ -50,7 +49,7 @@ export default StyleSheet.create({
   postText: {
     marginTop: -22,
     color: 'black',
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: fonts.AvenirNext,
     marginLeft: 60,
     marginRight: 58,
@@ -80,8 +79,8 @@ export default StyleSheet.create({
 
   locationText: {
     color: '#3B3B3BC0',
-    fontSize: 9,
-    fontFamily: fonts.MontserratLight,
+    fontSize: 12,
+    fontFamily: fonts.MontserratMedium,
     marginLeft: 5
   },
 
@@ -94,7 +93,7 @@ export default StyleSheet.create({
   commentsText: {
     color: '#3B3B3BC0',
     fontSize: 11,
-    fontFamily: fonts.MontserratLight,
+    fontFamily: fonts.MontserratMedium,
     marginLeft: 6
   },
 
@@ -105,8 +104,8 @@ export default StyleSheet.create({
   },
 
   likesText: {
-    fontSize: 11,
-    fontFamily: fonts.MontserratLight,
+    fontSize: 12,
+    fontFamily: fonts.MontserratMedium,
     marginHorizontal: 9
   }
 });
