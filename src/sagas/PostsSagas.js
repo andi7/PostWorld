@@ -76,7 +76,11 @@ export function* createPost({ tag, body }) {
   }
 
   if (result.data.success) {
-    yield put(PostsActions.fetchPosts(tag));
+    yield put(PostsActions.fetchPosts('all', 'new'));
+
+    if (tag !== 'general') {
+      yield put(PostsActions.fetchPosts(tag, 'new'));
+    }
   }
 }
 
