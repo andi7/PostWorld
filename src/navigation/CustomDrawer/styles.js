@@ -16,8 +16,7 @@ export default StyleSheet.create({
   avatarIcon: {
     height: 80,
     width: 80,
-    borderRadius: 15,
-    backgroundColor: 'lightgray'
+    borderRadius: 15
   },
 
   avatarName: {

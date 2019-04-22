@@ -65,7 +65,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   // Fetch
   [Types.FETCH_POSTS]: (state, { postType, sortType }) => ({
     ...state,
-    [postType]: { ...state[postType], loading: true, sortType }
+    [postType]: { ...state[postType], loading: true, sortType, page: 0 }
   }),
   [Types.FETCH_POSTS_SUCCESS]: (state, { postType, data }) => ({
     ...state,

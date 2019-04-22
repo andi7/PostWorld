@@ -6,14 +6,15 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { InputWithSuffix, GradientButton } from 'components';
 import { images, gradients } from 'theme';
+import defaultAvatar from 'config/defaultAvatar';
 import AuthActions from 'models/auth';
 
 import styles from './styles';
 
 class EnterUsername extends React.Component {
   state = {
-    avatar: null,
-    avatarData: null,
+    avatar: images.user,
+    avatarData: defaultAvatar,
     username: '',
     localError: ''
   };

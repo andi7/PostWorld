@@ -59,19 +59,20 @@ class PostCard extends React.PureComponent {
     const { item, hideComment, hideShare, userLocation } = this.props;
 
     const distance =
-      userLocation && item.coordinates && item.coordinates[0] !== 0 && item.coordinates[1] !== 0
-        ? calcDistance(userLocation.latitude, userLocation.longitude, ...item.coordinates).toFixed(
-            1
-          )
-        : '';
+      userLocation &&
+      item.coordinates &&
+      item.coordinates[0] !== 0 &&
+      item.coordinates[1] !== 0 &&
+      calcDistance(userLocation.latitude, userLocation.longitude, ...item.coordinates).toFixed(1);
+
+    const avatar = item.author.profile_image
+      ? { uri: api.imageUrl.concat(item.author.profile_image) }
+      : images.user;
 
     return (
       <View style={styles.card}>
         <View style={styles.topRow}>
-          <IconButton
-            icon={{ uri: api.imageUrl.concat(item.author.profile_image) }}
-            iconStyle={styles.avatar}
-          >
+          <IconButton icon={avatar} iconStyle={styles.avatar}>
             <Text
               style={[
                 styles.userName,

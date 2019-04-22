@@ -47,7 +47,7 @@ export default StyleSheet.create({
   },
 
   postText: {
-    marginTop: -22,
+    marginTop: -20,
     color: 'black',
     fontSize: 14,
     fontFamily: fonts.AvenirNext,

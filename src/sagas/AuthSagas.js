@@ -17,9 +17,9 @@ export function* signInByEmail({ email, password }) {
   if (!result.data.success) {
     if (result.data.message === 'No user found') {
       Alert.alert('Sign in failed!', 'Email on password is incorrect!');
-    } else {
-      yield put(AuthActions.authFailure(result.data.message));
     }
+
+    yield put(AuthActions.authFailure(result.data.message));
   } else {
     yield put(AuthActions.authSuccess(result.data.data));
     yield put(LocationActions.startTracking());
@@ -39,9 +39,9 @@ export function* signUpByEmail({ email, password, username, avatar }) {
       NavigationUtils.goBack();
 
       Alert.alert('Sign up failed', 'This email already has an account');
-    } else {
-      yield put(AuthActions.authFailure(result.data.message));
     }
+
+    yield put(AuthActions.authFailure(result.data.message));
   } else {
     yield put(AuthActions.authSuccess(result.data.data));
     yield put(LocationActions.startTracking());
