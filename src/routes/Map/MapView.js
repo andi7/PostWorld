@@ -19,6 +19,7 @@ const getObjForId = (arr, id) => arr[arr.findIndex(el => el.id === id)];
 
 class MapView extends React.Component {
   state = { detailsVisible: false, selectedMarkerId: null };
+  map = React.createRef();
 
   goBack = () => {
     const { navigation } = this.props;
@@ -27,7 +28,10 @@ class MapView extends React.Component {
     navigation.goBack();
   };
 
-  markerPress = markerId => {
+  markerPress = (markerId, marker) => {
+    console.log(this.map.current, marker);
+    this.map.current.moveTo(marker.geometry.coordinates, 400);
+
     this.setState({ detailsVisible: true, selectedMarkerId: markerId });
   };
 
@@ -38,6 +42,7 @@ class MapView extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <MapboxGL.MapView
+          ref={this.map}
           style={{ flex: 1 }}
           // showUserLocation
           userTrackingMode={MapboxGL.UserTrackingModes.Follow}

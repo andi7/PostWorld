@@ -36,7 +36,7 @@ const MapMarker = ({ markers, onMarkerPress }) => (
     clusterRadius={80}
     clusterMaxZoom={14}
     images={iconsForType}
-    onPress={e => onMarkerPress(e.nativeEvent.payload.properties.id)}
+    onPress={e => onMarkerPress(e.nativeEvent.payload.properties.id, e.nativeEvent.payload)}
   >
     <MapboxGL.SymbolLayer
       key="{id}"
