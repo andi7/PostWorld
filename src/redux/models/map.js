@@ -10,7 +10,7 @@ export const MapTypes = Types;
 export default Creators;
 
 const INITIAL_STATE = {
-  mapType: true,
+  mapType: null,
   isActive: null
 };
 

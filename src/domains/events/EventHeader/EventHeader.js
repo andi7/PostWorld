@@ -20,13 +20,17 @@ const LogoButton = connect()(({ navigation, dispatch }) => (
   </TouchableOpacity>
 ));
 
-const EventHeader = ({ navigation }) => {
+const EventHeader = ({ navigation, showGlobe = true }) => {
   const currentType = navigation.getParam('type', 'group');
+  const tagStyle = tag =>
+    showGlobe
+      ? styles.tagContainer
+      : [styles.tagContainerMap, currentType === tag && styles.tagContainerMapActive];
 
   return (
     <View style={styles.header}>
       <GradientButton
-        style={styles.tagContainer}
+        style={tagStyle('group')}
         onPress={() => navigation.setParams({ type: 'group' })}
         {...gradients.yellow}
       >
@@ -37,7 +41,7 @@ const EventHeader = ({ navigation }) => {
       </GradientButton>
 
       <GradientButton
-        style={styles.tagContainer}
+        style={tagStyle('food')}
         onPress={() => navigation.setParams({ type: 'food' })}
         {...gradients.red}
       >
@@ -48,7 +52,7 @@ const EventHeader = ({ navigation }) => {
       </GradientButton>
 
       <GradientButton
-        style={styles.tagContainer}
+        style={tagStyle('art')}
         onPress={() => navigation.setParams({ type: 'art' })}
         {...gradients.purple}
       >
@@ -59,7 +63,7 @@ const EventHeader = ({ navigation }) => {
       </GradientButton>
 
       <GradientButton
-        style={styles.tagContainer}
+        style={tagStyle('offer')}
         onPress={() => navigation.setParams({ type: 'offer' })}
         {...gradients.green}
       >
@@ -69,7 +73,7 @@ const EventHeader = ({ navigation }) => {
         />
       </GradientButton>
 
-      <LogoButton navigation={navigation} />
+      {showGlobe && <LogoButton navigation={navigation} />}
     </View>
   );
 };

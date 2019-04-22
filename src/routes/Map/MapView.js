@@ -12,6 +12,7 @@ import mapboxConfig from 'config/mapbox';
 
 import MapMarkers from 'domains/map/MapMarkers/MapMarkers';
 import PostCard from 'domains/posts/PostCard/PostCard';
+import EventHeader from 'domains/events/EventHeader/EventHeader';
 
 import styles from './styles';
 
@@ -36,11 +37,13 @@ class MapView extends React.Component {
   };
 
   render() {
-    const { mapPosts } = this.props;
+    const { mapPosts, mapType } = this.props;
     const { detailsVisible, selectedMarkerId } = this.state;
 
+    const data = mapType === 'posts' ? mapPosts : [];
+
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <MapboxGL.MapView
           ref={this.map}
           style={{ flex: 1 }}
@@ -53,15 +56,21 @@ class MapView extends React.Component {
           pitchEnabled={false}
           compassEnabled={false}
         >
-          <MapMarkers markers={mapPosts} onMarkerPress={this.markerPress} />
+          <MapMarkers markers={data} onMarkerPress={this.markerPress} />
         </MapboxGL.MapView>
 
-        <IconButton
-          icon={images.arrowLeft}
-          iconStyle={styles.backIcon}
-          style={styles.backButton}
-          onPress={this.goBack}
-        />
+        <View style={styles.eventsHeader}>
+          <IconButton
+            icon={images.arrowLeft}
+            iconStyle={styles.backIcon}
+            style={styles.backButton}
+            onPress={this.goBack}
+          />
+
+          {mapType === 'events' && (
+            <EventHeader navigation={this.props.navigation} showGlobe={false} />
+          )}
+        </View>
 
         <Modal
           isVisible={detailsVisible}
@@ -79,7 +88,8 @@ class MapView extends React.Component {
   }
 }
 
-export default connect(({ location, posts }) => ({
+export default connect(({ location, posts, map }) => ({
   userLocation: location.data,
-  mapPosts: posts.map.data
+  mapPosts: posts.map.data,
+  mapType: map.mapType
 }))(MapView);

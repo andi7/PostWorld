@@ -1,8 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
+import EventHeader from 'domains/events/EventHeader/EventHeader';
+
 import EventList from './EventList/EventList';
-import EventHeader from './EventHeader/EventHeader';
 import EventDetails from './EventDetails/EventDetails';
 
 import MapView from '../Map/MapView';

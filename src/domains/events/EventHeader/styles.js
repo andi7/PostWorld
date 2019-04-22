@@ -15,6 +15,17 @@ export default StyleSheet.create({
     borderRadius: 12
   },
 
+  tagContainerMap: {
+    width: '20%',
+    height: 35,
+    borderRadius: 12,
+    opacity: 0.75
+  },
+
+  tagContainerMapActive: {
+    opacity: 1
+  },
+
   tag: {
     height: 24,
     resizeMode: 'contain',

@@ -5,10 +5,17 @@ export default StyleSheet.create({
     flex: 1
   },
 
-  backButton: {
+  eventsHeader: {
+    flexDirection: 'row',
     position: 'absolute',
-    top: Platform.OS === 'ios' ? 30 : 10,
-    left: 20
+    top: Platform.OS === 'ios' ? 20 : 0,
+    right: 0,
+    left: 0,
+    height: 50
+  },
+
+  backButton: {
+    marginLeft: 20
   },
 
   backIcon: {
