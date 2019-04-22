@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     color: 'black',
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: fonts.MontserratMedium
   },
 
