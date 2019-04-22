@@ -29,14 +29,23 @@ const DrawerNavigator = createDrawerNavigator(
 
 const MainNavigator = createStackNavigator(
   {
-    DrawerNavigator,
+    DrawerNavigator: {
+      screen: DrawerNavigator,
+      navigationOptions: {
+        header: null
+      }
+    },
     PostComments,
-    MapView
+    MapView: {
+      screen: MapView,
+      navigationOptions: {
+        header: null
+      }
+    }
   },
   {
     initialRouteName: 'DrawerNavigator',
     defaultNavigationOptions: {
-      header: null,
       headerBackTitle: null,
       headerTintColor: colors.primary
     }

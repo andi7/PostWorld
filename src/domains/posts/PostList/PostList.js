@@ -40,13 +40,6 @@ class PostList extends React.Component {
     }
   };
 
-  checkComments = post => {
-    const { postType } = this.props;
-
-    this.props.dispatch(PostsActions.selectPost(postType, post.id));
-    this.props.navigation.navigate('PostComments');
-  };
-
   render() {
     const { posts, postType } = this.props;
     const { data, loading, loadingMore, sortType } = posts[postType];
@@ -65,9 +58,7 @@ class PostList extends React.Component {
             ListFooterComponent={
               loadingMore && <ActivityIndicator style={styles.loadingMore} size="small" />
             }
-            renderItem={({ item }) => (
-              <PostCard item={item} commentPress={() => this.checkComments(item)} />
-            )}
+            renderItem={({ item }) => <PostCard item={item} feedType={postType} />}
             onEndReached={this.loadNextPage}
           />
         )}

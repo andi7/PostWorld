@@ -63,7 +63,11 @@ class MapView extends React.Component {
           onBackdropPress={() => this.setState({ detailsVisible: false })}
           onBackButtonPress={() => this.setState({ detailsVisible: false })}
         >
-          <PostCard item={getObjForId(mapPosts, selectedMarkerId)} />
+          <PostCard
+            item={getObjForId(mapPosts, selectedMarkerId)}
+            feedType="map"
+            onCommentPress={() => this.setState({ detailsVisible: false })}
+          />
         </Modal>
       </View>
     );

@@ -10,6 +10,7 @@ import api from 'config/api';
 import { calcDistance } from 'utils/geolocation';
 
 import PostsActions from 'models/posts';
+import * as NavigationUtils from 'utils/navigation';
 
 import styles from './styles';
 
@@ -23,6 +24,17 @@ class PostCard extends React.PureComponent {
     } else {
       this.props.dispatch(PostsActions.likePost(post.id));
     }
+  };
+
+  checkComments = () => {
+    const { item, feedType, onCommentPress } = this.props;
+
+    if (onCommentPress) {
+      onCommentPress();
+    }
+
+    this.props.dispatch(PostsActions.selectPost(feedType || item.postType, item.id));
+    NavigationUtils.navigate('PostComments');
   };
 
   openActionSheet = () => {
@@ -44,7 +56,7 @@ class PostCard extends React.PureComponent {
   };
 
   render() {
-    const { item, commentPress, hideComment, hideShare, userLocation } = this.props;
+    const { item, hideComment, hideShare, userLocation } = this.props;
 
     const distance =
       userLocation && item.coordinates && item.coordinates[0] !== 0 && item.coordinates[1] !== 0
@@ -100,7 +112,7 @@ class PostCard extends React.PureComponent {
               icon={images.comments}
               iconStyle={styles.commentsIcon}
               style={{ flex: 1 }}
-              onPress={commentPress}
+              onPress={this.checkComments}
             >
               <Text style={styles.commentsText}>{item.comments}</Text>
             </IconButton>
