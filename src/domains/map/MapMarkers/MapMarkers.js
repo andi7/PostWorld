@@ -28,7 +28,7 @@ const collectionForMarkers = markers => ({
   minzoom: 1
 });
 
-const MapMarker = ({ markers, onPress = marker => console.log(marker) }) => (
+const MapMarker = ({ markers, onMarkerPress }) => (
   <MapboxGL.ShapeSource
     id="ShapeSource"
     shape={collectionForMarkers(markers)}
@@ -36,7 +36,7 @@ const MapMarker = ({ markers, onPress = marker => console.log(marker) }) => (
     clusterRadius={80}
     clusterMaxZoom={14}
     images={iconsForType}
-    onPress={e => onPress(e.nativeEvent)}
+    onPress={e => onMarkerPress(e.nativeEvent.payload.properties.id)}
   >
     <MapboxGL.SymbolLayer
       key="{id}"

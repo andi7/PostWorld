@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import { connect } from 'react-redux';
+import Modal from 'react-native-modal';
 
 import MapActions from 'models/map';
 
@@ -10,20 +11,15 @@ import { images } from 'theme';
 import mapboxConfig from 'config/mapbox';
 
 import MapMarkers from 'domains/map/MapMarkers/MapMarkers';
+import PostCard from 'domains/posts/PostCard/PostCard';
 
 import styles from './styles';
 
-const markers = [
-  {
-    id: 1,
-    title: 'AAAAAAAA',
-    x: -122.0312186,
-    y: 37.33233141,
-    type: 'food'
-  }
-];
+const getObjForId = (arr, id) => arr[arr.findIndex(el => el.id === id)];
 
 class MapView extends React.Component {
+  state = { detailsVisible: false, selectedMarkerId: null };
+
   goBack = () => {
     const { navigation } = this.props;
 
@@ -31,7 +27,14 @@ class MapView extends React.Component {
     navigation.goBack();
   };
 
+  markerPress = markerId => {
+    this.setState({ detailsVisible: true, selectedMarkerId: markerId });
+  };
+
   render() {
+    const { mapPosts } = this.props;
+    const { detailsVisible, selectedMarkerId } = this.state;
+
     return (
       <View style={{ flex: 1 }}>
         <MapboxGL.MapView
@@ -45,7 +48,7 @@ class MapView extends React.Component {
           pitchEnabled={false}
           compassEnabled={false}
         >
-          <MapMarkers markers={markers} />
+          <MapMarkers markers={mapPosts} onMarkerPress={this.markerPress} />
         </MapboxGL.MapView>
 
         <IconButton
@@ -54,9 +57,20 @@ class MapView extends React.Component {
           style={styles.backButton}
           onPress={this.goBack}
         />
+
+        <Modal
+          isVisible={detailsVisible}
+          onBackdropPress={() => this.setState({ detailsVisible: false })}
+          onBackButtonPress={() => this.setState({ detailsVisible: false })}
+        >
+          <PostCard item={getObjForId(mapPosts, selectedMarkerId)} />
+        </Modal>
       </View>
     );
   }
 }
 
-export default connect(({ location }) => ({ userLocation: location.data }))(MapView);
+export default connect(({ location, posts }) => ({
+  userLocation: location.data,
+  mapPosts: posts.map.data
+}))(MapView);
