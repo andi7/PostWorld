@@ -30,7 +30,7 @@ export default StyleSheet.create({
 
   postModalSubmit: {
     width: 70,
-    height: 20,
+    height: 26,
     borderRadius: 8,
     backgroundColor: colors.primary,
     alignItems: 'center',
@@ -39,14 +39,14 @@ export default StyleSheet.create({
 
   postModalSubmitText: {
     color: 'white',
-    fontSize: 12,
-    fontFamily: fonts.MontserratMedium
+    fontSize: 13,
+    fontFamily: fonts.MontserratBold
   },
 
   postModalContent: {
     width: '100%',
     color: '#3B3B3B',
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: fonts.MontserratMedium,
     marginHorizontal: 30,
     marginVertical: 5,
@@ -75,7 +75,8 @@ export default StyleSheet.create({
   cameraIcon: {
     height: 24,
     width: 24,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+    tintColor: '#AAAAAA'
   },
 
   tagIcon: {

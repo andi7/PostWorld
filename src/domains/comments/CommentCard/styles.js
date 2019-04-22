@@ -36,7 +36,7 @@ export default StyleSheet.create({
   postText: {
     color: 'black',
     fontSize: 12,
-    fontFamily: fonts.WorkSansLight,
+    fontFamily: fonts.AvenirNext,
     marginLeft: 60,
     marginRight: 47,
     marginBottom: 8,
@@ -55,7 +55,7 @@ export default StyleSheet.create({
   timeText: {
     color: '#3B3B3B',
     fontSize: 10,
-    fontFamily: fonts.MontserratLight
+    fontFamily: fonts.MontserratRegular
   },
 
   likesIcon: {

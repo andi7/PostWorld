@@ -60,13 +60,15 @@ export default StyleSheet.create({
     height: 21,
     width: 21,
     resizeMode: 'contain',
-    marginRight: 7
+    marginRight: 7,
+    tintColor: '#3B3B3B',
+    opacity: 0.75
   },
 
   detailsText: {
-    color: '#7F7F7F',
+    color: 'black',
     fontSize: 12,
-    fontFamily: fonts.WorkSansLight
+    fontFamily: fonts.AvenirNext
   },
 
   eventImage: {
@@ -86,6 +88,6 @@ export default StyleSheet.create({
   likeText: {
     marginLeft: 8,
     fontSize: 12,
-    fontFamily: fonts.MontserratRegular
+    fontFamily: fonts.MontserratMedium
   }
 });

@@ -33,7 +33,7 @@ export default StyleSheet.create({
     marginLeft: 4,
     color: '#3B3B3B',
     opacity: 0.62,
-    fontSize: 6,
+    fontSize: 8,
     fontFamily: fonts.MontserratSemiBold
   },
 

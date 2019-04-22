@@ -25,7 +25,7 @@ export default StyleSheet.create({
 
   title: {
     color: '#5882F2',
-    fontSize: 14,
+    fontSize: 15,
     fontFamily: fonts.MontserratSemiBold,
     marginBottom: 5,
     width: '95%'
@@ -34,7 +34,7 @@ export default StyleSheet.create({
   offerText: {
     color: 'black',
     fontSize: 16,
-    fontFamily: fonts.AvenirNext,
+    fontFamily: fonts.WorkSansLight,
     marginBottom: 9,
     height: 46,
     textAlign: 'center'
@@ -61,9 +61,9 @@ export default StyleSheet.create({
   },
 
   detailsText: {
-    color: '#7F7F7F',
+    color: 'black',
     fontSize: 12,
-    fontFamily: fonts.WorkSansLight
+    fontFamily: fonts.AvenirNext
   },
 
   eventImage: {

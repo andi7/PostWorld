@@ -60,7 +60,6 @@ export default StyleSheet.create({
     color: '#000000',
     fontSize: 12,
     fontFamily: fonts.AvenirNext,
-    fontWeight: '600',
     marginBottom: 8
   },
 
@@ -68,7 +67,6 @@ export default StyleSheet.create({
     color: '#000000',
     fontSize: 12,
     fontFamily: fonts.AvenirNext,
-    fontWeight: '600',
-    opacity: 0.5
+    fontWeight: '600'
   }
 });
