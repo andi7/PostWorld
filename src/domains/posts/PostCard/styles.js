@@ -92,7 +92,7 @@ export default StyleSheet.create({
 
   commentsText: {
     color: '#3B3B3BC0',
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: fonts.MontserratMedium,
     marginLeft: 6
   },
@@ -104,8 +104,14 @@ export default StyleSheet.create({
   },
 
   likesText: {
+    color: '#3B3B3BC0',
     fontSize: 12,
     fontFamily: fonts.MontserratMedium,
     marginHorizontal: 9
+  },
+
+  likesTextActive: {
+    color: '#FF5353',
+    fontFamily: fonts.MontserratSemiBold
   }
 });
