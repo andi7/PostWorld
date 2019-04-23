@@ -9,20 +9,16 @@ import styles from './styles';
 
 export const EventDetails = ({ event }) => (
   <React.Fragment>
-    <View style={styles.titleRow}>
-      <View style={{ flex: 1 }}>
-        <Text style={styles.title} numberOfLines={1}>
-          {event.name}
-        </Text>
+    <Text style={styles.title} numberOfLines={1}>
+      {event.name}
+    </Text>
 
-        <View style={styles.row}>
-          <Image source={images.clock} style={styles.clockIcon} />
+    <View style={styles.row}>
+      <Image source={images.clock} style={styles.clockIcon} />
 
-          <Text style={styles.detailsText}>
-            {moment(event.time).toNow(true)} - {moment(event.time).format('h:mm A zz')}
-          </Text>
-        </View>
-      </View>
+      <Text style={styles.detailsText}>
+        {moment(event.time).toNow(true)} - {moment(event.time).format('h:mm A zz')}
+      </Text>
     </View>
 
     <View style={styles.row}>
@@ -42,33 +38,7 @@ export const EventDetails = ({ event }) => (
 const EventCard = ({ event, onPress }) => (
   <TouchableOpacity onPress={onPress} style={styles.card}>
     <View style={{ flex: 1 }}>
-      <View style={styles.titleRow}>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title} numberOfLines={1}>
-            {event.name}
-          </Text>
-
-          <View style={styles.row}>
-            <Image source={images.clock} style={styles.clockIcon} />
-
-            <Text style={styles.detailsText}>
-              {moment(event.time).toNow(true)} - {moment(event.time).format('h:mm A zz')}
-            </Text>
-          </View>
-        </View>
-      </View>
-
-      <View style={styles.row}>
-        <Image source={images.locationArrow} style={styles.locationIcon} />
-
-        <Text style={styles.detailsText}>{event.location}</Text>
-      </View>
-
-      <View style={styles.row}>
-        <Image source={images.group} style={styles.groupIcon} />
-
-        <Text style={styles.detailsText}>{event.going} Going</Text>
-      </View>
+      <EventDetails event={event} />
     </View>
 
     <View>
@@ -79,9 +49,7 @@ const EventCard = ({ event, onPress }) => (
         icon={event.liked ? images.likeActive : images.like}
         iconStyle={styles.likeIcon}
       >
-        <Text style={[styles.likeText, { color: event.liked ? '#FF6464' : '#7F7F7F' }]}>
-          {event.likes}
-        </Text>
+        <Text style={[styles.likeText, event.liked && styles.likeTextActive]}>{event.likes}</Text>
       </IconButton>
     </View>
   </TouchableOpacity>

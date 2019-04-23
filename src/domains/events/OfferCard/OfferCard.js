@@ -39,9 +39,7 @@ const EventCard = ({ event }) => (
         icon={event.liked ? images.likeActive : images.like}
         iconStyle={styles.likeIcon}
       >
-        <Text style={[styles.likeText, { color: event.liked ? '#FF6464' : '#3B3B3BC0' }]}>
-          {event.likes}
-        </Text>
+        <Text style={[styles.likeText, event.liked && styles.likeTextActive]}>{event.likes}</Text>
       </IconButton>
     </View>
   </View>

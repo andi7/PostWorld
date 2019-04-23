@@ -25,7 +25,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10
+    paddingHorizontal: 12
   },
 
   postModalSubmit: {
@@ -39,13 +39,13 @@ export default StyleSheet.create({
 
   postModalSubmitText: {
     color: 'white',
-    fontSize: 13,
+    fontSize: 12,
     fontFamily: fonts.MontserratBold
   },
 
   postModalContent: {
     width: '100%',
-    color: '#3B3B3B',
+    color: '#3B3B3BC0',
     fontSize: 14,
     fontFamily: fonts.MontserratMedium,
     marginHorizontal: 30,

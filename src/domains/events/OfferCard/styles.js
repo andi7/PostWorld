@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { fonts } from 'theme';
+import { fonts, colors } from 'theme';
 
 export default StyleSheet.create({
   card: {
@@ -11,11 +11,9 @@ export default StyleSheet.create({
     alignItems: 'center',
 
     backgroundColor: 'white',
-    borderRadius: 10,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#D2D2D034',
     marginVertical: 6,
-    marginHorizontal: 5,
     shadowOpacity: 1,
     shadowColor: '#D2D2D0',
     shadowOffset: { height: 1 },
@@ -24,7 +22,7 @@ export default StyleSheet.create({
   },
 
   title: {
-    color: '#5882F2',
+    color: colors.primary,
     fontSize: 15,
     fontFamily: fonts.MontserratSemiBold,
     marginBottom: 5,
@@ -62,7 +60,7 @@ export default StyleSheet.create({
 
   detailsText: {
     color: 'black',
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: fonts.AvenirNextRegular
   },
 
@@ -81,8 +79,14 @@ export default StyleSheet.create({
   },
 
   likeText: {
+    color: '#3B3B3BC0',
     marginLeft: 8,
     fontSize: 12,
-    fontFamily: fonts.MontserratRegular
+    fontFamily: fonts.MontserratMedium
+  },
+
+  likeTextActive: {
+    color: '#FF6464',
+    fontFamily: fonts.MontserratBold
   }
 });
