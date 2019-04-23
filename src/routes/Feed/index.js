@@ -33,7 +33,8 @@ export default createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTitle: 'postworld',
       headerTitleStyle: {
-        fontSize: 17,
+        color: '#313131',
+        fontSize: 20,
         fontFamily: fonts.Amazonas
       },
       headerRight: <LogoButton navigation={navigation} />

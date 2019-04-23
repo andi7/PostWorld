@@ -59,14 +59,14 @@ export default StyleSheet.create({
   detailsTitle: {
     color: '#000000',
     fontSize: 12,
-    fontFamily: fonts.AvenirNext,
+    fontFamily: fonts.AvenirNextMedium,
     marginBottom: 8
   },
 
   detailsText: {
     color: '#000000',
     fontSize: 12,
-    fontFamily: fonts.AvenirNext,
+    fontFamily: fonts.AvenirNextRegular,
     fontWeight: '600'
   }
 });

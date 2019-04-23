@@ -8,6 +8,8 @@ export default {
   MontserratLight: Platform.OS === 'ios' ? 'Montserrat-Light' : 'Roboto',
   WorkSansLight: Platform.OS === 'ios' ? 'WorkSans-Light' : 'Roboto',
   Amazonas: Platform.OS === 'ios' ? 'Amazonas' : 'Roboto',
-  AvenirNext: Platform.OS === 'ios' ? 'AvenirNextLTPro-Regular' : 'Roboto',
+  AvenirNextRegular: Platform.OS === 'ios' ? 'AvenirNext-Regular' : 'Roboto',
+  AvenirNextBold: Platform.OS === 'ios' ? 'AvenirNext-Bold' : 'Roboto',
+  AvenirNextMedium: Platform.OS === 'ios' ? 'AvenirNext-Medium' : 'Roboto',
   CooperStdBlack: Platform.OS === 'ios' ? 'CooperBlackStd' : 'Roboto'
 };

@@ -31,11 +31,13 @@ const styles = StyleSheet.create({
     fontSize: 23,
     color: '#212121',
     textAlign: 'center',
-    fontFamily: fonts.MontserratRegular
+    fontFamily: fonts.AvenirNextMedium
   },
 
   description: {
-    fontSize: 18
+    color: '#212121',
+    fontSize: 18,
+    fontFamily: fonts.AvenirNextRegular
   }
 });
 

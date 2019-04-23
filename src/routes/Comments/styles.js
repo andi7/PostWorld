@@ -18,10 +18,11 @@ export default StyleSheet.create({
     height: 36,
     flex: 1,
     borderWidth: 1,
-    borderColor: '#AAAAAA',
+    borderColor: '#3B3B3BC0',
     borderRadius: 8,
-    fontSize: 12,
-    fontFamily: fonts.MontserratRegular,
+    fontSize: 14,
+    fontFamily: fonts.MontserratMedium,
+    color: '#3B3B3BC0',
     paddingHorizontal: 15
   },
 

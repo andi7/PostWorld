@@ -68,7 +68,7 @@ export default StyleSheet.create({
   detailsText: {
     color: 'black',
     fontSize: 12,
-    fontFamily: fonts.AvenirNext
+    fontFamily: fonts.AvenirNextRegular
   },
 
   eventImage: {

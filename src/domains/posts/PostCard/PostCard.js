@@ -97,38 +97,43 @@ class PostCard extends React.PureComponent {
         )}
 
         <View style={styles.footerRow}>
-          <IconButton
-            icon={distance && images.logo}
-            iconStyle={styles.locationIcon}
-            style={{ flex: 1, justifyContent: 'flex-start' }}
-          >
-            <Text style={styles.locationText}>
-              {moment.unix(item.created).fromNow(false)}
-              {distance && ` - ${distance}km`}
-            </Text>
-          </IconButton>
-
-          {!hideComment && (
+          <View style={{ flex: 1, justifyContent: 'flex-start', paddingLeft: 20 }}>
             <IconButton
-              icon={images.comments}
-              iconStyle={styles.commentsIcon}
-              style={{ flex: 1 }}
-              onPress={this.checkComments}
+              icon={distance && images.logo}
+              iconStyle={styles.locationIcon}
+              style={{ justifyContent: 'flex-start' }}
             >
-              <Text style={styles.commentsText}>{item.comments}</Text>
+              <Text style={styles.locationText}>
+                {moment.unix(item.created).fromNow(false)}
+                {distance && ` - ${distance}km`}
+              </Text>
             </IconButton>
-          )}
+          </View>
 
-          <IconButton
-            icon={item.liked ? images.likeActive : images.like}
-            iconStyle={styles.likesIcon}
-            style={{ flex: 1, justifyContent: 'flex-end' }}
-            onPress={() => this.like(item)}
-          >
-            <Text style={[styles.likesText, item.liked && styles.likesTextActive]}>
-              {item.likes}
-            </Text>
-          </IconButton>
+          <View style={{ flex: 1 }}>
+            {!hideComment && (
+              <IconButton
+                icon={images.comments}
+                iconStyle={styles.commentsIcon}
+                onPress={this.checkComments}
+              >
+                <Text style={styles.commentsText}>{item.comments}</Text>
+              </IconButton>
+            )}
+          </View>
+
+          <View style={{ flex: 1, justifyContent: 'flex-end', paddingRight: 20 }}>
+            <IconButton
+              icon={item.liked ? images.likeActive : images.like}
+              iconStyle={styles.likesIcon}
+              style={{ justifyContent: 'flex-end' }}
+              onPress={() => this.like(item)}
+            >
+              <Text style={[styles.likesText, item.liked && styles.likesTextActive]}>
+                {item.likes}
+              </Text>
+            </IconButton>
+          </View>
         </View>
       </View>
     );

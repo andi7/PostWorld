@@ -5,7 +5,6 @@ import { fonts } from 'theme';
 export default StyleSheet.create({
   card: {
     backgroundColor: 'white',
-    borderRadius: 10,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#D2D2D034',
     marginVertical: 6,
@@ -50,7 +49,7 @@ export default StyleSheet.create({
     marginTop: -20,
     color: 'black',
     fontSize: 14,
-    fontFamily: fonts.AvenirNext,
+    fontFamily: fonts.AvenirNextRegular,
     marginLeft: 60,
     marginRight: 58,
     marginBottom: 4
@@ -64,16 +63,15 @@ export default StyleSheet.create({
 
   footerRow: {
     flexDirection: 'row',
-    height: 32,
+    height: 34,
     width: '100%',
-    paddingHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'space-between'
   },
 
   locationIcon: {
-    height: 20,
-    width: 20,
+    height: 18,
+    width: 18,
     resizeMode: 'contain'
   },
 

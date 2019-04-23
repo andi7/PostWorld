@@ -28,7 +28,7 @@ const CommentCard = ({ comment, likePress }) => {
           iconStyle={styles.likesIcon}
           onPress={likePress}
         >
-          <Text style={[styles.likesText, { color: comment.liked ? '#FF5353' : '#3B3B3B' }]}>
+          <Text style={[styles.likesText, comment.liked && styles.likesTextActive]}>
             {comment.likes}
           </Text>
         </IconButton>
