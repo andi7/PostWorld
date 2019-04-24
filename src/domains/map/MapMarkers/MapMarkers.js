@@ -1,7 +1,7 @@
 import React from 'react';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 
-import { images, fonts } from 'theme';
+import { images } from 'theme';
 
 const iconsForType = {
   general: images.markerGeneral,
@@ -36,7 +36,9 @@ const MapMarker = ({ markers, onMarkerPress }) => (
     clusterRadius={80}
     clusterMaxZoom={14}
     images={iconsForType}
-    onPress={e => onMarkerPress(e.nativeEvent.payload.properties.id, e.nativeEvent.payload)}
+    onPress={e => {
+      onMarkerPress(e.nativeEvent.payload.properties.id, e.nativeEvent.payload);
+    }}
   >
     <MapboxGL.SymbolLayer
       key="{id}"
@@ -57,9 +59,10 @@ const mapStyles = MapboxGL.StyleSheet.create({
     textColor: '#fff',
     iconAllowOverlap: true,
     textAllowOverlap: true,
-    iconAnchor: 'bottom',
-    textAnchor: 'bottom',
-    textOffset: [0, -1]
+    // iconAnchor: 'bottom',
+    // textAnchor: 'bottom',
+    textOffset: [0, 0],
+    iconOffset: [0, 0.5]
   },
   clusterPoints: {
     iconImage: '{iconType}',
@@ -68,9 +71,7 @@ const mapStyles = MapboxGL.StyleSheet.create({
     textColor: '#fff',
     textSize: 25,
     iconAllowOverlap: true,
-    textAllowOverlap: true,
-    iconAnchor: 'bottom',
-    textAnchor: 'bottom'
+    textAllowOverlap: true
   }
 });
 

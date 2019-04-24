@@ -15,6 +15,11 @@ export default StyleSheet.create({
     elevation: 3
   },
 
+  cardExpanded: {
+    borderRadius: 8,
+    minHeight: 130
+  },
+
   topRow: {
     flexDirection: 'row',
     height: 50,

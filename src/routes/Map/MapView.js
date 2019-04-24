@@ -30,8 +30,8 @@ class MapView extends React.Component {
   };
 
   markerPress = (markerId, marker) => {
-    console.log(this.map.current, marker);
-    this.map.current.moveTo(marker.geometry.coordinates, 400);
+    // console.log(this.map.current, marker);
+    this.map.current.flyTo(marker.geometry.coordinates, 400);
 
     this.setState({ detailsVisible: true, selectedMarkerId: markerId });
   };
@@ -75,6 +75,7 @@ class MapView extends React.Component {
 
         <Modal
           isVisible={detailsVisible}
+          backdropOpacity={0}
           onBackdropPress={() => this.setState({ detailsVisible: false })}
           onBackButtonPress={() => this.setState({ detailsVisible: false })}
         >
@@ -82,6 +83,7 @@ class MapView extends React.Component {
             item={getObjForId(mapPosts, selectedMarkerId)}
             feedType="map"
             onCommentPress={() => this.setState({ detailsVisible: false })}
+            expanded
           />
         </Modal>
       </View>

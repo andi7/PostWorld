@@ -56,7 +56,7 @@ class PostCard extends React.PureComponent {
   };
 
   render() {
-    const { item, hideComment, hideShare, userLocation } = this.props;
+    const { item, expanded, hideComment, hideShare, userLocation } = this.props;
 
     const distance =
       userLocation &&
@@ -70,7 +70,7 @@ class PostCard extends React.PureComponent {
       : images.user;
 
     return (
-      <View style={styles.card}>
+      <View style={[styles.card, expanded && styles.cardExpanded]}>
         <View style={styles.topRow}>
           <IconButton icon={avatar} iconStyle={styles.avatar}>
             <Text
@@ -95,6 +95,8 @@ class PostCard extends React.PureComponent {
         {!!item.image && (
           <DynamicHeightImage source={{ uri: item.image }} style={styles.postImage} />
         )}
+
+        <View style={{ flex: 1 }} />
 
         <View style={styles.footerRow}>
           <View style={{ flex: 1, justifyContent: 'flex-start', paddingLeft: 20 }}>
