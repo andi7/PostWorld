@@ -47,12 +47,13 @@ class MapView extends React.Component {
         <MapboxGL.MapView
           ref={this.map}
           style={{ flex: 1 }}
-          // showUserLocation
-          // userTrackingMode={MapboxGL.UserTrackingModes.Follow}
+          showUserLocation={false}
+          userTrackingMode={MapboxGL.UserTrackingModes.Follow}
           centerCoordinate={[-122.0312186, 37.33233141]}
           styleURL={mapboxConfig.mapStyleUrl}
           pitch={45}
           zoomLevel={19}
+          maxZoomLevel={19}
           logoEnabled={false}
           pitchEnabled={false}
           compassEnabled={false}

@@ -17,11 +17,11 @@ const collectionForMarkers = markers => ({
     type: 'Feature',
     properties: {
       id: marker.id,
-      iconType: marker.type
+      iconType: marker.post_type
     },
     geometry: {
       type: 'Point',
-      coordinates: [marker.x, marker.y]
+      coordinates: marker.coordinates
     }
   })),
   maxzoom: 22,
@@ -34,7 +34,6 @@ const MapMarker = ({ markers, onMarkerPress }) => (
     shape={collectionForMarkers(markers)}
     cluster
     clusterRadius={80}
-    clusterMaxZoom={14}
     images={iconsForType}
     onPress={e => {
       onMarkerPress(e.nativeEvent.payload.properties.id, e.nativeEvent.payload);
@@ -47,6 +46,12 @@ const MapMarker = ({ markers, onMarkerPress }) => (
       style={mapStyles.icon}
       minZoomLevel={1}
     />
+
+    <MapboxGL.SymbolLayer
+      id="clusteredPoints"
+      filter={['has', 'point_count']}
+      style={mapStyles.clusterPoints}
+    />
   </MapboxGL.ShapeSource>
 );
 
@@ -55,23 +60,27 @@ const mapStyles = MapboxGL.StyleSheet.create({
     iconImage: '{iconType}',
     iconSize: 1,
     textSize: 20,
-    textField: '10',
+    textField: '{id}',
     textColor: '#fff',
-    iconAllowOverlap: true,
-    textAllowOverlap: true,
-    // iconAnchor: 'bottom',
-    // textAnchor: 'bottom',
-    textOffset: [0, 0],
-    iconOffset: [0, 0.5]
+    iconAllowOverlap: false,
+    textAllowOverlap: false,
+    iconAnchor: 'bottom',
+    textAnchor: 'bottom',
+    textOffset: [0, -1]
+    // iconOffset: [0, 0.5]
   },
   clusterPoints: {
-    iconImage: '{iconType}',
-    iconSize: 0.4,
+    iconImage: 'general',
+    iconSize: 1,
     textField: '+{point_count}',
     textColor: '#fff',
     textSize: 25,
-    iconAllowOverlap: true,
-    textAllowOverlap: true
+    iconAllowOverlap: false,
+    textAllowOverlap: false,
+    iconAnchor: 'bottom',
+    textAnchor: 'bottom',
+    textOffset: [0, -0.9]
+    // iconOffset: [0, 0.5]
   }
 });
 

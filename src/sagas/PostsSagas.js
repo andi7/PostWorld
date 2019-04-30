@@ -8,53 +8,23 @@ import { getPostsForType, getPostsModelForType } from 'selectors/posts';
 import { getUserLocation } from 'selectors/location';
 
 export function* queryMapPosts() {
-  yield put(
-    PostsActions.fetchMapPostsSuccess([
-      {
-        id: 34,
-        body: 'This is a test post',
-        x: -122.0312186,
-        y: 37.33233141,
-        type: 'food',
-        author: {
-          profile_image: null,
-          username: 'andi'
-        },
-        comments: 0,
-        created: 1553782682.3891044,
-        liked: false,
-        likes: 2
-      }
-    ])
-  );
+  const user = yield select(getUser);
+  const location = yield select(getUserLocation);
 
-  // const user = yield select(getUser);
-  // const location = yield select(getUserLocation);
-  // const result = yield call(queryMap, user.id, user.token, location.latitude, location.longitude);
+  if (!location) {
+    yield put(PostsActions.fetchMapPostsFailure('No Location'));
+    return;
+  }
 
-  // if (result.data.success) {
-  //   yield put(
-  //     PostsActions.fetchMapPostsSuccess([
-  //       {
-  //         id: 34,
-  //         body: 'This is a test post',
-  //         x: -122.0312186,
-  //         y: 37.33233141,
-  //         type: 'food',
-  //         author: {
-  //           profile_image: null,
-  //           username: 'andi'
-  //         },
-  //         comments: 0,
-  //         created: 1553782682.3891044,
-  //         liked: false,
-  //         likes: 2
-  //       }
-  //     ])
-  //   );
-  // } else {
-  //   yield put(PostsActions.fetchMapPostsFailed(result.data.message));
-  // }
+  const result = yield call(queryMap, user.id, user.token, location.latitude, location.longitude);
+
+  if (result.data.success) {
+    const filteredData = result.data.data.filter(el => el.coordinates[0] !== 0);
+
+    yield put(PostsActions.fetchMapPostsSuccess(filteredData));
+  } else {
+    yield put(PostsActions.fetchMapPostsFailure(result.data.message));
+  }
 }
 
 export function* queryPosts({ postType }) {
