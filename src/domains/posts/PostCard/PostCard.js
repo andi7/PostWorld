@@ -93,7 +93,7 @@ class PostCard extends React.PureComponent {
         {!!item.body && <Text style={styles.postText}>{item.body}</Text>}
 
         {!!item.image && (
-          <DynamicHeightImage source={{ uri: item.image }} style={styles.postImage} />
+          <DynamicHeightImage source={{ uri: api.imageUrl.concat(item.image.path) }} style={styles.postImage} />
         )}
 
         <View style={{ flex: 1 }} />

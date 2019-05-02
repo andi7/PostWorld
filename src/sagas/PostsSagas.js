@@ -60,7 +60,7 @@ export function* loadMorePosts({ postType }) {
   }
 }
 
-export function* createPost({ tag, body }) {
+export function* createPost({ tag, body, image }) {
   const user = yield select(getUser);
   const isMapActive = yield select(getMapActive);
   let result;
@@ -74,11 +74,12 @@ export function* createPost({ tag, body }) {
       user.token,
       tag,
       body,
+      image,
       userLocation.latitude,
       userLocation.longitude
     );
   } else {
-    result = yield call(create, user.id, user.token, tag, body, 0, 0);
+    result = yield call(create, user.id, user.token, tag, body, image);
   }
 
   if (result.data.success) {

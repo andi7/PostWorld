@@ -21,41 +21,45 @@ import styles from './styles';
 class CreatePost extends React.Component {
   state = {
     text: '',
-    image: null
+    image: null,
+    imageData: null
   };
 
   openImagePicker = () => {
-    ImagePicker.showImagePicker({ title: 'Select Image' }, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        console.log('Response = ', response);
+    ImagePicker.showImagePicker(
+      { title: 'Select Image', maxHeight: 500, maxWidth: 500 },
+      response => {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else {
+          console.log('Response = ', response);
 
-        const source = { uri: response.uri };
+          const source = { uri: response.uri };
 
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+          // You can also display the image using data:
+          // const source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-        this.setState({ image: source });
+          this.setState({ image: source, imageData: response.data });
+        }
       }
-    });
+    );
   };
 
   submitPost = () => {
     const { tag, onSubmit } = this.props;
-    const { text } = this.state;
+    const { text, imageData } = this.state;
 
     if (onSubmit) {
       onSubmit();
     }
 
-    this.props.dispatch(PostsActions.createPost(tag, text));
+    this.props.dispatch(PostsActions.createPost(tag, text, imageData));
   };
 
   render() {
-    const { tag, fullscreen, onClose } = this.props;
+    const { fullscreen, onClose } = this.props;
     const { text, image } = this.state;
 
     return (

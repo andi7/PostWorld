@@ -23,8 +23,18 @@ export const queryMap = (id, token, x, y) =>
     })
   );
 
-export const create = (id, token, tag, body, latitude, longitude) =>
-  request.post('/posts/create', qs.stringify({ id, token, ptype: tag, body, latitude, longitude }));
+export const create = (id, token, tag, body, image, latitude, longitude) => {
+  if (latitude && longitude) {
+    return request.post(
+      '/posts/create',
+      qs.stringify({ id, token, ptype: tag, body, image, latitude, longitude })
+    );
+  }
+
+  return request
+    .post('/posts/create', qs.stringify({ id, token, ptype: tag, body, image }))
+    .catch(err => console.log(err.message, id, token, tag, body, image));
+};
 
 export const like = (id, token, postId) =>
   request.post('/like', qs.stringify({ id, token, object_id: postId, type: 'post' }));

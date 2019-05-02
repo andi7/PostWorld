@@ -11,7 +11,7 @@ const { Types, Creators } = createActions({
 
   loadMorePosts: ['postType'],
   selectPost: ['postType', 'postId'],
-  createPost: ['tag', 'body'],
+  createPost: ['tag', 'body', 'image'],
   likePost: ['postId'],
   unlikePost: ['postId']
 });
