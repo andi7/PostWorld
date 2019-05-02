@@ -53,6 +53,7 @@ class MapView extends React.Component {
           styleURL={mapboxConfig.mapStyleUrl}
           pitch={45}
           zoomLevel={19}
+          minZoomLevel={15}
           maxZoomLevel={19}
           logoEnabled={false}
           pitchEnabled={false}
