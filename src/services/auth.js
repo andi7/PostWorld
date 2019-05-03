@@ -14,12 +14,22 @@ export const signUp = (email, password, username, avatar) =>
   );
 
 export const signIn = (email, password) =>
+  request.post(
+    '/login',
+    qs.stringify({
+      username: email,
+      password
+    })
+  );
+
+export const update = (id, token, avatar) =>
   request
     .post(
-      '/login',
+      '/users/update',
       qs.stringify({
-        username: email,
-        password
+        id,
+        token,
+        image: avatar
       })
     )
     .catch((...p) => console.log(p));

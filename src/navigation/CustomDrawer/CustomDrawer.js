@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { connect } from 'react-redux';
+import ImagePicker from 'react-native-image-picker';
 
 import AuthActions from 'models/auth';
 
@@ -44,10 +45,27 @@ const showLogoutDialog = dispatch => {
   );
 };
 
+const openAvatarPicker = dispatch => {
+  ImagePicker.showImagePicker(
+    { title: 'Select Avatar', maxWidth: 200, maxHeight: 200 },
+    response => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        console.log('Response = ', response);
+
+        dispatch(AuthActions.updateUserAvatar(response.data));
+      }
+    }
+  );
+};
+
 const CustomDrawer = ({ user, navigation, dispatch }) => (
   <View style={styles.container}>
     <View style={styles.avatarContainer}>
-      <TouchableOpacity onPress={() => showLogoutDialog(dispatch)}>
+      <TouchableOpacity onPress={() => openAvatarPicker(dispatch)}>
         <Image
           source={
             user.profile_image ? { uri: api.imageUrl.concat(user.profile_image.path) } : images.user

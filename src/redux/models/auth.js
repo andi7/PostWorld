@@ -6,6 +6,7 @@ import * as NavigationUtils from 'utils/navigation';
 const { Types, Creators } = createActions({
   signInByEmail: ['email', 'password'],
   signUpByEmail: ['email', 'password', 'username', 'avatar'],
+  updateUserAvatar: ['avatar'],
   authSuccess: ['user'],
   authFailure: ['error'],
   logOut: []
@@ -30,6 +31,7 @@ const logOut = () => {
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SIGN_IN_BY_EMAIL]: state => ({ ...state, loading: true }),
   [Types.SIGN_UP_BY_EMAIL]: state => ({ ...state, loading: true }),
+  [Types.UPDATE_USER_AVATAR]: state => ({ ...state, loading: true }),
   [Types.AUTH_SUCCESS]: (state, { user }) => ({ ...state, user, loading: false }),
   [Types.AUTH_FAILURE]: (state, { error }) => ({ ...state, error, loading: false }),
   [Types.LOG_OUT]: logOut

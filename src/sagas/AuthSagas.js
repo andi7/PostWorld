@@ -1,9 +1,10 @@
 import { Alert } from 'react-native';
-import { put, call } from 'redux-saga/effects';
+import { put, call, select } from 'redux-saga/effects';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import * as NavigationUtils from 'utils/navigation';
-import { signUp, signIn } from 'services/auth';
+import { signUp, signIn, update } from 'services/auth';
+import { getUser } from 'selectors/auth';
 
 import AuthActions from 'models/auth';
 import LocationActions from 'models/location';
@@ -48,5 +49,19 @@ export function* signUpByEmail({ email, password, username, avatar }) {
 
     storeUser(result.data.data);
     NavigationUtils.navigate('MainNavigator');
+  }
+}
+
+export function* updateUserAvatar({ avatar }) {
+  const user = yield select(getUser);
+  const result = yield call(update, user.id, user.token, avatar);
+
+  console.log(result);
+
+  if (!result.data.success) {
+    yield put(AuthActions.authFailure(result.data.message));
+  } else {
+    yield put(AuthActions.authSuccess(result.data.data));
+    storeUser(result.data.data);
   }
 }

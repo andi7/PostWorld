@@ -11,7 +11,7 @@ import { LocationTypes } from 'models/location';
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas';
-import { signInByEmail, signUpByEmail } from './AuthSagas';
+import { signInByEmail, signUpByEmail, updateUserAvatar } from './AuthSagas';
 import {
   queryPosts,
   queryMapPosts,
@@ -37,6 +37,7 @@ export default function* root() {
     // AUTH
     takeLatest(AuthTypes.SIGN_IN_BY_EMAIL, signInByEmail),
     takeLatest(AuthTypes.SIGN_UP_BY_EMAIL, signUpByEmail),
+    takeLatest(AuthTypes.UPDATE_USER_AVATAR, updateUserAvatar),
 
     // POSTS
     takeEvery(PostsTypes.FETCH_POSTS, queryPosts),
