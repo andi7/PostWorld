@@ -35,6 +35,7 @@ export default {
   markerArt: require('../assets/images/markers/marker_art.png'),
   markerOffer: require('../assets/images/markers/marker_offer.png'),
   markerGroup: require('../assets/images/markers/marker_group.png'),
+  cluster: require('../assets/images/markers/cluster.png'),
 
   // TabBar Icons
   home: require('../assets/images/icons/home.png'),

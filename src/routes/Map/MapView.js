@@ -30,10 +30,11 @@ class MapView extends React.Component {
   };
 
   markerPress = (markerId, marker) => {
-    // console.log(this.map.current, marker);
     this.map.current.flyTo(marker.geometry.coordinates, 400);
 
-    this.setState({ detailsVisible: true, selectedMarkerId: markerId });
+    if (markerId) {
+      this.setState({ detailsVisible: true, selectedMarkerId: markerId });
+    }
   };
 
   render() {

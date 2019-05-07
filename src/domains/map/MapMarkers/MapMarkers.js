@@ -8,7 +8,8 @@ const iconsForType = {
   food: images.markerFood,
   group: images.merkerGroup,
   offer: images.markerOffer,
-  art: images.markerArt
+  art: images.markerArt,
+  cluster: images.cluster
 };
 
 const collectionForMarkers = markers => ({
@@ -17,7 +18,8 @@ const collectionForMarkers = markers => ({
     type: 'Feature',
     properties: {
       id: marker.id,
-      iconType: marker.post_type
+      iconType: marker.post_type,
+      text: marker.likes
     },
     geometry: {
       type: 'Point',
@@ -58,29 +60,24 @@ const MapMarker = ({ markers, onMarkerPress }) => (
 const mapStyles = MapboxGL.StyleSheet.create({
   icon: {
     iconImage: '{iconType}',
-    iconSize: 1,
-    textSize: 20,
-    textField: '{id}',
+    iconSize: 0.9,
+    textSize: 16,
+    textField: '{text}',
     textColor: '#fff',
     iconAllowOverlap: false,
     textAllowOverlap: false,
     iconAnchor: 'bottom',
     textAnchor: 'bottom',
-    textOffset: [0, -1]
-    // iconOffset: [0, 0.5]
+    textOffset: [0, -1.3]
   },
   clusterPoints: {
-    iconImage: 'general',
+    iconImage: 'cluster',
     iconSize: 1,
     textField: '+{point_count}',
     textColor: '#fff',
-    textSize: 25,
+    textSize: 22,
     iconAllowOverlap: false,
-    textAllowOverlap: false,
-    iconAnchor: 'bottom',
-    textAnchor: 'bottom',
-    textOffset: [0, -0.9]
-    // iconOffset: [0, 0.5]
+    textAllowOverlap: false
   }
 });
 
