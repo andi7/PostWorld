@@ -85,6 +85,10 @@ export function* createPost({ tag, body, image }) {
   if (result.data.success) {
     yield put(PostsActions.fetchPosts('all', 'new'));
 
+    if (isMapActive) {
+      yield put(PostsActions.fetchMapPosts());
+    }
+
     if (tag !== 'general') {
       yield put(PostsActions.fetchPosts(tag, 'new'));
     }

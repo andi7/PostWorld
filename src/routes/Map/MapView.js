@@ -38,19 +38,20 @@ class MapView extends React.Component {
   };
 
   render() {
-    const { mapPosts, mapType } = this.props;
+    const { userLocation, mapPosts, mapType } = this.props;
     const { detailsVisible, selectedMarkerId } = this.state;
 
     const data = mapType === 'posts' ? mapPosts : [];
+    const ccordinates = [userLocation.longitude, userLocation.latitude];
 
     return (
       <View style={styles.container}>
         <MapboxGL.MapView
           ref={this.map}
           style={{ flex: 1 }}
-          showUserLocation={false}
-          userTrackingMode={MapboxGL.UserTrackingModes.Follow}
-          centerCoordinate={[-122.0312186, 37.33233141]}
+          // showUserLocation={false}
+          // userTrackingMode={MapboxGL.UserTrackingModes.Follow}
+          centerCoordinate={ccordinates}
           styleURL={mapboxConfig.mapStyleUrl}
           pitch={45}
           zoomLevel={19}

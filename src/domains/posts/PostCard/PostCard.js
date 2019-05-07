@@ -39,7 +39,7 @@ class PostCard extends React.PureComponent {
 
   openActionSheet = () => {
     const { user, item } = this.props;
-    const isPostAuthor = item.author === user.username;
+    const isPostAuthor = item.author.id === user.id;
 
     const dynamicButtons = isPostAuthor ? BUTTONS : BUTTONS.filter(el => el !== 'Delete');
 
@@ -93,7 +93,10 @@ class PostCard extends React.PureComponent {
         {!!item.body && <Text style={styles.postText}>{item.body}</Text>}
 
         {!!item.image && (
-          <DynamicHeightImage source={{ uri: api.imageUrl.concat(item.image.path) }} style={styles.postImage} />
+          <DynamicHeightImage
+            source={{ uri: api.imageUrl.concat(item.image.path) }}
+            style={styles.postImage}
+          />
         )}
 
         <View style={{ flex: 1 }} />
