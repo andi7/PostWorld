@@ -24,6 +24,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-linear-gradient": "^2.5.3",
     "react-native-modal": "^9.0.0",
+    "react-native-modal-dropdown": "^0.6.2",
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^9.3.6",
     "react-native-swiper": "^1.5.14",
