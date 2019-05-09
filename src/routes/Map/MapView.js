@@ -42,27 +42,29 @@ class MapView extends React.Component {
     const { detailsVisible, selectedMarkerId } = this.state;
 
     const data = mapType === 'posts' ? mapPosts : [];
-    const ccordinates = [userLocation.longitude, userLocation.latitude];
+    const coordinates = userLocation && [userLocation.longitude, userLocation.latitude];
 
     return (
       <View style={styles.container}>
-        <MapboxGL.MapView
-          ref={this.map}
-          style={{ flex: 1 }}
-          // showUserLocation={false}
-          // userTrackingMode={MapboxGL.UserTrackingModes.Follow}
-          centerCoordinate={ccordinates}
-          styleURL={mapboxConfig.mapStyleUrl}
-          pitch={45}
-          zoomLevel={19}
-          minZoomLevel={15}
-          maxZoomLevel={19}
-          logoEnabled={false}
-          pitchEnabled={false}
-          compassEnabled={false}
-        >
-          <MapMarkers markers={data} onMarkerPress={this.markerPress} />
-        </MapboxGL.MapView>
+        {coordinates && (
+          <MapboxGL.MapView
+            ref={this.map}
+            style={{ flex: 1 }}
+            // showUserLocation={false}
+            // userTrackingMode={MapboxGL.UserTrackingModes.Follow}
+            centerCoordinate={coordinates}
+            styleURL={mapboxConfig.mapStyleUrl}
+            pitch={45}
+            zoomLevel={19}
+            minZoomLevel={15}
+            maxZoomLevel={19}
+            logoEnabled={false}
+            pitchEnabled={false}
+            compassEnabled={false}
+          >
+            <MapMarkers markers={data} onMarkerPress={this.markerPress} />
+          </MapboxGL.MapView>
+        )}
 
         <View style={styles.eventsHeader}>
           <IconButton

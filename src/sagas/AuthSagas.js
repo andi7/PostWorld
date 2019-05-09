@@ -23,7 +23,7 @@ export function* signInByEmail({ email, password }) {
     yield put(AuthActions.authFailure(result.data.message));
   } else {
     yield put(AuthActions.authSuccess(result.data.data));
-    yield put(LocationActions.startTracking());
+    yield put(LocationActions.getLocation());
 
     storeUser(result.data.data);
     NavigationUtils.navigate('MainNavigator');
@@ -45,7 +45,7 @@ export function* signUpByEmail({ email, password, username, avatar }) {
     yield put(AuthActions.authFailure(result.data.message));
   } else {
     yield put(AuthActions.authSuccess(result.data.data));
-    yield put(LocationActions.startTracking());
+    yield put(LocationActions.getLocation());
 
     storeUser(result.data.data);
     NavigationUtils.navigate('MainNavigator');

@@ -2,7 +2,7 @@ import { put, call } from 'redux-saga/effects';
 
 import LocationActions from 'models/location';
 
-const getLocation = () =>
+const getLocationRequest = () =>
   new Promise((resolve, reject) =>
     navigator.geolocation.getCurrentPosition(
       (...success) => resolve(success),
@@ -11,13 +11,25 @@ const getLocation = () =>
     )
   );
 
-export function* startTracking() {
-  const result = yield call(getLocation);
+export function* getLocation() {
+  const result = yield call(getLocationRequest);
 
   console.log(result);
 
   if (result[0].coords) {
-    yield put(LocationActions.updateLocation(result[0].coords));
+    yield put(LocationActions.updateLocationSuccess(result[0].coords));
+  } else {
+    yield put(LocationActions.updateLocationFailure());
+  }
+}
+
+export function* startTracking() {
+  const result = yield call(getLocationRequest);
+
+  console.log(result);
+
+  if (result[0].coords) {
+    yield put(LocationActions.updateLocationSuccess(result[0].coords));
   }
 }
 

@@ -24,7 +24,7 @@ export function* startup() {
       yield put(AuthActions.authSuccess(JSON.parse(user)));
       NavigationUtils.navigate('MainNavigator');
 
-      yield put(LocationActions.startTracking());
+      yield put(LocationActions.getLocation());
     } else {
       NavigationUtils.navigate('SignUp');
     }

@@ -21,7 +21,7 @@ import {
   unlikePost
 } from './PostsSagas';
 import { queryComments, postComment, likeComment, unlikeComment } from './CommentsSagas';
-import { startTracking } from './LocationSagas';
+import { getLocation, startTracking } from './LocationSagas';
 
 /* ------------- API ------------- */
 
@@ -56,6 +56,7 @@ export default function* root() {
     takeLatest(CommentsTypes.UNLIKE_COMMENT, unlikeComment),
 
     // LOCATION
+    takeLatest(LocationTypes.GET_LOCATION, getLocation),
     takeLatest(LocationTypes.START_TRACKING, startTracking)
   ]);
 }
