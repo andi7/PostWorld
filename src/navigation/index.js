@@ -13,6 +13,9 @@ import AuthNavigator from 'routes/Auth';
 import PostComments from 'routes/Comments/PostComments';
 import MapView from 'routes/Map/MapView';
 
+import BusinessLanding from 'routes/BusinessTools/BusinessLanding/BusinessLanding';
+import BusinessRegistration from 'routes/BusinessTools/BusinessRegistration/BusinessRegistration';
+
 import TabNavigator from './TabNavigator';
 
 import CustomDrawer from './CustomDrawer/CustomDrawer';
@@ -35,13 +38,15 @@ const MainNavigator = createStackNavigator(
         header: null
       }
     },
-    PostComments,
     MapView: {
       screen: MapView,
       navigationOptions: {
         header: null
       }
-    }
+    },
+    PostComments,
+    BusinessLanding,
+    BusinessRegistration
   },
   {
     initialRouteName: 'DrawerNavigator',

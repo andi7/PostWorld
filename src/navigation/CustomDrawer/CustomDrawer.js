@@ -89,7 +89,11 @@ const CustomDrawer = ({ user, navigation, dispatch }) => (
     <View style={styles.drawerItemsContainer}>
       <DrawerItem name="Post History" icon={images.drawerBurger} />
       <DrawerItem name="Invite friends!" icon={images.drawerStar} />
-      <DrawerItem name="Business tools" icon={images.drawerShop} />
+      <DrawerItem
+        name="Business tools"
+        icon={images.drawerShop}
+        onPress={() => navigation.navigate('BusinessLanding')}
+      />
       <DrawerItem name="Settings" icon={images.cog} />
     </View>
 

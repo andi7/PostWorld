@@ -52,5 +52,6 @@ export default {
   // Other
   logo: require('../assets/images/logo.png'),
   user: require('../assets/images/user.png'),
+  business: require('../assets/images/business.png'),
   angleRight: require('../assets/images/icons/angle_right.png')
 };
