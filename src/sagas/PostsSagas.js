@@ -1,19 +1,30 @@
 import { put, call, select } from 'redux-saga/effects';
 
 import PostsActions from 'models/posts';
+import LocationActions from 'models/location';
+
 import { queryAll, queryMap, create, like, unlike } from 'services/posts';
 import { getUser } from 'selectors/auth';
 import { getMapActive } from 'selectors/map';
 import { getPostsForType, getPostsModelForType } from 'selectors/posts';
 import { getUserLocation } from 'selectors/location';
 
+import { getLocationRequest } from 'utils/geolocation';
+
 export function* queryMapPosts() {
   const user = yield select(getUser);
-  const location = yield select(getUserLocation);
+  let location = yield select(getUserLocation);
 
   if (!location) {
-    yield put(PostsActions.fetchMapPostsFailure('No Location'));
-    return;
+    const tmpLocation = yield call(getLocationRequest);
+
+    if (tmpLocation[0].coords) {
+      location = tmpLocation;
+      yield put(LocationActions.updateLocationSuccess(location));
+    } else {
+      yield put(PostsActions.fetchMapPostsFailed('No Location'));
+      return;
+    }
   }
 
   const result = yield call(queryMap, user.id, user.token, location.latitude, location.longitude);
@@ -23,7 +34,7 @@ export function* queryMapPosts() {
 
     yield put(PostsActions.fetchMapPostsSuccess(filteredData));
   } else {
-    yield put(PostsActions.fetchMapPostsFailure(result.data.message));
+    yield put(PostsActions.fetchMapPostsFailed(result.data.message));
   }
 }
 

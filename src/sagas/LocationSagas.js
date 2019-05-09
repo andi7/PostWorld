@@ -2,14 +2,7 @@ import { put, call } from 'redux-saga/effects';
 
 import LocationActions from 'models/location';
 
-const getLocationRequest = () =>
-  new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(
-      (...success) => resolve(success),
-      (...err) => resolve(err),
-      { enableHighAccuracy: true }
-    )
-  );
+import { getLocationRequest } from 'utils/geolocation';
 
 export function* getLocation() {
   const result = yield call(getLocationRequest);

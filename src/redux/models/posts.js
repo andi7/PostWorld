@@ -7,7 +7,7 @@ const { Types, Creators } = createActions({
 
   fetchMapPosts: [],
   fetchMapPostsSuccess: ['data'],
-  fetchMapPostsFailure: ['error'],
+  fetchMapPostsFailed: ['error'],
 
   loadMorePosts: ['postType'],
   selectPost: ['postType', 'postId'],
@@ -91,9 +91,9 @@ export const reducer = createReducer(INITIAL_STATE, {
     ...state,
     map: { ...state.map, data, loading: false }
   }),
-  [Types.FETCH_MAP_POSTS_FAILURE]: (state, { error }) => ({
+  [Types.FETCH_MAP_POSTS_FAILED]: (state, { error }) => ({
     ...state,
-    map: { ...state.posts, error, loading: false }
+    map: { ...state.map, error, loading: false }
   }),
 
   // Single Post Screen

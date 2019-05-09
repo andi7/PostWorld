@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -38,15 +38,16 @@ class MapView extends React.Component {
   };
 
   render() {
-    const { userLocation, mapPosts, mapType } = this.props;
+    const { userLocation, mapPosts, mapPostsLoading, mapType } = this.props;
     const { detailsVisible, selectedMarkerId } = this.state;
 
     const data = mapType === 'posts' ? mapPosts : [];
+    const loading = mapType === 'posts' ? mapPostsLoading : false;
     const coordinates = userLocation && [userLocation.longitude, userLocation.latitude];
 
     return (
       <View style={styles.container}>
-        {coordinates && (
+        {coordinates ? (
           <MapboxGL.MapView
             ref={this.map}
             style={{ flex: 1 }}
@@ -64,6 +65,10 @@ class MapView extends React.Component {
           >
             <MapMarkers markers={data} onMarkerPress={this.markerPress} />
           </MapboxGL.MapView>
+        ) : loading ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          <Text>There seems to be a problem</Text>
         )}
 
         <View style={styles.eventsHeader}>
@@ -100,5 +105,6 @@ class MapView extends React.Component {
 export default connect(({ location, posts, map }) => ({
   userLocation: location.data,
   mapPosts: posts.map.data,
+  mapPostsLoading: posts.map.loading,
   mapType: map.mapType
 }))(MapView);

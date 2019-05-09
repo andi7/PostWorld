@@ -1,3 +1,13 @@
+export function getLocationRequest() {
+  return new Promise((resolve, reject) =>
+    navigator.geolocation.getCurrentPosition(
+      (...success) => resolve(success),
+      (...err) => resolve(err),
+      { enableHighAccuracy: true }
+    )
+  );
+}
+
 export function calcDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Radius of the earth in km
   const dLat = deg2rad(lat2 - lat1); // deg2rad below
