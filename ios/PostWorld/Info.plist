@@ -59,7 +59,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like access to your location</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>some string</string>
+	<string>$(PRODUCT_NAME) would like access to your location</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to your microphone (for videos)</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

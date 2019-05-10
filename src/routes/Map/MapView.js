@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, Dimensions } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -17,6 +17,8 @@ import EventHeader from 'domains/events/EventHeader/EventHeader';
 import styles from './styles';
 
 const getObjForId = (arr, id) => arr[arr.findIndex(el => el.id === id)];
+
+const { height, width } = Dimensions.get('window');
 
 class MapView extends React.Component {
   state = { detailsVisible: false, selectedMarkerId: null };
@@ -50,7 +52,7 @@ class MapView extends React.Component {
         {coordinates ? (
           <MapboxGL.MapView
             ref={this.map}
-            style={{ flex: 1 }}
+            style={{ height: height - 48, width }}
             // showUserLocation={false}
             // userTrackingMode={MapboxGL.UserTrackingModes.Follow}
             centerCoordinate={coordinates}
