@@ -57,10 +57,12 @@ const MapMarker = ({ markers, onMarkerPress }) => (
   </MapboxGL.ShapeSource>
 );
 
+const scale = __DEV__ ? 1 : 2;
+
 const mapStyles = MapboxGL.StyleSheet.create({
   icon: {
     iconImage: '{iconType}',
-    iconSize: 0.9,
+    iconSize: 0.9 / scale,
     textSize: 16,
     textField: '{text}',
     textColor: '#fff',
@@ -72,10 +74,10 @@ const mapStyles = MapboxGL.StyleSheet.create({
   },
   clusterPoints: {
     iconImage: 'cluster',
-    iconSize: 1,
+    iconSize: 1 / scale,
+    textSize: 22,
     textField: '+{point_count}',
     textColor: '#fff',
-    textSize: 22,
     iconAllowOverlap: false,
     textAllowOverlap: false
   }
